@@ -1,34 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Studio Ghibli Backoffice
 
-## Getting Started
+_Backoffice_
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
+
+  ### Table of Contents
+  1. [Config-environment](#Config-environment)
+  2. [Studio Ghibli Backoffice Flowchart](#flowchart)
+  3. [Deploy](#deployed)
+  4. [Acknowledgements](#acknowledgements)
+
+
+
+
+
+
+
+
+
+
+## ⚙Config-environment <a name="Config-environment"></a>
+
+This is custom environment configured from scratch using **Webpack** and **React.js**, we decided this to optimize the load of the frontend.
+
+### Built With
+
+These are the technologies and libraries we used to build this project.
+
+- Next.js
+- React Hook Forms
+- TailwindCSS
+- TypeScript
+- Axios
+
+<!-- GETTING STARTED -->
+
+### Getting Started
+
+If you want to run this project on local, take a look to the following steps:
+
+### Prerequisites
+
+To run the project you will need npm in its latest version.
+
+- npm (Package manager for the JavaScript)
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation 
+
+_Then, let's clone the repo, and install all the dependencies of the project._
+
+1. Clone the repo
+   ```sh
+   git clone git@github.com:C10-Ghibli-s/FE-Backoffice.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+
+   
+### Running the tests
+
+JestJS was implemented in this project because is a JavaScript Testing Framework focused on simplicity and Unit Testing. To run the test use the following command.
+
+```
+npm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Linter Code
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+ESLint was implemented in this project. To run the lint use the following command.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+npm run lint
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Studio Ghibli Tracker Flowchart <a name="flowchart"></a>
+[**Open in Figma**](https://www.figma.com/file/3fvdt3syMiNAu36Tsqs7rv/FlowChart-Ghibli-Backoffice?node-id=0%3A1)
+![image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5951c8b7-f375-4410-8ccc-520a86023d69/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220510%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220510T232407Z&X-Amz-Expires=86400&X-Amz-Signature=23a2e5003f5b092051c684e980cc590b4ec350688c36a0d831b8081a38d336d2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##  🚀Deploy <a name="deployed"></a>
+[**Studio Ghibli Backoffice**]()
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## ⭐Acknowledgements <a name="acknowledgements"></a>
+The whole application was built with 💚 by:
+- ⭐ [Nous](https://github.com/NousCode)
+- ⭐ [Lili](https://github.com/LilianaRestrepoTorres)
+- ⭐ [Hai5eDFM](https://github.com/Hai5edfm)
+- ⭐ [Ivan](https://github.com/AreYouIvan)
