@@ -59,11 +59,11 @@ const LoginForm: FC = () => {
   return (
     <form className='mt-10 md:mt-0 flex flex-col content-center' onSubmit={handleSubmit(LoginFormSubmitHandler)}>
       <div className='flex flex-col'>
-        <input className='border border-gray-300 placeholder-gray-500 rounded-t-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1' type='text' placeholder="Username" defaultValue="" {...register('name')}/>
+        <input className='border border-gray-300 placeholder-gray-500 rounded-t-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1 w-72 m-auto' type='text' placeholder="Username" defaultValue="" {...register('name')}/>
         {errors.name && errors.name?.message && <span className="text-xs text-red-500">{errors.name.message}</span>}
       </div>
       <div className='flex flex-col'>
-        <input className='border border-gray-300 placeholder-gray-500 rounded-b-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1' type="password" placeholder='Password' defaultValue="" {...register('password')}/>
+        <input className='border border-gray-300 placeholder-gray-500 rounded-b-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1 w-72 m-auto' type="password" placeholder='Password' defaultValue="" {...register('password')}/>
         {errors.password && errors.password?.message && <span className='text-xs text-red-500'>{errors.password.message}</span>}
         {sessionStatus === "authError" && <span className='text-xs text-red-500'>user or password incorrect</span>}
       </div>
