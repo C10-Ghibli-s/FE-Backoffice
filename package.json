@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "next": "12.1.6",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-hook-form": "^7.31.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@testing-library/react": "^13.2.0",
@@ -19,6 +22,7 @@
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.3",
     "autoprefixer": "^10.4.7",
+    "axios": "^0.27.2",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
     "jest": "^28.1.0",
