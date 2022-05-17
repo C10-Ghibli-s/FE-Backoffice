@@ -8,7 +8,8 @@
       "@services/*": ["./src/services/*"],
       "@utils/*": ["./src/utils/*"],
       "@styles/*": ["./src/styles/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@customTypes/*": ["./src/types/*"]
     },
     "target": "es2015",
     "lib": ["dom", "dom.iterable", "esnext"],
