@@ -6,7 +6,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    API_URL_KEY: "https://studio-ghibli-c10-platzimaster.herokuapp.com/",
+    API_URL_KEY: "url",
   },
   // async redirects() {
   //   return [

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import * as yup from 'yup';
+import { ValidationSessionForm_schema } from '@schemas/loginSchema'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Types_ActiveSession, Types_SessionForm } from '@customTypes/LoginTypes';
@@ -14,10 +14,6 @@ const LoginForm: FC = () => {
     window.localStorage.setItem("localActiveSession", "no active session");
   }, []);
 
-  const ValidationSessionForm_schema = yup.object().shape({
-    name: yup.string().required(),
-    password: yup.string().min(8).max(20).required(),
-  });
   const { 
     register,
     handleSubmit,
