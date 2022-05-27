@@ -8,6 +8,7 @@ export type newUserType = {
 }
 
 export type newTitleType = {
+  id?:number,
   title: string,
   originalTitle: string,
   romajiTitle: string

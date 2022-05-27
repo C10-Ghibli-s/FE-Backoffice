@@ -1,5 +1,5 @@
 import { newDirectorType, newMovieType, newMusicianType, newTitleType, newWriterType } from "@customTypes/createItemTypes";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newMovieSchema } from "@schemas/createNewItemSchema";
@@ -10,16 +10,20 @@ import { getDirectors } from "@services/getDirectors";
 import { getWriters } from "@services/getWriters";
 import { getMusicians } from "@services/getMusicians";
 
-export const CreateUserForm: FC = () => {
-  const [titlesList, setTitlesList] = useState<newTitleType[]>([]);
-  const [directorsList, setDirectorsList] = useState<newDirectorType[]>([]);
-  const [writersList, setWritersList] = useState<newWriterType[]>([]);
-  const [musiciansList, setMusiciansList] = useState<newMusicianType[]>([]);
+export const CreateMovieForm: FC = () => {
+  const [titles, setTitles] = useState<newTitleType[]>([]);
+  const [directors, setDirectors] = useState<newDirectorType[]>([]);
+  const [writers, setWriters] = useState<newWriterType[]>([]);
+  const [musicians, setMusicians] = useState<newMusicianType[]>([]);
+  const data = useRef('');
   useEffect(() => {
-    setTitlesList(getTitles());
-    setDirectorsList(getDirectors());
-    setWritersList(getWriters());
-    setMusiciansList(getMusicians());
+    getTitles(setTitles);
+    getDirectors(setDirectors)
+    getWriters(setWriters)
+    getMusicians(setMusicians)
+    // getWriters()
+    // getMusicians()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const { 
     register,
@@ -37,7 +41,7 @@ export const CreateUserForm: FC = () => {
           <label htmlFor="titleId">Title</label>
           <select {...register('titleId')}>
             <option key="default" value="choose a title">-Choose a title-</option>
-            {titlesList.map((title, i) => <option key={i} value={title.title}>{title.title}</option>
+            {titles.map((title, i) => (<option key={i} value={title.title}>{title.title}</option>)
             )}
           </select>
           {errors.titleId && errors.titleId?.message && <span className='text-xs text-red-500'>{errors.titleId.message}</span>}
@@ -63,7 +67,7 @@ export const CreateUserForm: FC = () => {
           <label htmlFor="directorsIds">Directors</label>
           <select {...register('directorsIds')} multiple>
             <option key="default" value="choose the directors of the movie">-Choose the directors of the movie-</option>
-            {directorsList.map((director, i) => <option key={i} value={director.name}>{director.name}</option>
+            {directors.map((director, i) => <option key={i} value={director.name}>{director.name}</option>
             )}
           </select>
         </div>
@@ -71,7 +75,7 @@ export const CreateUserForm: FC = () => {
           <label htmlFor="writersIds">Writers</label>
           <select {...register('writersIds')} multiple>
             <option key="default" value="choose the writers of the movie">-Choose the writers of the movie-</option>
-            {writersList.map((writer, i) => <option key={i} value={writer.name}>{writer.name}</option>
+            {writers.map((writer, i) => <option key={i} value={writer.name}>{writer.name}</option>
             )}
           </select>
         </div>
@@ -79,7 +83,7 @@ export const CreateUserForm: FC = () => {
           <label htmlFor="musiciansIds">Musicians</label>
           <select {...register('musiciansIds')} multiple>
             <option key="default" value="choose the musicians of the movie">-Choose the musicians of the movie-</option>
-            {musiciansList.map((musician, i) => <option key={i} value={musician.name}>{musician.name}</option>
+            {musicians.map((musician, i) => <option key={i} value={musician.name}>{musician.name}</option>
             )}
           </select>
         </div>
