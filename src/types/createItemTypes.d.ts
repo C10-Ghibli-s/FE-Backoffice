@@ -7,14 +7,15 @@ export type newUserType = {
   twitter?: string
 }
 
-export type newTitleType = {
-  id?:number,
+export type titlesType = {
+  id?: number,
   title: string,
   originalTitle: string,
   romajiTitle: string
 }
 
 export type newMovieType = {
+  title: titlesType,
   titleId: number,
   releaseDate: string,
   description: string,

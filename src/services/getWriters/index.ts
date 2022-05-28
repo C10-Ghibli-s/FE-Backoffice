@@ -1,6 +1,5 @@
 import { getConfig } from "@utils/configReq";
 import axios from "axios";
-import { newWriterType } from "@customTypes/createItemTypes";
 
 export const getWriters = (setWriters:any) => {
   const configReq = getConfig();

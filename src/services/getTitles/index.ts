@@ -1,6 +1,5 @@
 import { getConfig } from "@utils/configReq";
 import axios from "axios";
-import { newTitleType } from "@customTypes/createItemTypes";
 
 export const getTitles = (setTitles:any) => {
   const configReq = getConfig();

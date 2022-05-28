@@ -1,4 +1,4 @@
-import { newTitleType } from "@customTypes/createItemTypes";
+import { titlesType } from "@customTypes/createItemTypes";
 import React, { FC } from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,7 +10,7 @@ export const CreateTitleForm: FC = () => {
     register,
     handleSubmit,
     formState: { errors }, 
-  } = useForm<newTitleType>({
+  } = useForm<titlesType>({
     resolver: yupResolver(newTitleSchema)
   });
   return(

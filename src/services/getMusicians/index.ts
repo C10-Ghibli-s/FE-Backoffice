@@ -1,6 +1,5 @@
 import { getConfig } from "@utils/configReq";
 import axios from "axios";
-import { newMusicianType } from "@customTypes/createItemTypes";
 
 export const getMusicians = (setMusicians:any) => {
   const configReq = getConfig();
