@@ -1,3 +1,4 @@
+// post user
 export type newUserType = {
   email: string,
   password: string,
@@ -6,16 +7,15 @@ export type newUserType = {
   facebook?: string,
   twitter?: string
 }
-
+// post title
 export type titlesType = {
   id?: number,
   title: string,
   originalTitle: string,
   romajiTitle: string
 }
-
+// post movie
 export type newMovieType = {
-  title: titlesType,
   titleId: number,
   releaseDate: string,
   description: string,
@@ -28,14 +28,18 @@ export type newMovieType = {
   movieBanner?: string
 }
 
+// post writer
 export type newWriterType = {
+  id?: string,
   name: string
 }
-
+// post director
 export type newDirectorType = {
+  id?: string,
   name: string
 }
-
+// post musician
 export type newMusicianType = {
+  id?: string,
   name: string
 }
