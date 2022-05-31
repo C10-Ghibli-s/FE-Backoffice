@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import * as yup from 'yup';
+import { ValidationSessionForm_schema } from '@schemas/loginSchema'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Types_ActiveSession, Types_SessionForm } from '@customTypes/LoginTypes';
@@ -8,16 +8,12 @@ import { useRouter } from 'next/router';
 
 const LoginForm: FC = () => {
   const router = useRouter();
-  let [sessionStatus, setSessionStatus] = useState<string|Types_ActiveSession>("");
+  const [sessionStatus, setSessionStatus] = useState<string|Types_ActiveSession>("");
   
   useEffect(()=> {
     window.localStorage.setItem("localActiveSession", "no active session");
   }, []);
 
-  const ValidationSessionForm_schema = yup.object().shape({
-    name: yup.string().required(),
-    password: yup.string().min(8).max(20).required(),
-  });
   const { 
     register,
     handleSubmit,
@@ -59,15 +55,15 @@ const LoginForm: FC = () => {
   return (
     <form className='mt-10 md:mt-0 flex flex-col content-center' onSubmit={handleSubmit(LoginFormSubmitHandler)}>
       <div className='flex flex-col'>
-        <input className='border border-gray-300 placeholder-gray-500 rounded-t-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1 w-72 m-auto' type='text' placeholder="Username" defaultValue="" {...register('name')}/>
+        <input alt="username" className='border border-gray-300 placeholder-gray-500 rounded-t-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1 w-72 m-auto' type='text' placeholder="Username" defaultValue="" {...register('name')}/>
         {errors.name && errors.name?.message && <span className="text-xs text-red-500">{errors.name.message}</span>}
       </div>
       <div className='flex flex-col'>
-        <input className='border border-gray-300 placeholder-gray-500 rounded-b-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1 w-72 m-auto' type="password" placeholder='Password' defaultValue="" {...register('password')}/>
+        <input alt="password" className='border border-gray-300 placeholder-gray-500 rounded-b-md focus:outline-none focus:border-sky-600 focus:z-10 pl-2 p-1 w-72 m-auto' type="password" placeholder='Password' defaultValue="" {...register('password')}/>
         {errors.password && errors.password?.message && <span className='text-xs text-red-500'>{errors.password.message}</span>}
         {sessionStatus === "authError" && <span className='text-xs text-red-500'>user or password incorrect</span>}
       </div>
-      <input className='mx-auto w-3/4 bg-sky-500 hover:bg-sky-600 rounded-lg text-white mt-10 p-1 cursor-pointer' type="submit" value="Login"/>
+      <input alt="submitLoginForm" className='mx-auto w-3/4 bg-sky-500 hover:bg-sky-600 rounded-lg text-white mt-10 p-1 cursor-pointer' type="submit" value="Login"/>
     </form>
   );
 };
