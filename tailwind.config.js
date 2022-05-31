@@ -6,9 +6,6 @@ module.exports = {
     "./src/utils/*/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    container: {
-      center: true,
-    },
     extend: {
       backgroundImage: {
         "users-icon": "url('../assets/icons/users-icon.svg')",
