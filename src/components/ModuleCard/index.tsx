@@ -23,19 +23,23 @@ function ModuleCard({
         onClick={() => {
           setCardSelected(!cardSelected);
         }}
-        className={`relative flex items-center w-5/6 h-24 p-2 mt-1 align-middle bg-white ${
+        className={`relative flex flex-col sm:flex sm:flex-row w-5/6 sm:h-28 sm:justify-between p-2 mt-1 align-middle sm:items-center bg-white ${
           !cardSelected ? "rounded-xl" : "rounded-t-xl outline outline-4"
         } hover:cursor-pointer hover:outline outline-4 outline-blue-400 `}
       >
         <span
-          className={`w-8 h-8 mx-3 bg-center bg-no-repeat bg-cover bg-${icons}`}
+          className={`absolute top-4 w-8 h-8 sm:h-auto mx-3 bg-center bg-no-repeat bg-cover bg-${icons}`}
         ></span>
-        <h2 className="text-2xl text-gray-900 left-2">{title}</h2>
-        <p className="absolute italic text-gray-400 right-12">{description}</p>
+        <h2 className="p-2 text-2xl text-gray-900 sm:h-fit indent-10">
+          {title}
+        </h2>
+        <p className="p-2 m-2 italic text-gray-400 sm:pr-8 sm:h-fit right-12">
+          {description}
+        </p>
         <span
           className={`${
             cardSelected ? "rotate-0" : "-rotate-90"
-          } transition bg-center bg-no-repeat bg-contain h-4 w-4 absolute right-2 bg-[url('../assets/icons/arrow-icon.svg')]`}
+          } transition bg-center bg-no-repeat bg-contain h-4 w-4 absolute right-2 bottom-14 sm:bottom-12 bg-[url('../assets/icons/arrow-icon.svg')]`}
         ></span>
       </section>
       {cardSelected && (

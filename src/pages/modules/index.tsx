@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { ModuleCard } from "@components/ModuleCard";
+import { ModuleCard } from "../../components/ModuleCard";
 
 export default function Modules() {
   const TITLE = "Modules";
@@ -10,10 +10,10 @@ export default function Modules() {
         <title>Studio Ghibli Backoffice - Administrator</title>
       </Head>
       {/* <Header></Header> */}
-      <h1 className="w-5/6 px-4 text-3xl font-semibold text-center text-gray-900 border-l-4 border-blue-500 my-7 mx-36 sm:text-left xl:w-4/6">
+      <h1 className="p-2 mx-8 mt-5 text-3xl font-semibold text-gray-900 border-l-4 border-blue-500 sm:text-left sm:ml-32">
         {TITLE}
       </h1>
-      <section className="flex flex-col items-center justify-center mt-12">
+      <section className="flex flex-col items-center justify-center my-8">
         <ModuleCard
           title={"Users"}
           description={"Find , create, edit or delete users"}
