@@ -8,6 +8,9 @@ const nextConfig = {
   env: {
     API_URL_KEY: "url",
   },
+  images: {
+    domains: ["urls"]
+  }
   // async redirects() {
   //   return [
   //     {
