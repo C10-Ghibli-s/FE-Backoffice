@@ -20,7 +20,7 @@ function ModuleCard({
   return (
     <>
       <section
-        onClick={() => {
+        onClick={() => { 
           setCardSelected(!cardSelected);
         }}
         className={`relative flex flex-col sm:flex sm:flex-row w-5/6 sm:h-28 sm:justify-between p-2 mt-1 align-middle sm:items-center bg-white ${

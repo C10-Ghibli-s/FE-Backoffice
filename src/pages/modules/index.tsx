@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { ModuleCard } from "../../components/ModuleCard";
 
-export default function Modules() {
+export default function Modules(): JSX.Element {
   const TITLE = "Modules";
   return (
     <>
