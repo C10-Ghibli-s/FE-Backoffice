@@ -4,7 +4,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newUserSchema } from "@schemas/createNewItemSchema";
 import axios from "axios";
-import { getConfig } from "@utils/configReq";
 import { useRouter } from "next/router";
 import Select from "react-select";
 import type { NextPage } from "next";
@@ -19,17 +18,36 @@ const CreateUserForm: NextPage = () => {
   } = useForm<newUserType>({
     resolver: yupResolver(newUserSchema)
   });
-  const rolesOptions = ["user", "admin"]
+  const rolesOptions = ["USER", "ADMIN"]
   const CreateUserSubmit: SubmitHandler<newUserType> = (data: newUserType) => {
-    const configReq = getConfig();
     axios.post(
-      process.env.API_URL_KEY != undefined ? `${process.env.API_URL_KEY}users/signup` : '',
-      data,
-      configReq
+      'http://localhost:3000/graphql',
+      {
+        query: `mutation CreateUser($data: UserInput!) {
+          createUser(data: $data) {
+            status
+            nickname
+            id
+          }
+        }`,
+        variables: {
+          "data": {
+            "status": "ACTIVE",
+            "nickname": `${data.nickname}`,
+            "password": `${data.password}`,
+            "name": `${data.role}`
+          }
+        }
+      },
+      {
+        headers: {
+        'Content-Type': 'application/json'
+        }
+      }
     )
     .then(res => {
       console.log(res);
-      res.status === 201
+      res.status === 200
       ? setFormStatus("success")
       : setFormStatus("failed")
     })
@@ -63,7 +81,7 @@ const CreateUserForm: NextPage = () => {
             options={rolesOptions.map(role => ({label: role, value:role}))}
           />
           {errors.role && errors.role?.message && <span className='text-xs text-red-500'>{errors.role.message}</span>}
-          <input {...register('role')} id='role' type="text" className="hidden"/>
+          <input {...register('role')} id='role' className="hidden" type="text"/>
         </div>
         <input className="w-48 p-4 border border-sky-600 hover:cursor-pointer hover:bg-sky-600 hover:text-white rounded-2xl" type="submit" value="Create user"/>
       </form>
