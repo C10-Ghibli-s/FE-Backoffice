@@ -3,8 +3,6 @@ import React, { FC, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newTitleSchema } from "@schemas/createNewItemSchema";
-import axios from "axios";
-import { getConfig } from "@utils/configReq";
 import { getTitles } from "@services/getData";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -24,23 +22,11 @@ const CreateTitleForm: NextPage = () => {
     register,
     formState: {errors}
   } = methods;
-  const onTitleSubmit: SubmitHandler<titlesType> = (data:titlesType) => {
-    const configReq = getConfig();
-    axios.post(
-      process.env.API_URL_KEY != undefined ? `${process.env.API_URL_KEY}titles` : '',
-      data,
-      configReq
-    )
-    .then(res => {
-      router.push(`/create/movie?title=${data.title}`);
-    })
-    .catch(err => console.error(err))
-  }
 
   return(
     <main className="bg-slate-200/40">
       <h1 className="absolute p-2 top-10 left-1/4 text-3xl border-l-4 border-sky-600">Create title</h1>
-      <form onSubmit={handleSubmit(onTitleSubmit)}>
+      <form>
         <div className="flex flex-col justify-center items-center m-auto h-screen">
           <div className="flex flex-col">
             <label htmlFor="title">Title</label>

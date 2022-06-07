@@ -4,6 +4,7 @@ import LoginForm from '@components/LoginForm';
 
 import LoginFacebookButton from '@components/LoginFacebookButton';
 import LoginTwitterButton from '@components/LoginTwitterButton';
+import Portal from "src/HOC/modal";
 
 const Login: NextPage = () => {
   return (

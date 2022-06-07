@@ -1,6 +1,4 @@
 import '@styles/globals.css';
-import { getConfig } from '@utils/configReq';
-import axios from 'axios';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef } from 'react';
