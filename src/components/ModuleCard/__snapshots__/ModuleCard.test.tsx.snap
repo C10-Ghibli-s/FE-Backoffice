@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a Module Card correctly 1`] = `
+<section
+  className="relative flex flex-col sm:flex sm:flex-row w-5/6 sm:h-28 sm:justify-between p-2 mt-1 align-middle sm:items-center bg-white rounded-xl hover:cursor-pointer hover:outline outline-4 outline-blue-400 "
+  onClick={[Function]}
+>
+  <span
+    className="absolute top-4 w-8 h-8 sm:h-auto mx-3 bg-center bg-no-repeat bg-cover bg-undefined"
+  />
+  <h2
+    className="p-2 text-2xl text-gray-900 sm:h-fit indent-10"
+  />
+  <p
+    className="p-2 m-2 italic text-gray-400 sm:pr-8 sm:h-fit right-12"
+  />
+  <span
+    className="-rotate-90 transition bg-center bg-no-repeat bg-contain h-4 w-4 absolute right-2 bottom-14 sm:bottom-12 bg-[url('../assets/icons/arrow-icon.svg')]"
+  />
+</section>
+`;

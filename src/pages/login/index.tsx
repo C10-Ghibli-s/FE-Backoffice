@@ -7,13 +7,13 @@ import LoginTwitterButton from '@components/LoginTwitterButton';
 
 const Login: NextPage = () => {
   return (
-      <main className="grid grid-rows-2 md:flex bg-gray-100 justify-center items-center w-screen h-screen">
-        <div className="row-start-2 mt-10 md:mt-0 row-end-3 w-full md:w-2/5 flex flex-col justify-center items-center h-3/4">
+      <main className="grid items-center justify-center w-screen h-screen grid-rows-2 bg-gray-100 md:flex">
+        <div className="flex flex-col items-center justify-center w-full row-start-2 row-end-3 mt-10 md:mt-0 md:w-2/5 h-3/4">
           <LoginTwitterButton/>
           <LoginFacebookButton/>
         </div>
-        <div className="row-start-1 row-end-2 w-full md:w-2/5 h-3/4 flex flex-col justify-evenly mt-10 md:mt-0 md:p-10 md:border-l border-l-gray-300 font-bold">
-          <h1 className="text-center text-2xl">Studio Ghibli <br/><span className="text-sky-600">BackOffice</span></h1>
+        <div className="flex flex-col w-full row-start-1 row-end-2 mt-10 font-bold md:w-2/5 h-3/4 justify-evenly md:mt-0 md:p-10 md:border-l border-l-gray-300">
+          <h1 className="text-2xl text-center">Studio Ghibli <br/><span className="text-sky-600">BackOffice</span></h1>
           <LoginForm/>
         </div>
       </main>
