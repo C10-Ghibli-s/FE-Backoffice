@@ -1,6 +1,6 @@
 
-export const ShowAllMusicians = {
-  query: `query ShowAllWriters {
+export const SHOW_ALL_MUSICIAN = {
+  query: `query ShowAllMusicians {
     showAllMusicians {
       id
       name

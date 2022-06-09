@@ -30,6 +30,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./src/**/*.tsx", "src/services/queries/getUser.js", "src/services/mutations/createItem.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./src/**/*.tsx"],
   "exclude": ["node_modules"]
 }

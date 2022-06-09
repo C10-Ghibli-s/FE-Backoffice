@@ -3,7 +3,7 @@ export type newUserType = {
   email: string,
   password: string,
   nickname: string,
-  role: string,
+  role: number,
   facebook?: string,
   twitter?: string
 }
@@ -16,16 +16,19 @@ export type titlesType = {
 }
 // post movie
 export type newMovieType = {
-  titleId: number,
+  userName: string,
+  title: string,
+  originalTitle: string,
+  romajiTitle?: string,
   releaseDate: string,
-  description: string,
+  filmDescription: string,
   directorsIds: number[],
   writersIds: number[],
   musiciansIds: number[],
   duration: number,
   audienceScore?: number,
-  linkWiki?: string,
-  movieBanner?: string
+  linkWiki: string,
+  movieBanner: string
 }
 
 // post writer

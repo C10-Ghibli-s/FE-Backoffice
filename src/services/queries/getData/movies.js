@@ -1,5 +1,5 @@
 
-export const ShowAllMovies = {
+export const SHOW_ALL_MOVIES = {
   query: `query ShowAllMovies {
     showAllMovies {
       id

@@ -1,5 +1,4 @@
 import { newDirectorType, newMusicianType, newWriterType } from '@customTypes/createItemTypes';
-import { getDirectors, getMusicians, getWriters } from '@services/getData';
 import React, { FC, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Select from 'react-select';
@@ -13,9 +12,6 @@ export const MovieProducersForm: FC = () => {
   const [musicians, setMusicians] = useState<newMusicianType[]>([]); 
 
   useEffect(() => {
-    getDirectors(setDirectors)
-    getWriters(setWriters)
-    getMusicians(setMusicians)
   }, [])
 
   return(
@@ -58,18 +54,8 @@ export const MovieProducersForm: FC = () => {
           options={musicians.map(musician =>  ({ label: musician.name, value: musician.id }))}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="audienceScore">Audience Score</label>
-        <input className="h-12 w-80 mt-2 mb-4 p-4" id="audienceScore" type="text" placeholder="audience score" {...register('audienceScore')}/>
-        {errors.audienceScore && errors.audienceScore?.message && <span className='text-xs text-red-500'>{errors.audienceScore.message}</span>}
-      </div>
-      <div  className="flex flex-col">
-        <label htmlFor="linkWiki">link to Wiki</label>
-        <input className="h-12 w-80 mt-2 mb-4 p-4" id="linkWiki" type="text" placeholder="link to the wiki" {...register('linkWiki')}/>
-        {errors.linkWiki && errors.linkWiki?.message && <span className='text-xs text-red-500'>{errors.linkWiki.message}</span>}
-      </div>
       <div className="flex justify-center">
-        <input className="p-4 border border-sky-600 hover:cursor-pointer hover:bg-sky-600 hover:text-white rounded-2xl" type="submit" value="Create movie"/>
+        <input className="absolute bottom-12 right-12 w-48 p-4 border border-sky-600 hover:cursor-pointer bg-sky-200/20 hover:bg-sky-600 hover:text-white rounded-2xl" type="submit" value="Create movie"/>
       </div>
     </div>
   </React.Fragment>

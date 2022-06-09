@@ -1,5 +1,5 @@
 
-export const getUser = {
+export const getUser = typeof data == undefined ? {
   query: `query GetAnUser($getAnUserId: ID!) {
     getAnUser(id: $getAnUserId) {
       id
@@ -13,3 +13,4 @@ export const getUser = {
   }`,
   variables: { "getAnUserId": `${data.userId}` }
 }
+: '';

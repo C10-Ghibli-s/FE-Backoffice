@@ -1,5 +1,5 @@
 
-export const getMovie = {
+export const getMovie = typeof data == undefined ? {
   query: `query GetAMovie($getAMovieId: ID!) {
     getAMovie(id: $getAMovieId) {
       id
@@ -32,5 +32,5 @@ export const getMovie = {
   }`,
   variables: { "getAMovieId": `${data.movieId}` }
 }
-
+: '';
 

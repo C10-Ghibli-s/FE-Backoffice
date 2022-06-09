@@ -1,5 +1,5 @@
 
-export const ShowAllUsers = {
+export const SHOW_ALL_USERS = {
   query: `query ShowAllUsers {
     showAllUsers {
       id

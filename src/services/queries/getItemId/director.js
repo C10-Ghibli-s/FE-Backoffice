@@ -1,5 +1,5 @@
 
-export const getDirector = {
+export const getDirector = typeof data == undefined ? {
   query: `query GetADirector($getADirectorId: ID!) {
     getADirector(id: $getADirectorId) {
       id
@@ -13,4 +13,4 @@ export const getDirector = {
   }`,
   variables: { "getADirectorId": `${data.directorId}` }
 }
-
+: '';

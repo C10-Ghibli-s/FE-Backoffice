@@ -1,5 +1,5 @@
 
-export const ShowAllDirectors = {
+export const SHOW_ALL_DIRECTORS = {
   query: `query ShowAllDirectors {
     showAllDirectors {
       id

@@ -1,5 +1,5 @@
 
-export const getMusician = {
+export const getMusician = typeof data == undefined ? {
   query: `query GetAMusician($getAMusicianId: ID!) {
     getAMusician(id: $getAMusicianId) {
       id
@@ -13,4 +13,4 @@ export const getMusician = {
   }`,
   variables: { "getAMusicianId": `${data.musicianId}` }
 }
-
+: '';
