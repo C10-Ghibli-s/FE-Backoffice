@@ -3,7 +3,7 @@ export type newUserType = {
   email: string,
   password: string,
   nickname: string,
-  role: number,
+  role: string,
   facebook?: string,
   twitter?: string
 }

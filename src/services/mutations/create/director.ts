@@ -11,7 +11,7 @@ export const CREATE_DIRECTOR = (data: newDirectorType) => {
     }`,
     variables: {
       "data": {
-        "name": `${data.name}`
+        "name": data.name
       }
     }
   };

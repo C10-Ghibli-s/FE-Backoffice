@@ -58,7 +58,7 @@ export const CreateUserForm: FC = () => {
           options={rolesOptions.map(role => ({label: role.label, value:role.value}))}
         />
         {errors.role && errors.role?.message && <span className='text-xs text-red-500'>{errors.role.message}</span>}
-        <input {...register('role')} id='role' type="text"/>
+        <input defaultValue="2" {...register('role')} id='role' className='hidden' type="text"/>
       </div>
       <input className="w-48 p-4 border border-sky-600 hover:cursor-pointer hover:bg-sky-600 hover:text-white rounded-2xl" type="submit" value="Create user"/>
     </form>

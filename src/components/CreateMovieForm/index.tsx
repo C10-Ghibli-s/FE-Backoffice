@@ -8,6 +8,8 @@ import { newMovieSchema } from "@schemas/createNewItemSchema";
 import { MovieTitleForm } from "@components/MovieTitleForm"
 import { MovieDataForm } from "@components/MovieDataForm";
 import { MovieProducersForm } from "@components/MovieProducersForm";
+import axios from "axios";
+import { CREATE_MOVIE } from "@services/mutations/create/movie";
 
 
 export const CreateMovieForm: FC = () => {
@@ -21,7 +23,19 @@ export const CreateMovieForm: FC = () => {
   } = methods;
 
   const CreateMovieSubmit: SubmitHandler<newMovieType> = (data: newMovieType) => {
-    console.log(data)
+    axios.post(
+      process.env.API_URL !== undefined ? process.env.API_URL : '',
+      CREATE_MOVIE(data),
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.error(err))
   }
 
   return(
