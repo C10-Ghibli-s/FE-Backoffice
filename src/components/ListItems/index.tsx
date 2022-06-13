@@ -1,4 +1,5 @@
 import React from "react";
+import CardItem from "@components/CardItem";
 
 const items = [
   {
@@ -21,6 +22,11 @@ const items = [
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
   },
+  {
+    name: "Item 5",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+  },
 ];
 const title = "Show Module"
 
@@ -36,17 +42,7 @@ const ListItems = () => {
             <div className="mt-10 mb-10">
               <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 hover:cursor-pointer">
                 {items.map((item) => (
-                  <div key={item.name} className="relative m-5">
-                    <dt>
-                      <div className="absolute flex items-center justify-center w-16 h-16 text-white bg-gray-200 rounded-full"></div>
-                      <h2 className="ml-20 text-lg font-medium leading-6 text-gray-900">
-                        {item.name}
-                      </h2>
-                    </dt>
-                    <dd className="mt-2 ml-20 text-base text-gray-500">
-                      {item.description}
-                    </dd>
-                  </div>
+                  <CardItem item={item} key={item.name}/>
                 ))}
               </dl>
             </div>
