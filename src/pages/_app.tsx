@@ -1,5 +1,4 @@
 import '@styles/globals.css';
-import axios from 'axios';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef } from 'react';
@@ -15,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  // ERROR HANDLE
+  // ERROR HANDLING
   // axios.post("http://localhost:3000/graphql", {query: `mutation UpdateDirector($updateDirectorId: ID!, $data: DirecotrEditInput!) {
   //   updateDirector(id: $updateDirectorId, data: $data) {
   //     name
@@ -41,4 +40,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   ); 
 };
 
-export default MyApp;
+export default MyApp

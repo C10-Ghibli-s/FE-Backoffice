@@ -32,10 +32,10 @@ export const CreateWriterForm: FC = () => {
     .catch(err => console.error(err))
   }
   return(
-    <form className="p-8 flex flex-col items-center justify-center" onSubmit={handleSubmit(CreateWriterSubmit)}>
+    <form className="py-8 flex flex-col items-center justify-center sm:m-auto" onSubmit={handleSubmit(CreateWriterSubmit)}>
       <div className="flex flex-col">
         <label htmlFor='writerName'>Writer&apos;s Name </label>
-          <input className="h-12 w-80 mt-2 mb-4 p-4 border-2 border-slate-200 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" id='writerName' {...register('name')} placeholder="introduce director's name" type="text"/>
+          <input className="h-12 w-60 sm:w-80 mt-2 mb-4 p-4 border-2 border-slate-200 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" id='writerName' {...register('name')} placeholder="introduce director's name" type="text"/>
           {errors.name && errors.name?.message && <span className='text-xs text-red-500'>{errors.name.message}</span>}
       </div>
       <input className="w-48 p-4 border border-sky-600 hover:cursor-pointer hover:bg-sky-600 hover:text-white rounded-2xl" type="submit" value="Create writer"/>

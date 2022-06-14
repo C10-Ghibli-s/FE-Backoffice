@@ -32,13 +32,13 @@ export const newMovieSchema = yup.object().shape({
 })
 
 export const newWriterSchema = yup.object().shape({
-  name: yup.string()
+  name: yup.string().required(),
 })
 
 export const newDirectorSchema = yup.object().shape({
-  name: yup.string()
+  name: yup.string().required(),
 })
 
 export const newMusicianSchema = yup.object().shape({
-  name: yup.string()
+  name: yup.string().required(),
 })
