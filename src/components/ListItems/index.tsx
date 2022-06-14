@@ -1,5 +1,7 @@
 import React from "react";
 import CardItem from "@components/CardItem";
+import {useGetMovies} from '../../hooks/useGetMovies';
+import {useGetModules} from '../../hooks/useGetModules'
 
 const items = [
   {
@@ -31,6 +33,9 @@ const items = [
 const title = "Show Module"
 
 const ListItems = () => {
+
+  useGetModules('public1');
+
   return (
     <>
       <h1 className="p-2 mx-8 mt-5 text-3xl font-semibold text-gray-900 border-l-4 border-blue-500 sm:text-left sm:ml-32">

@@ -11,7 +11,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     sessionStatus.current = window.localStorage.getItem("localActiveSession");
     if(sessionStatus.current == "no active session") {
-      router.push('/login');
+      //Push the user to login page if isn't logged yet 
+      //router.push('/login');
     };
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

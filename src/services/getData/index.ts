@@ -11,14 +11,15 @@ export const getTitles = (setTitles:any) => {
   .catch(err => console.error(err))
 }
 
-export const getDirectors = (setDirectors:any) => {
+export const getDirectors = async() => {
   const configReq = getConfig();
-  axios.get(
+  const director = await axios.get(
     process.env.API_URL_KEY != undefined ? `${process.env.API_URL_KEY}directors` : '',
     configReq
   )
-  .then(res => {setDirectors(res.data)})
+  .then(res => res.data)
   .catch(err => console.error(err))
+  return director;
 }
 
 export const getMusicians = (setMusicians:any) => {
@@ -40,3 +41,16 @@ export const getWriters = (setWriters:any) => {
   .then(res => setWriters(res.data))
   .catch(err => console.error(err))
 }
+
+export const getPublic1 = ()=>
+  axios.get('https://jsonplaceholder.typicode.com/posts')
+  .then((response)=>{
+    return(response.data)
+  });
+
+
+export const getPublic2 = ()=>
+  axios.get('https://ghibliapi.herokuapp.com/films')
+  .then((response)=>{
+    return(response.data)
+  });
