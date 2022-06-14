@@ -1,8 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
-import { ProfileModal } from '../components/ProfileModal' 
+import React, { useState } from "react";
+import { ProfileModal } from "../components/ProfileModal";
 const Home: NextPage = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  // This function triggers the modal. Copy it, and paste it when the modal is called
+  const handleModal = () => {
+    setOpenModal(true);
+  };
+
   return (
     <div className="relative w-screen h-screen">
       <Head>
@@ -11,7 +18,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-2xl font-bold text-center">Hello</h1>
-      <ProfileModal/>
+      <ProfileModal openModal={openModal} setOpenModal={setOpenModal} />
+      <button onClick={handleModal}>Select Profile</button>
     </div>
   );
 };
