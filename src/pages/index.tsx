@@ -3,9 +3,9 @@ import Head from "next/head";
 import React, { useState } from "react";
 import { ProfileModal } from "../components/ProfileModal";
 const Home: NextPage = () => {
+  
+  // This function and state triggers the modal. Copy it, and paste it when the modal is called
   const [openModal, setOpenModal] = useState(false);
-
-  // This function triggers the modal. Copy it, and paste it when the modal is called
   const handleModal = () => {
     setOpenModal(true);
   };
