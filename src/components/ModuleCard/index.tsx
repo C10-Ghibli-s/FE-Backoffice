@@ -6,7 +6,8 @@ interface ModuleCardProps {
   description: string;
   icons: string;
   goToSearchPage: string;
-  goToCreatePage: string;
+  itemToCreate: string;
+  setShowCreateItem: any;
 }
 
 function ModuleCard({
@@ -14,7 +15,8 @@ function ModuleCard({
   description,
   icons,
   goToSearchPage,
-  goToCreatePage,
+  itemToCreate,
+  setShowCreateItem
 }: ModuleCardProps) {
   const [cardSelected, setCardSelected] = useState(false);
   return (
@@ -52,11 +54,9 @@ function ModuleCard({
               search and edit
             </a>
           </Link>
-          <Link href={goToCreatePage}>
-            <a className="p-1 m-2 border-blue-400 hover:cursor-pointer hover:border-b-4">
-              create
-            </a>
-          </Link>
+          <button onClick={()=> {setShowCreateItem(itemToCreate)}} className="p-1 m-2 border-blue-400 hover:cursor-pointer hover:border-b-4">
+            create
+          </button>
         </div>
       )}
     </>
