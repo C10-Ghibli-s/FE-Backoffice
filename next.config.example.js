@@ -9,8 +9,9 @@ const nextConfig = {
     API_URL_KEY: "url",
   },
   images: {
-    domains: ["urls"]
-  }
+    // This domain is an example, delete it when the real has implemented.
+    domains: ["www.business2community.com"],
+  },
   // async redirects() {
   //   return [
   //     {
