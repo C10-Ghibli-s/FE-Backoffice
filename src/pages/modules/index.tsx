@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { ModuleCard } from "../../components/ModuleCard";
+import { CreateItemModal } from "@components/CreateItemModal";
 
 export default function Modules(): JSX.Element {
   const TITLE = "Modules";
+  const [showCreateItem, setShowCreateItem] = useState<string|null>(null);
   return (
     <>
       <Head>
@@ -19,45 +21,53 @@ export default function Modules(): JSX.Element {
           description={"Find , create, edit or delete users"}
           icons={"users-icon"}
           goToSearchPage={"/#"}
-          goToCreatePage={"/#"}
+          itemToCreate={"user"}
+          setShowCreateItem={setShowCreateItem}
         />
         <ModuleCard
           title={"Movies"}
           description={"Release a new movie, edit, or delete it"}
           icons={"movies-icon"}
           goToSearchPage={"/#"}
-          goToCreatePage={"/#"}
+          itemToCreate={"movie"}
+          setShowCreateItem={setShowCreateItem}
         />
         <ModuleCard
           title={"Writers"}
           description={"Add or edit a writer"}
           icons={"writers-icon"}
           goToSearchPage={"/#"}
-          goToCreatePage={"/#"}
+          itemToCreate={"writer"}
+          setShowCreateItem={setShowCreateItem}
         />
         <ModuleCard
           title={"Directors"}
           description={"Add or edit a director"}
           icons={"directors-icon"}
           goToSearchPage={"/#"}
-          goToCreatePage={"/#"}
+          itemToCreate={"director"}
+          setShowCreateItem={setShowCreateItem}
         />
         <ModuleCard
           title={"Musicians"}
           description={"Add or edit a musician"}
           icons="musicians-icon"
           goToSearchPage={"/#"}
-          goToCreatePage={"/#"}
+          itemToCreate={"musician"}
+          setShowCreateItem={setShowCreateItem}
         />
         <ModuleCard
           title={"Roles"}
           description={"Assign new roles"}
           icons="roles-icon"
           goToSearchPage={"/#"}
-          goToCreatePage={"/#"}
+          itemToCreate={"role"}
+          setShowCreateItem={setShowCreateItem}
         />
       </section>
-
+      {showCreateItem !== null 
+        && <CreateItemModal item={showCreateItem} setShowCreateItem={setShowCreateItem}/>
+      }
       {/* <SessionUser/> */}
     </>
   );
