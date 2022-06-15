@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardItem from "@components/CardItem";
 import {useGetMovies} from '../../hooks/useGetMovies';
 import {useGetModules} from '../../hooks/useGetModules'
 
-const items = [
+// It shoul be replaced when we have db connection
+const itemsData = [
   {
     name: "Item 1",
     description:
@@ -32,9 +33,20 @@ const items = [
 ];
 const title = "Show Module"
 
+//const [items, setItems] = useState<{}>({});
+
 const ListItems = () => {
 
   useGetModules('public1');
+  //const modules = useGetModules('public2');
+  //console.log("this should be modules",modules)
+
+  // useEffect(()=>{
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   setTimeout(()=> useGetModules('public', {setItems}) ,1000)
+  //   console.log(items)
+    
+  // },[])
 
   return (
     <>
@@ -46,8 +58,8 @@ const ListItems = () => {
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="mt-10 mb-10">
               <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 hover:cursor-pointer">
-                {items.map((item) => (
-                  <CardItem item={item} key={item.name}/>
+                {itemsData.map((itemData) => (
+                  <CardItem item={itemData} key={itemData.name}/>
                 ))}
               </dl>
             </div>
@@ -59,3 +71,4 @@ const ListItems = () => {
 };
 
 export default ListItems;
+
