@@ -16,26 +16,29 @@ export const newTitleSchema = yup.object().shape({
 })
 
 export const newMovieSchema = yup.object().shape({
-  titleId: yup.number().required(),
+  userName: yup.string().required(),
+  title: yup.string().required(),
+  originalTitle: yup.string().required(),
+  romajiTitle: yup.string(),
   releaseDate: yup.string().required(),
-  description: yup.string().required(),
+  filmDescription: yup.string().required(),
   directorsId: yup.array().of(yup.mixed().oneOf([yup.number()])).required(),
   writersIds: yup.array().of(yup.mixed().oneOf([yup.number()])).required(),
   musiciansIds: yup.array().of(yup.mixed().oneOf([yup.number()])).required(),
   duration: yup.number().required(),
   audienceScore: yup.number(),
-  linkWiki: yup.string(),
-  movieBanner: yup.string()
+  linkWiki: yup.string().required(),
+  movieBanner: yup.string().required()
 })
 
 export const newWriterSchema = yup.object().shape({
-  name: yup.string()
+  name: yup.string().required(),
 })
 
 export const newDirectorSchema = yup.object().shape({
-  name: yup.string()
+  name: yup.string().required(),
 })
 
 export const newMusicianSchema = yup.object().shape({
-  name: yup.string()
+  name: yup.string().required(),
 })
