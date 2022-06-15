@@ -14,6 +14,8 @@ module.exports = {
         "movies-icon": "url('../assets/icons/movies-icon.svg')",
         "writers-icon": "url('../assets/icons/writers-icon.svg')",
         "roles-icon": "url('../assets/icons/roles-icon.svg')",
+        "trash-icon": "url('../assets/icons/trash-icon.svg')",
+        "cross-icon": "url('../assets/icons/cross-icon.svg')",
       },
     },
   },
