@@ -1,13 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
-import { ProfileModal } from "../components/ProfileModal";
+import { MovieModal } from "../components/MovieModal";
 const Home: NextPage = () => {
-  
   // This function and state triggers the modal. Copy it, and paste it when the modal is called
   const [openModal, setOpenModal] = useState(false);
   const handleModal = () => {
     setOpenModal(true);
+  };
+  // This function and state triggers the modal. Copy it, and paste it when the modal is called
+  const [openMovieModal, SetOpenMovieModal] = useState(false);
+  const handleMovieModal = () => {
+    SetOpenMovieModal(true);
   };
 
   return (
@@ -18,8 +22,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-2xl font-bold text-center">Hello</h1>
-      <ProfileModal openModal={openModal} setOpenModal={setOpenModal} />
-      <button onClick={handleModal}>Select Profile</button>
+      <MovieModal
+        openMovieModal={openMovieModal}
+        SetOpenMovieModal={SetOpenMovieModal}
+      />
+      <button onClick={handleMovieModal}>Select Profile</button>
     </div>
   );
 };
