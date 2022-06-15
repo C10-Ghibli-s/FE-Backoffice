@@ -15,7 +15,7 @@ const useGetModules = (key) =>{
             //setItems(response)
             return response
         });
-    }, []);
+    }, [key]);
 };
 
 export {useGetModules};
