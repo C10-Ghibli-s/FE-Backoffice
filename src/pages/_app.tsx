@@ -10,8 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     sessionStatus.current = window.localStorage.getItem("localActiveSession");
     if(sessionStatus.current == "no active session") {
       //Push the user to login page if isn't logged yet
-      //The next line is commented only to test the current functionality. 
-      //router.push('/login');
+      router.push('/login');
     };
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
