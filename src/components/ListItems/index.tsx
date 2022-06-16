@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getModules } from "@customTypes/createItemTypes";
 import CardItem from "@components/CardItem";
 import {useGetMovies} from '../../hooks/useGetMovies';
 import {useGetModules} from '../../hooks/useGetModules'
@@ -33,20 +34,20 @@ const itemsData = [
 ];
 const title = "Show Module"
 
-//const [items, setItems] = useState<{}>({});
 
 const ListItems = () => {
 
-  useGetModules('public1');
+  const [items, setItems] = useState<getModules[]>([]);
+
+  //useGetModules('public1');
   //const modules = useGetModules('public2');
   //console.log("this should be modules",modules)
 
-  // useEffect(()=>{
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   setTimeout(()=> useGetModules('public', {setItems}) ,1000)
-  //   console.log(items)
-    
-  // },[])
+  useEffect(()=>{
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    setTimeout(()=> useGetModules({'public1', setItems}) ,1000)
+    console.log("items",items)
+  },[])
 
   return (
     <>
