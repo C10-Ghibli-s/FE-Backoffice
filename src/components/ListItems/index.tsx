@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getModules } from "@customTypes/createItemTypes";
 import CardItem from "@components/CardItem";
-import {useGetMovies} from '../../hooks/useGetMovies';
 import {useGetModules} from '../../hooks/useGetModules'
 
 // It shoul be replaced when we have db connection
