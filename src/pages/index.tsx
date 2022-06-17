@@ -2,17 +2,22 @@ import ListItems from "@components/ListItems";
 import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
-import { MovieModal } from "../components/MovieModal";
+import { ProductionMemberModal } from "../components/ProductionMemberModal";
 const Home: NextPage = () => {
   // This function and state triggers the modal. Copy it, and paste it when the modal is called
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
   const handleModal = () => {
     setOpenModal(true);
   };
   // This function and state triggers the modal. Copy it, and paste it when the modal is called
-  const [openMovieModal, SetOpenMovieModal] = useState(false);
+  const [openMovieModal, setOpenMovieModal] = useState(false);
   const handleMovieModal = () => {
-    SetOpenMovieModal(true);
+    setOpenMovieModal(true);
+  };
+  // This function and state triggers the modal. Copy it, and paste it when the modal is called
+  const [openProductionModal, setOpenProductionModal] = useState(false);
+  const handleProductionModal = () => {
+    setOpenProductionModal(true);
   };
 
   return (
@@ -24,11 +29,11 @@ const Home: NextPage = () => {
       </Head>
       <h1 className="text-2xl font-bold text-center">Hello</h1>
       <ListItems />
-      <MovieModal
-        openMovieModal={openMovieModal}
-        SetOpenMovieModal={SetOpenMovieModal}
+      <ProductionMemberModal
+        openProductionModal={openProductionModal}
+        setOpenProductionModal={setOpenProductionModal}
       />
-      <button onClick={handleMovieModal}>Select Profile</button>
+      <button onClick={handleProductionModal}>Select Profile</button>
     </div>
   );
 };
