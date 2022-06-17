@@ -17,10 +17,10 @@ import { ModalTitle } from "@components/ModalTitle";
 
 interface ModalProps {
   openMovieModal: boolean;
-  SetOpenMovieModal: boolean | React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenMovieModal: boolean | React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MovieModal({ openMovieModal, SetOpenMovieModal }: ModalProps) {
+function MovieModal({ openMovieModal, setOpenMovieModal }: ModalProps) {
   // When DB has been deployed, fill this object with the api data.
   const movie = {
     title: "My Neighbor Totoro",
@@ -39,7 +39,7 @@ function MovieModal({ openMovieModal, SetOpenMovieModal }: ModalProps) {
     return (
       <div className="fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
         <div className="sm:relative flex flex-col items-center justify-around w-full p-3 rounded-lg sm:items-center h-[100%] sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
-          <ClosingModal state={SetOpenMovieModal} value={false} />
+          <ClosingModal state={setOpenMovieModal} value={false} />
           <ModalTitle>{movie.title}</ModalTitle>
           <div className="flex-col mx-4 sm:mt-4 sm:flex sm:flex-row">
             <div className="flex order-last sm:mr-4 sm:order-first sm:block">

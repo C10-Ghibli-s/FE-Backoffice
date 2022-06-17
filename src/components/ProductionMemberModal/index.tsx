@@ -28,24 +28,24 @@ function ProductionMemberModal({
   } else {
     return (
       <div className="fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
-        <div className="relative flex flex-col items-center justify-around w-full p-3 rounded-lg sm:items-center h-5/6 sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
+        <div className="relative flex flex-col items-center justify-around w-full p-2 rounded-lg sm:items-center h-[70%] sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
           <ClosingModal state={setOpenProductionModal} value={false} />
-          <ModalTitle className="mb-20">Team production</ModalTitle>
-          <div className="mx-40">
-            <figure className="w-full mt-4 sm:w-fit">
+          <ModalTitle>Team production</ModalTitle>
+          <div className="mx-auto w-[60%] sm:w-96">
+            <figure className="mx-auto sm:mt-4 sm:w-fit w-fit">
               <Image
                 src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
                 width="150"
                 height="150"
                 alt={teamProduction.fullName}
-                className="rounded-full"
+                className="mx-auto rounded-full"
               ></Image>
             </figure>
-            <div>
+            <div className="w-full">
               <p className="my-2 text-xl font-semibold text-center">
                 {teamProduction.fullName}
               </p>
-              <p className="mx-auto text-center p-0.5 rounded-lg px-2 bg-violet-500/[0.2] w-[60%]">
+              <p className="mx-auto text-center p-0.5 rounded-lg px-2 bg-violet-500/[0.2] w-[60%] sm:w-[20%] ">
                 {teamProduction.role}
               </p>
             </div>
