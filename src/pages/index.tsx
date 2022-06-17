@@ -1,3 +1,4 @@
+import ListItems from "@components/ListItems";
 import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-2xl font-bold text-center">Hello</h1>
+      <ListItems />
       <MovieModal
         openMovieModal={openMovieModal}
         SetOpenMovieModal={SetOpenMovieModal}
