@@ -6,9 +6,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { newWriterSchema } from '@schemas/createNewItemSchema';
 import axios from 'axios';
 import { CREATE_WRITER } from '@services/mutations/create/writer';
+import { setReqStatusType } from '@customTypes/ErrorHandling';
 
 
-export const CreateWriterForm: FC = () => {
+export const CreateWriterForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
   const { 
     register,
     handleSubmit,
@@ -27,9 +28,16 @@ export const CreateWriterForm: FC = () => {
       }
     )
     .then(res => {
-      console.log(res);
+      res.data?.errors
+      ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
+      : setReqStatus({success: "Writer created successfully :D"})
     })
-    .catch(err => console.error(err))
+    .catch(err => 
+      setReqStatus({error:{ 
+        serverError: `${err}`,
+        errorMessage: "Ups!, something went wrong, try later."
+      }})
+    )
   }
   return(
     <form className="py-8 flex flex-col items-center justify-center sm:m-auto" onSubmit={handleSubmit(CreateWriterSubmit)}>

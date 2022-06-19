@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, SetStateAction } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import { CREATE_USER } from '@services/mutations/create/user'; 
@@ -7,8 +7,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newUserSchema } from '@schemas/createNewItemSchema';
+import { reqResponse, setReqStatusType } from '@customTypes/ErrorHandling';
 
-export const CreateUserForm: FC = () => {
+
+
+export const CreateUserForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
   const { 
     register,
     handleSubmit,
@@ -28,9 +31,16 @@ export const CreateUserForm: FC = () => {
       }
     )
     .then(res => {
-      console.log(res);
+      res.data?.errors
+      ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
+      : setReqStatus({success: "User created successfully :D"})
     })
-    .catch(err => console.error(err))
+    .catch(err => 
+      setReqStatus({error:{ 
+        serverError: `${err}`,
+        errorMessage: "Ups!, something went wrong, try later."
+      }})
+    )
   }
   return(
     <form className="sm:pt-8 flex flex-col items-center justify-center overflow-y-scroll" onSubmit={handleSubmit(CreateUserSubmit)}>

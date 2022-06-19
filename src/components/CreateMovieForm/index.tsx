@@ -10,9 +10,10 @@ import { MovieDataForm } from "@components/MovieDataForm";
 import { MovieProducersForm } from "@components/MovieProducersForm";
 import axios from "axios";
 import { CREATE_MOVIE } from "@services/mutations/create/movie";
+import { setReqStatusType } from "@customTypes/ErrorHandling";
 
 
-export const CreateMovieForm: FC = () => {
+export const CreateMovieForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
   const [formStep, setFormStep] = useState<string>("Title");
 
   const methods = useForm<newMovieType>({
@@ -23,6 +24,11 @@ export const CreateMovieForm: FC = () => {
   } = methods;
 
   const CreateMovieSubmit: SubmitHandler<newMovieType> = (data: newMovieType) => {
+    const directorsIds = (data.directorsIds).split('');
+    const dataMovie = {
+      ...data,
+      directorsIds: directorsIds.map(d => parseInt(d))
+    }
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
       CREATE_MOVIE(data),
@@ -33,9 +39,16 @@ export const CreateMovieForm: FC = () => {
       }
     )
     .then(res => {
-      console.log(res);
+      res.data?.errors
+      ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
+      : setReqStatus({success: "Movie created successfully :D"})
     })
-    .catch(err => console.error(err))
+    .catch(err => 
+      setReqStatus({error:{ 
+        serverError: `${err}`,
+        errorMessage: "Ups!, something went wrong, try later."
+      }})
+    )
   }
 
   return(

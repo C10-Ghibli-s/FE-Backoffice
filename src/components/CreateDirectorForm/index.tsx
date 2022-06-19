@@ -6,9 +6,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { newDirectorSchema } from '@schemas/createNewItemSchema';
 import axios from 'axios';
 import { CREATE_DIRECTOR } from '@services/mutations/create/director';
+import { setReqStatusType } from '@customTypes/ErrorHandling';
 
 
-export const CreateDirectorForm: FC = () => {
+export const CreateDirectorForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
   const { 
     register,
     handleSubmit,
@@ -27,9 +28,16 @@ export const CreateDirectorForm: FC = () => {
       }
     )
     .then(res => {
-      console.log(res);
+      res.data?.errors
+      ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
+      : setReqStatus({success: "Director created successfully :D"})
     })
-    .catch(err => console.error(err))
+    .catch(err => 
+      setReqStatus({error:{ 
+        serverError: `${err}`,
+        errorMessage: "Ups!, something went wrong, try later."
+      }})
+    )
   }
   return(
     <form className="py-8 flex flex-col items-center justify-center sm:m-auto" onSubmit={handleSubmit(CreateDirectorSubmit)}>
