@@ -8,14 +8,14 @@ function ShowModules() {
   //Getting Module Title from Query Selector
   const router = useRouter();
   const query = router.query;
-  const title = query.nameModule;
+  const titleModule = query.nameModule;
 
   return (
   <>
     <Head>
         <title>Studio Ghibli Backoffice - Administrator - Show Modules</title>
     </Head>
-    <Title title={title}/>
+    <Title title={titleModule ? titleModule : "Show Module"}/>
     <ListItems />
   </>
   );
