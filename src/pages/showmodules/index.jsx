@@ -1,10 +1,14 @@
 import React from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Title from "../../components/Title";
 import ListItems from "../../components/ListItems";
 
 function ShowModules() {
-  const title = "Show Module"
+  //Getting Module Title from Query Selector
+  const router = useRouter();
+  const query = router.query;
+  const title = query.nameModule;
 
   return (
   <>
