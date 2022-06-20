@@ -14,7 +14,7 @@ export type titlesType = {
   originalTitle: string,
   romajiTitle: string
 }
-// post movie
+// data movie
 export type newMovieType = {
   userName: string,
   title: string,
@@ -22,14 +22,30 @@ export type newMovieType = {
   romajiTitle?: string,
   releaseDate: string,
   filmDescription: string,
-  directorsIds: string,
-  writersIds: string,
-  musiciansIds: string,
   duration: number,
   audienceScore?: number,
   linkWiki: string,
-  movieBanner: string
+  movieBanner: string,
 }
+// type for data from submit form
+export type newMovieFromSubmit  = {
+  data: newMovieType,
+  producers: {
+    directorsIds: string,
+    writersIds: string,
+    musiciansIds: string
+  }
+}
+// type data for mutation request
+export type newMovieForMutation = {
+  data: newMovieType,
+  producers: {
+    directorsIds: number[],
+    writersIds: number[],
+    musiciansIds: number[]
+  }
+}
+
 
 // post writer
 export type newWriterType = {

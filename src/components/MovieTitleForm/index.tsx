@@ -3,10 +3,11 @@ import { useFormContext } from 'react-hook-form';
 
 type formSteping = {
   formStep:string,
-  setFormStep: React.Dispatch<SetStateAction<string>>
+  setFormStep: React.Dispatch<SetStateAction<string>>,
+  setShowCreateItem: React.Dispatch<SetStateAction<string|null>>
 }
 
-export const MovieTitleForm: FC<formSteping> = ({formStep, setFormStep}: formSteping) => {
+export const MovieTitleForm: FC<formSteping> = ({formStep, setFormStep, setShowCreateItem}: formSteping) => {
   const methods = useFormContext();
   const { register, formState: {errors} } = methods;
   return (
@@ -39,7 +40,7 @@ export const MovieTitleForm: FC<formSteping> = ({formStep, setFormStep}: formSte
       }
       <button 
         className="sm:absolute sm:bottom-12 sm:left-12 w-48 p-4 border border-red-700 hover:cursor-pointer bg-red-200/20 hover:bg-red-700 hover:text-white rounded-2xl"
-        onClick={() => {setFormStep("canceling")}}
+        onClick={() => {setShowCreateItem(null)}}
       >
         Cancel
       </button>

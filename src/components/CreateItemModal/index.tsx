@@ -7,6 +7,8 @@ import { CreateDirectorForm } from '@components/CreateDirectorForm';
 import { CreateWriterForm } from '@components/CreateWriterForm';
 import { CreateMusicianForm } from '@components/CreateMusicianForm';
 import { reqResponse } from '@customTypes/ErrorHandling';
+import { OkResponseIcon } from '@components/OkResponseIcon';
+import { ErrorIcon } from '@components/ErrorIcon';
 
 type createItem = {
   item: string,
@@ -25,7 +27,7 @@ export const CreateItemModal: FC<createItem> = ({item, setShowCreateItem}) => {
           </button>
           <h1 className="p-2 mt-5 mb-5 md:mb-0 text-3xl font-semibold text-gray-900 border-b-4 border-blue-500 sm:text-left">Create {item}</h1>
           {item == "user" && <CreateUserForm setReqStatus={setReqStatus}/>}
-          {item == "movie" && <CreateMovieForm setReqStatus={setReqStatus}/>}
+          {item == "movie" && <CreateMovieForm setShowCreateItem={setShowCreateItem} setReqStatus={setReqStatus}/>}
           {item == "director" && <CreateDirectorForm setReqStatus={setReqStatus}/>}
           {item == "writer" && <CreateWriterForm setReqStatus={setReqStatus}/>}
           {item == "musician" && <CreateMusicianForm setReqStatus={setReqStatus}/>}
@@ -37,7 +39,8 @@ export const CreateItemModal: FC<createItem> = ({item, setShowCreateItem}) => {
                 <button className='absolute top-8 right-8' onClick={() => setReqStatus(null)}>
                   <CloseModalButton/>
                 </button>
-                <h3 className='text-center my-16 text-red-700'> 
+                <ErrorIcon/>
+                <h3 className='text-center mt-8 mb-16 text-xl'> 
                 {reqStatus.error.serverError !== undefined && <p className='text-center text-red-700'>{reqStatus.error.serverError}</p>}
                 {reqStatus.error.errorMessage} 
                 </h3>
@@ -45,7 +48,8 @@ export const CreateItemModal: FC<createItem> = ({item, setShowCreateItem}) => {
             )}
             {reqStatus.success !== undefined && (
               <React.Fragment>
-                <h3 className='text-center my-16 text-lime-600'> {reqStatus.success} </h3>
+                <OkResponseIcon/>
+                <h3 className='text-center mt-8 mb-16 text-xl'> {reqStatus.success} </h3>
                 <button 
                   className='bg-sky-500/75 hover:bg-sky-500 border border-sky-700 text-white mx-auto w-2/5 h-10 rounded-md'
                   onClick={() => {
@@ -55,8 +59,7 @@ export const CreateItemModal: FC<createItem> = ({item, setShowCreateItem}) => {
                     Accept
                 </button>
               </React.Fragment>
-            )
-            }
+            )}
           </div>
         }
       </div>

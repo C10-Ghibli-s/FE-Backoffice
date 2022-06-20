@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, SetStateAction, useState } from "react";
 
-import { newMovieType } from "@customTypes/createItemTypes";
+import { newMovieFromSubmit } from "@customTypes/createItemTypes";
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newMovieSchema } from "@schemas/createNewItemSchema";
@@ -10,28 +10,35 @@ import { MovieDataForm } from "@components/MovieDataForm";
 import { MovieProducersForm } from "@components/MovieProducersForm";
 import axios from "axios";
 import { CREATE_MOVIE } from "@services/mutations/create/movie";
-import { setReqStatusType } from "@customTypes/ErrorHandling";
+import { setReqStatusMovieType } from "@customTypes/ErrorHandling";
 
 
-export const CreateMovieForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
+export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setShowCreateItem}:setReqStatusMovieType) => {
   const [formStep, setFormStep] = useState<string>("Title");
 
-  const methods = useForm<newMovieType>({
+  const methods = useForm<newMovieFromSubmit>({
     resolver: yupResolver(newMovieSchema)
   });;
   const {
     handleSubmit,
   } = methods;
 
-  const CreateMovieSubmit: SubmitHandler<newMovieType> = (data: newMovieType) => {
-    const directorsIds = (data.directorsIds).split('');
+  const CreateMovieSubmit: SubmitHandler<newMovieFromSubmit> = (data: newMovieFromSubmit) => {
+    const directorsIds = (data.producers.directorsIds).split(',');
+    const writersIds = (data.producers.writersIds).split(',');
+    const musiciansIds = (data.producers.musiciansIds).split(',');
     const dataMovie = {
       ...data,
-      directorsIds: directorsIds.map(d => parseInt(d))
+      producers: {
+        directorsIds: directorsIds.map(d => parseInt(d)),
+        writersIds: writersIds.map(w => parseInt(w)),
+        musiciansIds: musiciansIds.map(m => parseInt(m))
+      }
     }
+    console.log(dataMovie)
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
-      CREATE_MOVIE(data),
+      CREATE_MOVIE(dataMovie),
       {
         headers: {
           'Content-Type': 'application/json'
@@ -55,7 +62,7 @@ export const CreateMovieForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatu
     <React.Fragment>
       <FormProvider {...methods}>
         <form className="overflow-y-scroll" onSubmit={handleSubmit(CreateMovieSubmit)}>
-          {formStep == "Title" && <MovieTitleForm formStep={formStep} setFormStep={setFormStep}/>}
+          {formStep == "Title" && <MovieTitleForm setShowCreateItem={setShowCreateItem} formStep={formStep} setFormStep={setFormStep}/>}
           {formStep == "Data" && <MovieDataForm formStep={formStep} setFormStep={setFormStep}/>}
           {formStep == "Producers" && <MovieProducersForm setFormStep={setFormStep}/>}
         </form>
