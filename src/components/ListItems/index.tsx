@@ -36,7 +36,7 @@ const title = "Show Module"
 
 const ListItems = () => {
 
-  const {items} = useGetModules('public2')
+  const {items}:any = useGetModules('public2')
   console.log("items", items)
 
   return (
@@ -49,7 +49,7 @@ const ListItems = () => {
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="mt-10 mb-10">
               <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 hover:cursor-pointer">
-                {items.map((item) => (
+                {items.map((item: { id: string; }) => (
                   <CardItem item={item} key={item.id}/>
                 ))}
               </dl>
