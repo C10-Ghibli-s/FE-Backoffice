@@ -7,8 +7,12 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newUserSchema } from '@schemas/createNewItemSchema';
+import { setReqStatusType } from '@customTypes/ErrorHandling';
 
-export const CreateUserForm: FC = () => {
+
+
+export const CreateUserForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
+  let formData: newUserType;
   const { 
     register,
     handleSubmit,
@@ -18,6 +22,7 @@ export const CreateUserForm: FC = () => {
   });
   const rolesOptions = [{label:"USER", value:2}, {label:"ADMIN", value:1}]
   const CreateUserSubmit: SubmitHandler<newUserType> = (data: newUserType) => {
+    formData = data;
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
       CREATE_USER(data),
@@ -28,15 +33,23 @@ export const CreateUserForm: FC = () => {
       }
     )
     .then(res => {
-      console.log(res);
+      res.data?.errors
+      ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
+      : setReqStatus({success: "User created successfully :D"})
     })
-    .catch(err => console.error(err))
+    .catch(err => 
+      setReqStatus({error:{ 
+        serverError: `${err}`,
+        errorMessage: "Ups!, something went wrong, try later."
+      }})
+    )
   }
   return(
     <form className="sm:pt-8 flex flex-col items-center justify-center overflow-y-scroll" onSubmit={handleSubmit(CreateUserSubmit)}>
       <div className="flex flex-col">
         <label htmlFor="email">email</label>
-        <input className="h-12 w-52 sm:w-80 mt-2 mb-4 p-4 border-2 border-slate-200 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="email" id="email" placeholder="email" {...register('email')}/>
+        <input
+        className="h-12 w-52 sm:w-80 mt-2 mb-4 p-4 border-2 border-slate-200 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="email" id="email" placeholder="email" {...register('email')}/>
         {errors.email && errors.email?.message && <span className='text-xs text-red-500'>{errors.email.message}</span>}
       </div>
       <div className="flex flex-col">

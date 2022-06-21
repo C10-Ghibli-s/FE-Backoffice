@@ -2,43 +2,37 @@ import * as yup from 'yup';
 
 export const newUserSchema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().min(8).max(20).required(),
-  nickname: yup.string().min(8).max(20).required(),
+  password: yup.string().min(8).max(20).required().matches(/^[\w]+[0-9]{3}$/),
+  nickname: yup.string().min(8).max(20).required().matches(/^[\w]+$/),
   role: yup.string().required(),
   facebook: yup.string(),
   twitter: yup.string()
 })
 
-export const newTitleSchema = yup.object().shape({
-  title: yup.string().required(),
-  originalTitle: yup.string().required(),
-  romajiTitle: yup.string().required()
-})
-
 export const newMovieSchema = yup.object().shape({
   userName: yup.string().required(),
-  title: yup.string().required(),
+  title: yup.string().required().min(4).matches(/^[\w]+$/),
   originalTitle: yup.string().required(),
   romajiTitle: yup.string(),
   releaseDate: yup.string().required(),
-  filmDescription: yup.string().required(),
-  directorsId: yup.array().of(yup.mixed().oneOf([yup.number()])).required(),
-  writersIds: yup.array().of(yup.mixed().oneOf([yup.number()])).required(),
-  musiciansIds: yup.array().of(yup.mixed().oneOf([yup.number()])).required(),
-  duration: yup.number().required(),
-  audienceScore: yup.number(),
-  linkWiki: yup.string().required(),
+  filmDescription: yup.string().required().min(40).matches(/^[\w]+$/),
+  directorsIds: yup.string().required(),
+  writersIds: yup.string().required(),
+  musiciansIds: yup.string().required(),
+  duration: yup.number().positive().required(),
+  audienceScore: yup.number().positive(),
+  linkWiki: yup.string().required().url(),
   movieBanner: yup.string().required()
 })
 
 export const newWriterSchema = yup.object().shape({
-  name: yup.string().required(),
+  name: yup.string().required().min(5).matches(/^[\w]+$/),
 })
 
 export const newDirectorSchema = yup.object().shape({
-  name: yup.string().required(),
+  name: yup.string().required().min(5).matches(/^[\w]+$/),
 })
 
 export const newMusicianSchema = yup.object().shape({
-  name: yup.string().required(),
+  name: yup.string().required().min(5).matches(/^[\w]+$/),
 })
