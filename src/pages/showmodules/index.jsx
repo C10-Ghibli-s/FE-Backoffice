@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Title from "../../components/Title";
 import SortFilter from "../../components/SortFilter";
+import StatusFilter from "../../components/StatusFilter";
 import ListItems from "../../components/ListItems";
 
 function ShowModules() {
@@ -19,6 +20,7 @@ function ShowModules() {
     <Title title={titleModule ? titleModule : "Show Module"}/>
     <div>
     <SortFilter />
+    <StatusFilter />
     </div>
     
     <ListItems />
