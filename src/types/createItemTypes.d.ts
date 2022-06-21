@@ -62,3 +62,11 @@ export type newMusicianType = {
   id?: string,
   name: string
 }
+
+// get modules
+export type getModules ={
+  id: number,
+  title: string,
+  description: string,
+  imagen: string
+}
