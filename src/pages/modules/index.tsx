@@ -19,7 +19,7 @@ export default function Modules(): JSX.Element {
         <ModuleCard
           title={"Users"}
           description={"Find , create, edit or delete users"}
-          icons={"users-icon"}
+          icons={"bg-usersIcon"}
           goToSearchPage={"/#"}
           itemToCreate={"user"}
           setShowCreateItem={setShowCreateItem}
@@ -27,7 +27,7 @@ export default function Modules(): JSX.Element {
         <ModuleCard
           title={"Movies"}
           description={"Release a new movie, edit, or delete it"}
-          icons={"movies-icon"}
+          icons={"bg-moviesIcon"}
           goToSearchPage={"/#"}
           itemToCreate={"movie"}
           setShowCreateItem={setShowCreateItem}
@@ -35,7 +35,7 @@ export default function Modules(): JSX.Element {
         <ModuleCard
           title={"Writers"}
           description={"Add or edit a writer"}
-          icons={"writers-icon"}
+          icons={"bg-writersIcon"}
           goToSearchPage={"/#"}
           itemToCreate={"writer"}
           setShowCreateItem={setShowCreateItem}
@@ -43,7 +43,7 @@ export default function Modules(): JSX.Element {
         <ModuleCard
           title={"Directors"}
           description={"Add or edit a director"}
-          icons={"directors-icon"}
+          icons={"bg-directorsIcon"}
           goToSearchPage={"/#"}
           itemToCreate={"director"}
           setShowCreateItem={setShowCreateItem}
@@ -51,7 +51,7 @@ export default function Modules(): JSX.Element {
         <ModuleCard
           title={"Musicians"}
           description={"Add or edit a musician"}
-          icons="musicians-icon"
+          icons="bg-musiciansIcon"
           goToSearchPage={"/#"}
           itemToCreate={"musician"}
           setShowCreateItem={setShowCreateItem}
@@ -59,15 +59,18 @@ export default function Modules(): JSX.Element {
         <ModuleCard
           title={"Roles"}
           description={"Assign new roles"}
-          icons="roles-icon"
+          icons="bg-rolesIcon"
           goToSearchPage={"/#"}
           itemToCreate={"role"}
           setShowCreateItem={setShowCreateItem}
         />
       </section>
-      {showCreateItem !== null 
-        && <CreateItemModal item={showCreateItem} setShowCreateItem={setShowCreateItem}/>
-      }
+      {showCreateItem !== null && (
+        <CreateItemModal
+          item={showCreateItem}
+          setShowCreateItem={setShowCreateItem}
+        />
+      )}
       {/* <SessionUser/> */}
     </>
   );
