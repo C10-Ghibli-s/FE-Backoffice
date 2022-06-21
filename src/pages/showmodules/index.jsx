@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Title from "../../components/Title";
+import SortFilter from "../../components/SortFilter";
 import ListItems from "../../components/ListItems";
 
 function ShowModules() {
@@ -16,6 +17,10 @@ function ShowModules() {
         <title>Studio Ghibli Backoffice - Administrator - Show Modules</title>
     </Head>
     <Title title={titleModule ? titleModule : "Show Module"}/>
+    <div>
+    <SortFilter />
+    </div>
+    
     <ListItems />
   </>
   );
