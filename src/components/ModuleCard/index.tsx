@@ -47,7 +47,7 @@ function ModuleCard({
       {cardSelected && (
         <div className="relative flex items-center w-5/6 h-16 p-2 mt-1 align-middle bg-white rounded-b-xl hover:cursor-pointer ">
           <Link
-            href={goToSearchPage}
+            href={{pathname: goToSearchPage, query: {nameModule: title}}}
             className="p-1 m-2 ml-12 border-blue-400 hover:cursor-pointer hover:border-b-4"
           >
             <a className="p-1 m-2 ml-12 border-blue-400 hover:cursor-pointer hover:border-b-4">

@@ -20,7 +20,7 @@ export default function Modules(): JSX.Element {
           title={"Users"}
           description={"Find , create, edit or delete users"}
           icons={"users-icon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"user"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -28,7 +28,7 @@ export default function Modules(): JSX.Element {
           title={"Movies"}
           description={"Release a new movie, edit, or delete it"}
           icons={"movies-icon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"movie"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -36,7 +36,7 @@ export default function Modules(): JSX.Element {
           title={"Writers"}
           description={"Add or edit a writer"}
           icons={"writers-icon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"writer"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -44,7 +44,7 @@ export default function Modules(): JSX.Element {
           title={"Directors"}
           description={"Add or edit a director"}
           icons={"directors-icon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"director"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -52,7 +52,7 @@ export default function Modules(): JSX.Element {
           title={"Musicians"}
           description={"Add or edit a musician"}
           icons="musicians-icon"
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"musician"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -60,7 +60,7 @@ export default function Modules(): JSX.Element {
           title={"Roles"}
           description={"Assign new roles"}
           icons="roles-icon"
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"role"}
           setShowCreateItem={setShowCreateItem}
         />
