@@ -30,7 +30,7 @@ function ModuleCard({
         } hover:cursor-pointer hover:outline outline-4 outline-blue-400 `}
       >
         <span
-          className={`absolute top-[19px] w-6 h-6 sm:h-auto mx-3 bg-center bg-no-repeat bg-cover ${icons}`}
+          className={`absolute top-[19px] w-6 h-6 sm:w-7 sm:h-7 sm:top-10 mx-3 bg-center bg-no-repeat bg-cover ${icons}`}
         ></span>
         <h2 className="p-2 text-2xl text-gray-900 sm:h-fit indent-10">
           {title}
