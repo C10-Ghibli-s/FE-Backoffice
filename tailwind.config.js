@@ -18,7 +18,7 @@ module.exports = {
         "cross-icon": "url('../assets/icons/cross-icon.svg')",
       },
       boxShadow: {
-        DEFAULT: "0px 8px 18px -12px #6D7FE0;"
+        custom: "0px 8px 18px -12px #6D7FE0;",
       },
     },
   },
