@@ -5,10 +5,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newMusicianSchema } from '@schemas/createNewItemSchema';
 import axios from 'axios';
-import { CREATE_DIRECTOR } from '@services/mutations/create/director';
+import { CREATE_MUSICIAN } from '@services/mutations/create/musician';
+import { setReqStatusType } from '@customTypes/ErrorHandling';
 
 
-export const CreateMusicianForm: FC = () => {
+export const CreateMusicianForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatusType) => {
   const { 
     register,
     handleSubmit,
@@ -19,7 +20,7 @@ export const CreateMusicianForm: FC = () => {
   const CreateMusicianSubmit: SubmitHandler<newMusicianType> = (data: newMusicianType) => {
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
-      CREATE_DIRECTOR(data),
+      CREATE_MUSICIAN(data),
       {
         headers: {
         'Content-Type': 'application/json'
@@ -27,9 +28,16 @@ export const CreateMusicianForm: FC = () => {
       }
     )
     .then(res => {
-      console.log(res);
+      res.data?.errors
+      ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
+      : setReqStatus({success: "Musician created successfully :D"})
     })
-    .catch(err => console.error(err))
+    .catch(err => 
+      setReqStatus({error:{ 
+        serverError: `${err}`,
+        errorMessage: "Ups!, something went wrong, try later."
+      }})
+    )
   }
   return(
     <form className="py-8 flex flex-col items-center justify-center sm:m-auto" onSubmit={handleSubmit(CreateMusicianSubmit)}>

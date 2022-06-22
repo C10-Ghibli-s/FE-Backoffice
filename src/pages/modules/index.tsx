@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { ModuleCard } from "../../components/ModuleCard";
 import { CreateItemModal } from "@components/CreateItemModal";
+import { Header } from "@components/Header";
 
 export default function Modules(): JSX.Element {
   const TITLE = "Modules";
@@ -11,7 +12,7 @@ export default function Modules(): JSX.Element {
       <Head>
         <title>Studio Ghibli Backoffice - Administrator</title>
       </Head>
-      {/* <Header></Header> */}
+      <Header />
       <h1 className="p-2 mx-8 mt-5 text-3xl font-semibold text-gray-900 border-l-4 border-blue-500 sm:text-left sm:ml-32">
         {TITLE}
       </h1>
@@ -20,7 +21,7 @@ export default function Modules(): JSX.Element {
           title={"Users"}
           description={"Find , create, edit or delete users"}
           icons={"bg-usersIcon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"user"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -28,7 +29,7 @@ export default function Modules(): JSX.Element {
           title={"Movies"}
           description={"Release a new movie, edit, or delete it"}
           icons={"bg-moviesIcon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"movie"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -36,7 +37,7 @@ export default function Modules(): JSX.Element {
           title={"Writers"}
           description={"Add or edit a writer"}
           icons={"bg-writersIcon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"writer"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -44,7 +45,7 @@ export default function Modules(): JSX.Element {
           title={"Directors"}
           description={"Add or edit a director"}
           icons={"bg-directorsIcon"}
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"director"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -52,7 +53,7 @@ export default function Modules(): JSX.Element {
           title={"Musicians"}
           description={"Add or edit a musician"}
           icons="bg-musiciansIcon"
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"musician"}
           setShowCreateItem={setShowCreateItem}
         />
@@ -60,7 +61,7 @@ export default function Modules(): JSX.Element {
           title={"Roles"}
           description={"Assign new roles"}
           icons="bg-rolesIcon"
-          goToSearchPage={"/#"}
+          goToSearchPage={"/showmodules"}
           itemToCreate={"role"}
           setShowCreateItem={setShowCreateItem}
         />

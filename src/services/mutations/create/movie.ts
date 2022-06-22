@@ -1,6 +1,6 @@
-import { newMovieType } from "@customTypes/createItemTypes";
+import { newMovieForMutation } from "@customTypes/createItemTypes";
 
-export const CREATE_MOVIE = (data: newMovieType) => {
+export const CREATE_MOVIE = (data: newMovieForMutation) => {
   let CREATE_MOVIE_QUERY =
   {
     query: `mutation CreateAMovie($data: MovieInput!) {
@@ -14,14 +14,14 @@ export const CREATE_MOVIE = (data: newMovieType) => {
     }`,
     variables: {
       "data": {
-        "title": `${data.title}`,
-        "originalTitle": `${data.originalTitle}`,
-        "releaseDate": `${data.releaseDate}`,
-        "filmDescription": `${data.filmDescription}`,
-        "movieBanner": `${data.movieBanner}`,
-        "duration": `${data.duration}`,
-        "userName": `${data.userName}`,
-        "romajiTitle": `${data.romajiTitle}`
+        "title": `${data.data.title}`,
+        "originalTitle": `${data.data.originalTitle}`,
+        "releaseDate": `${data.data.releaseDate}`,
+        "filmDescription": `${data.data.filmDescription}`,
+        "movieBanner": `${data.data.movieBanner}`,
+        "duration": `${data.data.duration}`,
+        "userName": `${data.data.userName}`,
+        "romajiTitle": `${data.data.romajiTitle}`
       }
     }
   };
