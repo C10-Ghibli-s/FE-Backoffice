@@ -8,7 +8,7 @@ import Link from "next/link";
 function Header() {
   return (
     <>
-      <header className="flex items-center justify-between w-full bg-blue-500 h-14 sm:h-13">
+      <header className="flex items-center justify-between w-[calc(50% - 20px)] bg-blue-500 h-14 sm:h-13">
         <BackButton />
         <Link href={"/modules"}>
           <Image

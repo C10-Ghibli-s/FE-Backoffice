@@ -20,7 +20,7 @@ function Menu({ username }: MenuProps) {
       >
         <span
           className={`${
-            menuActive ? " top-[24px] rotate-45" : ""
+            menuActive ? " top-6 rotate-45" : ""
           } transform-gpu transition-transform top-5 absolute w-full h-[5px] bg-white border-b-2 rounded-sm `}
         />
         <span
