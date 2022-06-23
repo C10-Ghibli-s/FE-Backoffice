@@ -12,7 +12,7 @@ export default function StatusFilter() {
   const [selectedStatus, setSelectedStatus] = useState(status[0])
 
   return (
-    <div className=" top-16 w-72">
+    <div className="w-56  top-16">
       <Listbox value={selectedStatus} onChange={setSelectedStatus}>
         <Listbox.Label className="block text-sm font-medium text-gray-700">Filter by Status</Listbox.Label>
         <div className="relative mt-1">

@@ -12,7 +12,7 @@ export default function SortFilter() {
   const [selected, setSelected] = useState(sort[0])
 
   return (
-    <div className=" top-16 w-72">
+    <div className="w-56 top-16">
       <Listbox value={selected} onChange={setSelected}>
         <Listbox.Label className="block text-sm font-medium text-gray-700">Sort by</Listbox.Label>
         <div className="relative mt-1">
