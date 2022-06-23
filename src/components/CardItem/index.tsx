@@ -2,7 +2,7 @@ import React from "react";
 
 const CardItem = (prop:any) => {
   return (
-      <div className="relative p-4 m-5">
+      <div className="relative p-8 transition-opacity border-b-2 hover:bg-gray-200/50 hover:cursor-pointer">
         <dt>
           <div className="absolute flex items-center justify-center w-16 h-16 text-white bg-gray-200 rounded-full"></div>
           <h2 className="ml-20 text-lg font-medium leading-6 text-gray-900">
