@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getModules } from "@customTypes/createItemTypes";
 import CardItem from "@components/CardItem";
 import {useGetModules} from '../../hooks/useGetModules'
 
-// It shoul be replaced when we have db connection
+// It should be replaced when we have db connection
 const itemsData = [
   {
     name: "Item 1",
@@ -34,7 +33,7 @@ const itemsData = [
 
 
 const ListItems = () => {
-
+  // it should use query selector
   const {items}:any = useGetModules('public2')
   console.log("items", items)
 
@@ -43,13 +42,11 @@ const ListItems = () => {
       <section className="flex flex-col items-center justify-center mx-8 my-8 bg-white sm:flex rounded-xl">
         <div className="py-4">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="mt-10 mb-10">
-              <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 hover:cursor-pointer">
+              <section className="mt-10 mb-10 space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 hover:cursor-pointer">
                 {items.map((item: { id: string; }) => (
                   <CardItem item={item} key={item.id}/>
                 ))}
-              </dl>
-            </div>
+              </section>
           </div>
         </div>
       </section>

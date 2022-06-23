@@ -9,7 +9,7 @@ const CardItem = (prop:any) => {
             {prop.item.title}
           </h2>
         </dt>
-        <dd className="mt-2 ml-20 text-base text-gray-500">
+        <dd className="mt-2 ml-20 text-base text-gray-500 line-clamp-3 ">
           {prop.item.description}
         </dd>
       </div>
