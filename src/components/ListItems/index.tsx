@@ -39,16 +39,12 @@ const ListItems = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center mx-8 my-8 bg-white sm:flex rounded-xl">
-        <div className="py-4">
-          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <section className="mt-10 mb-10 space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 hover:cursor-pointer">
-                {items.map((item: { id: string; }) => (
-                  <CardItem item={item} key={item.id}/>
-                ))}
-              </section>
-          </div>
-        </div>
+      <section className="flex flex-col items-center justify-center px-4 mx-8 my-8 bg-white sm:flex rounded-xl max-w-7xl sm:px-6 lg:px-8">
+        <section className="mt-10 mb-10 md:grid md:grid-cols-2 md:gap-x-0 md:gap-y-0 hover:cursor-pointer ">
+          {items.map((item: { id: string; }) => (
+            <CardItem item={item} key={item.id}/>
+          ))}
+        </section>
       </section>
     </>
   );
