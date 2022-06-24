@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         </title>
         <meta
           name="description"
-          content="Ghibli Backoffice is a platform to create, delete and update content to make scalable and dynamic Studio Ghibli Tracker. This project was built in 🚀Platzi Master Program  using the best technologies and agile methodologies."
+          content="Ghibli Backoffice is a platform to create, delete and update content to make scalable and dynamic Studio Ghibli Tracker. This project was built in 🚀 Platzi Master program using the best technologies and agile methodologies."
         />
         <link rel="icon" href="favicon.ico" />
       </Head>
