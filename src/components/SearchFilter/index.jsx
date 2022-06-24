@@ -12,11 +12,11 @@ export default function SearchFilter() {
             type="text"
             name="search"
             id="search"
-            className="block w-full h-full py-2 pl-10 pr-12 text-base border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            className="block w-full h-full py-2 pl-10 pr-12 text-base border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             placeholder="Search with name"
           />
           <div className="absolute inset-y-0 right-0 flex">
-              <button className="w-20 text-white cursor-pointer rounded-r-md bg-sky-500 hover:bg-sky-600">
+              <button className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500">
                   <span>Search</span>
               </button>
           </div>
