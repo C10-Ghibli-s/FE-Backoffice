@@ -12,15 +12,15 @@ const nextConfig = {
     // This domain is an example, delete it when the real has implemented.
     domains: ["www.business2community.com"],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/about",
-  //       destination: "/",
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/login",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
