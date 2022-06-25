@@ -48,11 +48,15 @@ const useGetModules = (key) => {
     setItems(sortedString);
   };
 
-  const filterStatus = (filter)=>{
+  const filterStatus = (filter, items)=>{
     console.log("Hello from filterStatus ..", filter);
     const newArray = [...items];
-    const resultArray = newArray.filter(item => item.status == filter.name);
-    setItems(resultArray);
+    if (filter.name == 'All') {
+      setItems(newArray);
+    } else{
+      const resultArray = newArray.filter(item => item.status == filter.name);
+      setItems(resultArray);
+    }
   };
 
   return{items, setItems, orderItems, filterStatus};
