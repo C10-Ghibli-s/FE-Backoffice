@@ -8,12 +8,12 @@ const status = [
   { name: 'Inactive' },
 ]
 
-export default function StatusFilter() {
+export default function StatusFilter({filterStatus}:any) {
   const [selectedStatus, setSelectedStatus] = useState(status[0])
 
   return (
     <div className="w-56 top-16">
-      <Listbox value={selectedStatus} onChange={setSelectedStatus}>
+      <Listbox value={selectedStatus} onChange={(optionSelected)=>{setSelectedStatus(optionSelected); filterStatus(optionSelected)}}>
         <Listbox.Label className="block text-sm font-medium text-gray-700">Filter by Status</Listbox.Label>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full h-12 py-2 pl-3 pr-10 text-base text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:border-blue-400 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-500">

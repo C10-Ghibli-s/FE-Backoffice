@@ -10,14 +10,21 @@ import { Header } from "../../components/Header"
 
 import {useGetModules} from '../../hooks/useGetModules';
 
+
 function ShowModules() {
   //Getting Module Title from Query Selector
   const router = useRouter();
   const query = router.query;
   const titleModule = query.nameModule;
 
-  const {items} = useGetModules('public2');
+  // Calling the hook which contains the state and return the data of items
+  const {items, orderItems, filterStatus} = useGetModules('public2');
   console.log("items from pages", items);
+  const copyItems = [...items];
+  console.log("this is copyItems from showModule page: ", copyItems);
+
+  // Movies: -> Order by default: Ascendent by name. -> Filter: active and inactive
+  // Users: -> Order by default: Descendent by name. -> Filter: active and inactive
 
   return (
   <>
@@ -28,12 +35,12 @@ function ShowModules() {
     <Header/>
     <Title title={titleModule ? titleModule : "Show Module"}/>
     <section className="flex items-end justify-center min-h-full gap-6 px-4 py-16 sm:px-6 lg:px-8">
-      <SearchFilter data={{items}} />
-      <SortFilter />
-      <StatusFilter />
+      <SearchFilter dataItems={items} />
+      <SortFilter orderItems={orderItems}/>
+      <StatusFilter filterStatus={filterStatus}/>
     </section>
     <section className="flex flex-col items-center justify-center my-8">
-      <ListItems data={{items}}/>
+      <ListItems dataItems={items}/>
     </section>
     
     

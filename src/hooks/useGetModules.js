@@ -9,14 +9,53 @@ const useGetModules = (key) => {
   const objectPromises = { public1: getPublic1, public2: getPublic2, writes: getAllWriters };
   const [items, setItems] = useState([]);
 
+  // useEffect(() => {
+  //   const promise = objectPromises[key];
+  //   promise.then((response) => {
+  //     console.log(response);
+  //     setItems(response.data);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    const promise = objectPromises[key];
-    promise.then((response) => {
-      console.log(response);
-      setItems(response.data);
-    });
+    const genericData = [
+      { id: '1', title: 'A First Title', description: 'This is the description of first title', status: 'Active' },
+      { id: '2', title: 'B Second Title', description: 'This is the description of second title', status: 'Inactive' },
+      { id: '3', title: 'C Third Title', description: 'This is the description of third title', status: 'Active' },
+      { id: '4', title: 'D Fourth Title', description: 'This is the description of fourth title', status: 'Inactive' },
+      { id: '5', title: 'E Fifth Title', description: 'This is the description of fifth title', status: 'Active' },
+      { id: '6', title: 'F Sixth Title', description: 'This is the description of sixth title', status: 'Active' },
+    ];
+    setItems(genericData);
   }, []);
-  return{items}
-};
+
+  // it should get property as well
+  const orderItems = (order)=>{
+    console.log("this is orderItems", order);
+    const sortPropertyNumber = "id";
+    const sortPropertyString = "title";
+    const newArray = [...items];
+    const sortedNumber =
+    order.name === "Ascendent"
+      ? newArray.sort((firstItem, secondItem) => firstItem[sortPropertyNumber] - secondItem[sortPropertyNumber])
+      : newArray.sort((firstItem, secondItem) => secondItem[sortPropertyNumber] - firstItem[sortPropertyNumber]);
+    
+    const sortedString =
+    order.name === "Ascendent"
+      ? newArray.sort((firstItem, secondItem) => firstItem[sortPropertyString].localeCompare(secondItem[sortPropertyString]))
+      : newArray.sort((firstItem, secondItem) => secondItem[sortPropertyString].localeCompare(firstItem[sortPropertyString]));
+  
+    setItems(sortedString);
+  };
+
+  const filterStatus = (filter)=>{
+    console.log("Hello from filterStatus ..", filter);
+    const newArray = [...items];
+    const resultArray = newArray.filter(item => item.status == filter.name);
+    setItems(resultArray);
+  };
+
+  return{items, setItems, orderItems, filterStatus};
+}
 
 export { useGetModules };
