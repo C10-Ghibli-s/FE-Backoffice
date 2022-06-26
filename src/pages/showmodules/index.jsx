@@ -18,10 +18,8 @@ function ShowModules() {
   const titleModule = query.nameModule;
 
   // Calling the hook which contains the state and return the data of items
-  const {items, orderItems, filterStatus} = useGetModules('public2');
+  const {items, searchValue, orderItems, filterStatus} = useGetModules('public2');
   console.log("items from pages", items);
-  const copyItems = [...items];
-  console.log("this is copyItems from showModule page: ", copyItems);
 
   // Movies: -> Order by default: Ascendent by name. -> Filter: active and inactive
   // Users: -> Order by default: Descendent by name. -> Filter: active and inactive

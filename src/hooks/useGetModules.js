@@ -29,6 +29,13 @@ const useGetModules = (key) => {
     setItems(genericData);
   }, []);
 
+  const searchValue = (query) =>{
+    console.log("Hello soy searchFilter function from hooks..", query);
+    const newArray = [...items];
+    const resultArray = newArray.filter(item => item.name.includes(query));
+    setItems(resultArray);
+  };
+
   // it should get property as well
   const orderItems = (order)=>{
     console.log("this is orderItems", order);
@@ -59,7 +66,7 @@ const useGetModules = (key) => {
     }
   };
 
-  return{items, setItems, orderItems, filterStatus};
+  return{items, setItems, searchValue, orderItems, filterStatus};
 }
 
 export { useGetModules };
