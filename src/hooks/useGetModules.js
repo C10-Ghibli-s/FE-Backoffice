@@ -32,7 +32,10 @@ const useGetModules = (key) => {
   const searchValue = (textTyped) =>{
     console.log("Hello soy searchFilter function from hooks..", textTyped);
     const newArray = [...items];
-    const resultArray = newArray.filter((item) =>
+    const resultArray = 
+    textTyped === ""
+      ? items
+      : newArray.filter((item) =>
       item.title
         .toLowerCase()
         .replace(/\s+/g, "")
