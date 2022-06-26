@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
-export default function SearchFilter({ dataItems }) {
+export default function SearchFilter({ dataItems, searchValue }) {
   console.log("data from SearchFilter component: ", dataItems);
 
   const [selected, setSelected] = useState("");
@@ -54,7 +54,7 @@ export default function SearchFilter({ dataItems }) {
         </div>
       </div>
       <div className="fixed top-16 w-72">
-        <Combobox value={selected} onChange={setSelected}>
+        <Combobox value={selected} onChange={(optionSelected)=>{setSelected(optionSelected); searchValue(optionSelected)}}>
           <div className="relative mt-1">
             <div className="relative w-full overflow-hidden text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
               <Combobox.Input
@@ -62,7 +62,8 @@ export default function SearchFilter({ dataItems }) {
                 displayValue={(person) => person.name}
                 onChange={(event) => setQuery(event.target.value)}
               />
-              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2"
+              onClick={()=>{searchValue(query)}}>
                 <SelectorIcon
                   className="w-5 h-5 text-gray-400"
                   aria-hidden="true"

@@ -29,10 +29,14 @@ const useGetModules = (key) => {
     setItems(genericData);
   }, []);
 
-  const searchValue = (query) =>{
-    console.log("Hello soy searchFilter function from hooks..", query);
+  const searchValue = (textTyped) =>{
+    console.log("Hello soy searchFilter function from hooks..", textTyped);
     const newArray = [...items];
-    const resultArray = newArray.filter(item => item.name.includes(query));
+    const resultArray = newArray.filter((item) =>
+      item.title
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .includes(textTyped.toLowerCase().replace(/\s+/g, "")));
     setItems(resultArray);
   };
 
