@@ -7,6 +7,7 @@ export default function SearchFilter({ dataItems, searchValue }) {
   console.log("data from SearchFilter component: ", dataItems);
 
   const [selected, setSelected] = useState("");
+  console.log("selected", selected);
   const [query, setQuery] = useState("");
   const items = dataItems;
 
@@ -23,40 +24,9 @@ export default function SearchFilter({ dataItems, searchValue }) {
   return (
     <>
       <div className="top-16 w-96">
-        <div className="relative h-12 mt-1 rounded-md shadow-sm">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg
-              className="w-5 h-5 text-gray-500 dark:text-gray-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </div>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            className="block w-full h-full py-2 pl-10 pr-12 text-base border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Search with name"
-            onChange={(event) => setQuery(event.target.value)}
-          />
-          <div className="absolute inset-y-0 right-0 flex">
-            <button className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500" onClick={()=>{searchValue(query)}}>
-              <span>Search</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="top-16 w-96">
-        <Combobox value={selected} onChange={(optionSelected)=>{setSelected(optionSelected); searchValue(optionSelected)}}>
-          <div className="relative h-12 mt-1 rounded-md shadow-sm">
-            <div className="relative w-full overflow-hidden text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+        <Combobox className="h-12" value={selected} onChange={(optionSelected)=>{setSelected(optionSelected); searchValue(optionSelected)}}>
+          <div className="relative mt-1 rounded-md shadow-sm">
+            <div className="relative w-full h-full overflow-hidden text-left bg-white rounded-md shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   className="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -74,8 +44,7 @@ export default function SearchFilter({ dataItems, searchValue }) {
               <Combobox.Input
                 className="block w-full h-full py-2 pl-10 pr-12 text-base border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Search with name"
-                displayValue={(item) => item.title}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {setQuery(event.target.value); setSelected('')}}
               />
               <div className="absolute inset-y-0 right-0 flex">
                 <Combobox.Button className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500"
@@ -90,7 +59,7 @@ export default function SearchFilter({ dataItems, searchValue }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg w-96 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" >
                 {filteredItems.length === 0 && query !== "" ? (
                   <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
                     Nothing found.
