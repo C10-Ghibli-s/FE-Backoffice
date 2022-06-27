@@ -5,7 +5,7 @@ import CardItem from "@components/CardItem";
 function ListItems({dataItems}:any) {
   // it should use query selector
   //const {items}:any = useGetModules('public2')
-  console.log("items from ListItems component...", dataItems);
+  //console.log("items from ListItems component...", dataItems);
 
   return (
     <>

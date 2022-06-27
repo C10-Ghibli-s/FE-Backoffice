@@ -1,20 +1,30 @@
-import React from 'react';
-import { Fragment, useState } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import React, {useEffect} from "react";
+import { Fragment, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
-const sort = [
-  { name: 'Ascendent' },
-  { name: 'Descendent' },
-]
+const sort = [{ name: "Ascendent" }, { name: "Descendent" }];
 
-export default function SortFilter({orderItems}) {
-  const [selected, setSelected] = useState(sort[0])
-  
+export default function SortFilter({ orderItems, orderBy }) {
+  const index = sort.findIndex(option => option.name == orderBy);
+  const [selected, setSelected] = useState(sort[index]);
+
+  useEffect(() => {
+    orderItems(selected);
+  }, [selected]);
+
   return (
     <div className="w-56 top-16">
-      <Listbox value={selected} onChange={(optionSelected)=>{setSelected(optionSelected); orderItems(optionSelected)}}>
-        <Listbox.Label className="block text-sm font-medium text-gray-700">Sort by</Listbox.Label>
+      <Listbox
+        value={selected}
+        onChange={(optionSelected) => {
+          setSelected(optionSelected);
+          orderItems(optionSelected);
+        }}
+      >
+        <Listbox.Label className="block text-sm font-medium text-gray-700">
+          Sort by
+        </Listbox.Label>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full h-12 py-2 pl-3 pr-10 text-base text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:border-blue-400 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-500">
             <span className="block truncate">{selected.name}</span>
@@ -37,7 +47,7 @@ export default function SortFilter({orderItems}) {
                   key={optionIdx}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-blue-100 text-blue-900' : 'text-gray-900'
+                      active ? "bg-blue-100 text-blue-900" : "text-gray-900"
                     }`
                   }
                   value={option}
@@ -46,7 +56,7 @@ export default function SortFilter({orderItems}) {
                     <>
                       <span
                         className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
+                          selected ? "font-medium" : "font-normal"
                         }`}
                       >
                         {option.name}
@@ -65,5 +75,5 @@ export default function SortFilter({orderItems}) {
         </div>
       </Listbox>
     </div>
-  )
+  );
 }

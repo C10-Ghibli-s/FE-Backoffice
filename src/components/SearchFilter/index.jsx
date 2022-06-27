@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Fragment } from "react";
 import { Combobox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { CheckIcon } from "@heroicons/react/solid";
+import { useGetModules } from "@hooks/useGetModules";
+
 
 export default function SearchFilter({ dataItems, searchValue }) {
-  console.log("data from SearchFilter component: ", dataItems);
-
   const [selected, setSelected] = useState("");
-  console.log("selected", selected);
   const [query, setQuery] = useState("");
-  const items = dataItems;
+  //const dataItems = dataItems;
+
+  // we should get another prop with the name of the module
+  const {items} = useGetModules('public2');
 
   const filteredItems =
     query === ""
@@ -24,7 +26,14 @@ export default function SearchFilter({ dataItems, searchValue }) {
   return (
     <>
       <div className="top-16 w-96">
-        <Combobox className="h-12" value={selected} onChange={(optionSelected)=>{setSelected(optionSelected); searchValue(optionSelected)}}>
+        <Combobox
+          className="h-12"
+          value={selected}
+          onChange={(optionSelected) => {
+            setSelected(optionSelected);
+            searchValue(optionSelected);
+          }}
+        >
           <div className="relative mt-1 rounded-md shadow-sm">
             <div className="relative w-full h-full overflow-hidden text-left bg-white rounded-md shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -44,11 +53,18 @@ export default function SearchFilter({ dataItems, searchValue }) {
               <Combobox.Input
                 className="block w-full h-full py-2 pl-10 pr-12 text-base border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Search with name"
-                onChange={(event) => {setQuery(event.target.value); setSelected('')}}
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  setSelected("");
+                }}
               />
               <div className="absolute inset-y-0 right-0 flex">
-                <Combobox.Button className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500"
-                onClick={()=>{searchValue(query)}}>
+                <Combobox.Button
+                  className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500"
+                  onClick={() => {
+                    searchValue(query);
+                  }}
+                >
                   <span>Search</span>
                 </Combobox.Button>
               </div>
@@ -59,7 +75,7 @@ export default function SearchFilter({ dataItems, searchValue }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg w-96 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" >
+              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg w-96 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {filteredItems.length === 0 && query !== "" ? (
                   <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
                     Nothing found.

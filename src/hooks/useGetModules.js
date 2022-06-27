@@ -25,12 +25,12 @@ const useGetModules = (key) => {
       { id: '4', title: 'D Fourth Title', description: 'This is the description of fourth title', status: 'Inactive' },
       { id: '5', title: 'E Fifth Title', description: 'This is the description of fifth title', status: 'Active' },
       { id: '6', title: 'F Sixth Title', description: 'This is the description of sixth title', status: 'Active' },
+      { id: '7', title: 'B First Title', description: 'This is the description of b first title ', status: 'Active' },
     ];
     setItems(genericData);
   }, []);
 
   const searchValue = (textTyped) =>{
-    console.log("Hello soy searchFilter function from hooks..", textTyped);
     const newArray = [...items];
     const resultArray = 
     textTyped === ""
@@ -45,12 +45,11 @@ const useGetModules = (key) => {
 
   // it should get property as well
   const orderItems = (order)=>{
-    console.log("this is orderItems", order);
     const sortPropertyNumber = "id";
     const sortPropertyString = "title";
     const newArray = [...items];
     const sortedNumber =
-    order.name === "Ascendent"
+    order === "Ascendent"
       ? newArray.sort((firstItem, secondItem) => firstItem[sortPropertyNumber] - secondItem[sortPropertyNumber])
       : newArray.sort((firstItem, secondItem) => secondItem[sortPropertyNumber] - firstItem[sortPropertyNumber]);
     
@@ -63,7 +62,6 @@ const useGetModules = (key) => {
   };
 
   const filterStatus = (filter, items)=>{
-    console.log("Hello from filterStatus ..", filter);
     const newArray = [...items];
     if (filter.name == 'All') {
       setItems(newArray);
