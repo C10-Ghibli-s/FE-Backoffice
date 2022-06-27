@@ -10,7 +10,7 @@ export default function StatusFilter({ filterStatus }: any) {
   const [selectedStatus, setSelectedStatus] = useState(status[0]);
 
   // we should get another prop with the name of the module
-  const {items} = useGetModules('public2');
+  const { items } = useGetModules("public2");
 
   return (
     <div className="w-56 top-16">

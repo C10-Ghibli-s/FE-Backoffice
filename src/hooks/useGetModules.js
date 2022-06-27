@@ -43,7 +43,6 @@ const useGetModules = (key) => {
     setItems(resultArray);
   };
 
-  // it should get property as well
   const orderItems = (order)=>{
     const sortPropertyNumber = "id";
     const sortPropertyString = "title";

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
@@ -6,12 +6,12 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 const sort = [{ name: "Ascendent" }, { name: "Descendent" }];
 
 export default function SortFilter({ orderItems, orderBy }) {
-  const index = sort.findIndex(option => option.name == orderBy);
+  const index = sort.findIndex((option) => option.name == orderBy);
   const [selected, setSelected] = useState(sort[index]);
 
   useEffect(() => {
     orderItems(selected);
-  }, [selected]);
+  }, []);
 
   return (
     <div className="w-56 top-16">
