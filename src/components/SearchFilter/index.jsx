@@ -24,7 +24,7 @@ export default function SearchFilter({ dataItems, searchValue }) {
 
   return (
     <>
-      <div className="top-16 w-96">
+      <div className="z-10 top-16 w-96">
         <Combobox
           className="h-12"
           value={selected}

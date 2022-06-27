@@ -14,7 +14,7 @@ export default function SortFilter({ orderItems, orderBy }) {
   }, []);
 
   return (
-    <div className="w-56 top-16">
+    <div className="z-10 w-56 top-16">
       <Listbox
         value={selected}
         onChange={(optionSelected) => {

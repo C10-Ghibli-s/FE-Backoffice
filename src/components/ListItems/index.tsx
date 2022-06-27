@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CardItem from "@components/CardItem";
 
-
 function ListItems({dataItems}:any) {
-  // it should use query selector
-  //const {items}:any = useGetModules('public2')
-  //console.log("items from ListItems component...", dataItems);
 
   return (
     <>

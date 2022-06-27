@@ -39,7 +39,7 @@ function ShowModules() {
       <SortFilter orderItems={orderItems} orderBy={orderBy}/>
       <StatusFilter filterStatus={filterStatus}/>
     </section>
-    <section className="flex flex-col items-center justify-center my-8 ">
+    <section className="flex flex-col items-center justify-center my-8">
       <ListItems dataItems={items}/>
     </section>
   </>

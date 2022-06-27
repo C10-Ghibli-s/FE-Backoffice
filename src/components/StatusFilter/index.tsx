@@ -13,7 +13,7 @@ export default function StatusFilter({ filterStatus }: any) {
   const { items } = useGetModules("public2");
 
   return (
-    <div className="w-56 top-16">
+    <div className="z-10 w-56 top-16">
       <Listbox
         value={selectedStatus}
         onChange={(optionSelected) => {

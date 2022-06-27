@@ -61,6 +61,7 @@ const useGetModules = (key) => {
   };
 
   const filterStatus = (filter, items)=>{
+    console.log("items from filterStatus",items);
     const newArray = [...items];
     if (filter.name == 'All') {
       setItems(newArray);
