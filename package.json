@@ -10,6 +10,7 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.9.1",
     "@headlessui/react": "^1.6.5",
     "@heroicons/react": "^1.0.6",
     "@hookform/resolvers": "^2.8.8",
