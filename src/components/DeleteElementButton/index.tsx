@@ -1,6 +1,6 @@
 import React from "react";
 
-function DeleteElementButton() {
+function DeleteElementButton(itemToDelete:{itemToDelete: string}) {
   const handleDeleteElement = () => {
     alert("UPDATE DELETE PROFILE");
   };

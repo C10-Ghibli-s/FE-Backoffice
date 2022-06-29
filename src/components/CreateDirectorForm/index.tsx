@@ -1,9 +1,9 @@
-import { newDirectorType } from '@customTypes/createItemTypes';
+import { newProducerType } from '@customTypes/createItemTypes';
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { newDirectorSchema } from '@schemas/createNewItemSchema';
+import { newProducerSchema } from '@schemas/createNewItemSchema';
 import axios from 'axios';
 import { CREATE_DIRECTOR } from '@services/mutations/create/director';
 import { setReqStatusType } from '@customTypes/ErrorHandling';
@@ -14,10 +14,10 @@ export const CreateDirectorForm: FC<setReqStatusType> = ({setReqStatus}:setReqSt
     register,
     handleSubmit,
     formState: { errors }, 
-  } = useForm<newDirectorType>({
-    resolver: yupResolver(newDirectorSchema)
+  } = useForm<newProducerType>({
+    resolver: yupResolver(newProducerSchema)
   });
-  const CreateDirectorSubmit: SubmitHandler<newDirectorType> = (data: newDirectorType) => {
+  const CreateDirectorSubmit: SubmitHandler<newProducerType> = (data: newProducerType) => {
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
       CREATE_DIRECTOR(data),

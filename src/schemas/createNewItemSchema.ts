@@ -25,14 +25,7 @@ export const newMovieSchema = yup.object().shape({
   movieBanner: yup.string().required()
 })
 
-export const newWriterSchema = yup.object().shape({
-  name: yup.string().required().min(5).matches(/^[\w]+$/),
-})
-
-export const newDirectorSchema = yup.object().shape({
-  name: yup.string().required().min(5).matches(/^[\w]+$/),
-})
-
-export const newMusicianSchema = yup.object().shape({
-  name: yup.string().required().min(5).matches(/^[\w]+$/),
+export const newProducerSchema = yup.object().shape({
+  name: yup.string().required().min(4).matches(/^[\w]+$/),
+  producerRole: yup.string(),
 })

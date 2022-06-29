@@ -4,6 +4,8 @@ import Head from "next/head";
 import React, { useState } from "react";
 import { ProductionMemberModal } from "../components/ProductionMemberModal";
 import { Header } from "@components/Header";
+import { ProfileModal } from "@components/ProfileModal";
+import { MovieModal } from "@components/MovieModal";
 
 
 const Home: NextPage = () => {
@@ -18,9 +20,9 @@ const Home: NextPage = () => {
     setOpenMovieModal(true);
   };
   // This function and state triggers the modal. Copy it, and paste it when the modal is called
-  const [openProductionModal, setOpenProductionModal] = useState(false);
-  const handleProductionModal = () => {
-    setOpenProductionModal(true);
+  const [openShowModal, setOpenShowModal] = useState<string|null>(null);
+  const handleProductionModal = (item:string) => {
+    setOpenShowModal(`${item}`);
   };
 
   return (
@@ -38,10 +40,21 @@ const Home: NextPage = () => {
       <Header />
       <h1 className="text-2xl font-bold text-center">Hello</h1>
       <ProductionMemberModal
-        openProductionModal={openProductionModal}
-        setOpenProductionModal={setOpenProductionModal}
+        openShowModal={openShowModal}
+        setOpenShowModal={setOpenShowModal}
+        producer="director"
       />
-      <button onClick={handleProductionModal}>Select Profile</button>
+      <button onClick={() => setOpenShowModal('producer')}>Select Profile</button>
+      <ProfileModal 
+        openShowModal={openShowModal}
+        setOpenShowModal={setOpenShowModal}
+      />
+      <button onClick={() => setOpenShowModal('user')}>Select user</button>
+      <MovieModal 
+        openShowModal={openShowModal}
+        setOpenShowModal={setOpenShowModal}
+      />
+      <button onClick={() => setOpenShowModal('movie')}>Select movie</button>
     </div>
   );
 };

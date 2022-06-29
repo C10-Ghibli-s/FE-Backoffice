@@ -1,4 +1,4 @@
-import { newDirectorType, newMusicianType, newWriterType } from '@customTypes/createItemTypes';
+import { newProducerType } from '@customTypes/createItemTypes';
 import React, { FC, SetStateAction, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Select from 'react-select';
@@ -12,9 +12,9 @@ export const MovieProducersForm: FC<stepForm> = ({setFormStep}: stepForm) => {
   const methods = useFormContext();
   const { register, formState: {errors} } = methods;
 
-  const [directors, setDirectors] = useState<newDirectorType[]>([]);
-  const [writers, setWriters] = useState<newWriterType[]>([]);
-  const [musicians, setMusicians] = useState<newMusicianType[]>([]); 
+  const [directors, setDirectors] = useState<newProducerType[]>([]);
+  const [writers, setWriters] = useState<newProducerType[]>([]);
+  const [musicians, setMusicians] = useState<newProducerType[]>([]); 
 
   useEffect(() => {
     setTimeout(() => getProducers({setDirectors, setWriters, setMusicians}), 1000)

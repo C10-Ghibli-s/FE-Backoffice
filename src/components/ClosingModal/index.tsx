@@ -4,11 +4,13 @@ interface ModalProps {
   state: any;
   value: boolean | string;
   className?: string;
+  setEditing: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-function ClosingModal({ state, value }: ModalProps) {
+function ClosingModal({ state, value , setEditing}: ModalProps) {
   const handleCloseModalButton = () => {
     state(value);
+    setEditing(null)
   };
   return (
     <span

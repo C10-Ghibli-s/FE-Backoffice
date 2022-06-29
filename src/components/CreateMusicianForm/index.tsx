@@ -1,9 +1,9 @@
-import { newMusicianType } from '@customTypes/createItemTypes';
+import { newProducerType } from '@customTypes/createItemTypes';
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { newMusicianSchema } from '@schemas/createNewItemSchema';
+import { newProducerSchema } from '@schemas/createNewItemSchema';
 import axios from 'axios';
 import { CREATE_MUSICIAN } from '@services/mutations/create/musician';
 import { setReqStatusType } from '@customTypes/ErrorHandling';
@@ -14,10 +14,10 @@ export const CreateMusicianForm: FC<setReqStatusType> = ({setReqStatus}:setReqSt
     register,
     handleSubmit,
     formState: { errors }, 
-  } = useForm<newMusicianType>({
-    resolver: yupResolver(newMusicianSchema)
+  } = useForm<newProducerType>({
+    resolver: yupResolver(newProducerSchema)
   });
-  const CreateMusicianSubmit: SubmitHandler<newMusicianType> = (data: newMusicianType) => {
+  const CreateMusicianSubmit: SubmitHandler<newProducerType> = (data: newProducerType) => {
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
       CREATE_MUSICIAN(data),

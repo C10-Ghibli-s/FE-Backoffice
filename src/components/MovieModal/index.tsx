@@ -16,11 +16,12 @@ import { ModalTitle } from "@components/ModalTitle";
  */
 
 interface ModalProps {
-  openMovieModal: boolean;
-  setOpenMovieModal: boolean | React.Dispatch<React.SetStateAction<boolean>>;
+  openShowModal: string|null;
+  setOpenShowModal: boolean | React.Dispatch<React.SetStateAction<string|null>>;
 }
 
-function MovieModal({ openMovieModal, setOpenMovieModal }: ModalProps) {
+function MovieModal({ openShowModal, setOpenShowModal }: ModalProps) {
+  const [editing, setEditing] = React.useState<string|null>(null);
   // When DB has been deployed, fill this object with the api data.
   const movie = {
     title: "My Neighbor Totoro",
@@ -33,13 +34,13 @@ function MovieModal({ openMovieModal, setOpenMovieModal }: ModalProps) {
     wikiLink: "https://en.wikipedia.org/wiki/My_Neighbor_Totoro",
   };
 
-  if (!openMovieModal) {
+  if (openShowModal !== 'movie') {
     return null;
   } else {
     return (
       <div className="fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
         <div className="sm:relative flex flex-col items-center justify-around w-full p-3 rounded-lg sm:items-center h-[100%] sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
-          <ClosingModal state={setOpenMovieModal} value={false} />
+          <ClosingModal setEditing={setEditing} state={setOpenShowModal} value={false} />
           <ModalTitle>{movie.title}</ModalTitle>
           <div className="flex-col mx-4 sm:mt-4 sm:flex sm:flex-row">
             <div className="flex order-last sm:mr-4 sm:order-first sm:block">
@@ -74,8 +75,8 @@ function MovieModal({ openMovieModal, setOpenMovieModal }: ModalProps) {
             </div>
           </div>
           <div className="relative sm:bottom-0 sm:my-4">
-            <DeleteElementButton />
-            <EditButton />
+            <DeleteElementButton itemToDelete="1"/>
+            <EditButton itemToEdit={openShowModal} setEditing={setEditing}/>
           </div>
         </div>
       </div>

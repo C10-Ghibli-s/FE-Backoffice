@@ -47,20 +47,11 @@ export type newMovieForMutation = {
 }
 
 
-// post writer
-export type newWriterType = {
+// post producer (director/writer/musician)
+export type newProducerType = {
   id?: string,
-  name: string
-}
-// post director
-export type newDirectorType = {
-  id?: string,
-  name: string
-}
-// post musician
-export type newMusicianType = {
-  id?: string,
-  name: string
+  name: string,
+  producerRole?: string,
 }
 
 // get modules
