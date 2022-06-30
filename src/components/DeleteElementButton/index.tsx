@@ -4,9 +4,9 @@ import React from "react";
 
 
 
-function DeleteElementButton({itemToDelete, id}:{itemToDelete: string, id: number}) {
+function DeleteElementButton({itemToDelete, id}:{itemToDelete: string | null, id: number}) {
   const [onDelete, setOnDelete] = React.useState<boolean>(false);
-  const handleDeleteElement = ({itemToDelete, id}: {itemToDelete: string, id: number}) => {
+  const handleDeleteElement = ({itemToDelete, id}: {itemToDelete: string | null, id: number}) => {
       axios.post(
         process.env.API_URL !== undefined ? process.env.API_URL : '',
         DELETE_ITEM({itemToDelete, id}),

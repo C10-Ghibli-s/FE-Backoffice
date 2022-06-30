@@ -9,7 +9,7 @@ interface ModalProps {
 
 function ClosingModal({ state, value , setEditing}: ModalProps) {
   const handleCloseModalButton = () => {
-    state(value);
+    state({item: value, itemData: null});
     setEditing(null)
   };
   return (

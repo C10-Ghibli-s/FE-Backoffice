@@ -10,6 +10,7 @@ import ListItems from "@components/ListItems";
 import { Header } from "@components/Header";
 
 import {useGetModules} from '@hooks/useGetModules';
+import axios from "axios";
 
 function ShowModules() {
   //Getting Module Title from Query Selector
@@ -44,7 +45,7 @@ function ShowModules() {
       <StatusFilter filterStatus={filterStatus} titleModule={titleModule}/>
     </section>
     <section className="flex flex-col items-center justify-center my-8">
-      {(typeof items !== "undefined" && items !== null) ? <ListItems dataItems={items}/> : <div className="text-center">Loading...</div>}
+      {(typeof items !== "undefined" && items !== null) ? <ListItems dataItems={items} titleModule={titleModule}/> : <div className="text-center">Loading...</div>}
       {items == null && <div className="text-center">Something went wrong, try later...</div>}
     </section>
   </>

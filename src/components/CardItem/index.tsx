@@ -1,15 +1,37 @@
 import React from "react";
 
 const CardItem = (prop:any) => {
+  const  { item, titleModule, setOpenShowModal } = prop;
+  let itemData: any;
+  switch (titleModule) {
+    case 'Users':
+        itemData = { item: titleModule, data: { userData: item} }
+      break;
+    case 'Movies':
+        itemData = { item: titleModule, data: { movieData: item} }
+      break;
+    case 'Musicians':
+        itemData = { item: 'producer', data: { producerData: {...item, producerRole: 'Musician'} } }
+      break;
+    case 'Writers':
+        itemData = { item: 'producer', data: { producerData: {...item, producerRole: 'Writer'} } }
+      break;
+    case 'Directors':
+        itemData = { item: 'producer', data: { producerData: {...item, producerRole: 'Director'} } }
+      break;
+    default:
+      break;
+  }
+
   return (
-      <div className="relative p-10 transition-opacity border-b-2 hover:bg-gray-200/50 hover:cursor-pointer">
+      <div onClick={() => {setOpenShowModal(itemData)}} className="relative p-10 transition-opacity border-b-2 hover:bg-gray-200/50 hover:cursor-pointer">
         <dt>
           <div className="absolute flex items-center justify-center w-16 h-16 text-white bg-gray-200 rounded-full"></div>
           <div className="flex">
             <h2 className="ml-20 text-lg font-medium leading-6 text-gray-900">
-              {prop.item?.nickname}
-              {prop.item?.name}
-              {prop.item?.title?.title}
+              {item?.nickname}
+              {item?.name}
+              {item?.title?.title}
             </h2>
             <div className="absolute rotate-45 right-6">
               <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor">
@@ -19,7 +41,7 @@ const CardItem = (prop:any) => {
           </div>
         </dt>
         <dd className="mt-2 ml-20 text-base text-gray-500 line-clamp-3 ">
-          {prop.item?.description}
+          {item?.filmDescription}
         </dd>
       </div>
   );

@@ -13,6 +13,7 @@ import { newUserSchema } from '@schemas/createNewItemSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
 import { UPDATE_USER } from "@services/mutations/update/user";
+import { modalTypes } from "@customTypes/updateModalTypes";
 
 /**
  * This component still needs:
@@ -24,12 +25,11 @@ import { UPDATE_USER } from "@services/mutations/update/user";
  */
 
 interface ModalProps {
-  openShowModal: string|null,
-  setOpenShowModal: React.Dispatch<React.SetStateAction<string|null>>,
-  user: updateUserForQuery
+  openShowModal: modalTypes,
+  setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>
 }
 
-function ProfileModal({ openShowModal, setOpenShowModal, user }: ModalProps) {
+function ProfileModal({ openShowModal, setOpenShowModal }: ModalProps) {
   const userStatus = [{label:"ACTIVE", value: 1}, {label: "BANNED", value: 2}, {label: "SUSPENDED", value: 3}];
   const [editing, setEditing] = React.useState<string|null>(null);
   const { 
@@ -60,14 +60,25 @@ function ProfileModal({ openShowModal, setOpenShowModal, user }: ModalProps) {
     })
   }
 
-  if (openShowModal !== 'user') {
+  const userData = openShowModal.data?.userData !== undefined 
+  ? openShowModal.data?.userData 
+  : { 
+      id: 0,
+      nickname: "USER TEST",
+      status: "ACTIVE",
+      role: "USER",
+    };
+
+  if (openShowModal.item !== 'Users') {
     return null;
   } else {
     return (
-      <div className="fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
+      <div className="z-20 fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
         <div className="relative flex flex-col items-center justify-around w-full p-3 rounded-lg sm:items-center h-5/6 sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
           <ClosingModal setEditing={setEditing} state={setOpenShowModal} value={false} />
-          <ModalTitle className="mb-20">User profile</ModalTitle>
+          <h2 className="w-11/12 mb-20 my-3 text-2xl font-semibold text-left text-gray-900 border-l-4 border-blue-500 sm:ml-6 sm:text-3xl indent-2">
+            User Profile
+          </h2>
           {editing == null && (
             <div className="flex flex-col items-center">
               <div className="mx-40 flex items-center">
@@ -76,16 +87,16 @@ function ProfileModal({ openShowModal, setOpenShowModal, user }: ModalProps) {
                   src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
                   width="150"
                   height="150"
-                  alt={user.nickname}
+                  alt={userData.nickname}
                   className="rounded-full"
                   ></Image>
                 </figure>
               </div>
               <div>
-                <h2 className="my-1 text-2xl font-bold">{user.nickname}</h2>
+                <h2 className="my-1 text-2xl font-bold">{userData.nickname}</h2>
                 <p className="my-1"></p>
                 <p className="my-1 p-0.5 rounded-lg px-2 bg-green-500/[0.2] w-fit">
-                  {user.status}
+                  {userData.status}
                 </p>
               </div>
               <div className="relative bottom-14 sm:bottom-0 sm:my-4">
@@ -94,44 +105,44 @@ function ProfileModal({ openShowModal, setOpenShowModal, user }: ModalProps) {
             </div>
           )}
           {editing === 'user' && (
-              <form onSubmit={handleSubmit(UpdateUser)} className="flex flex-col items-center justify-center">
-                <div className="mx-40 flex items-center">
-                  <figure className="w-full mt-4 sm:w-fit">
-                    <Image
-                    src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-                    width="150"
-                    height="150"
-                    alt={user.nickname}
-                    className="rounded-full"
-                    ></Image>
-                  </figure>
+            <form onSubmit={handleSubmit(UpdateUser)} className="flex flex-col items-center justify-center">
+              <div className="mx-40 flex items-center">
+                <figure className="w-full mt-4 sm:w-fit">
+                  <Image
+                  src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                  width="150"
+                  height="150"
+                  alt={userData.nickname}
+                  className="rounded-full"
+                  ></Image>
+                </figure>
+              </div>
+              <div className="flex flex-col items-center">
+                <div>
+                  <label htmlFor="nickname"></label>
+                  <input type="text" className="w-full p-2 rounded-lg" placeholder="Username" id="nickname" {...register('nickname')}/>
+                  {errors.nickname && <p className="text-red-500 text-sm">{errors.nickname.message}</p>}
                 </div>
-                <div className="flex flex-col items-center">
-                  <div>
-                    <label htmlFor="nickname"></label>
-                    <input type="text" className="w-full p-2 rounded-lg" placeholder="Username" id="nickname" {...register('nickname')}/>
-                    {errors.nickname && <p className="text-red-500 text-sm">{errors.nickname.message}</p>}
-                  </div>
-                  <p className="my-1"></p>
-                  <Select
-                    // @ts-ignore
-                    onChange={e => document.getElementById('status').value = e.value}
-                    className="w-full p-2 rounded-lg"
-                    placeholder="user status"
-                    options={userStatus.map(status => ({label: status.label, value: status.value}))}
-                  />
-                  <input defaultValue="1" {...register('status')} id='status' className='hidden' type="text"/>
-                  {errors.status && <p className="text-red-500 text-sm">{errors.status.message}</p>}
-                  <input defaultValue={user.id} {...register('id')} id='userId' className='hidden' type="text"/>
-                </div>
-                <div className="relative bottom-14 sm:bottom-0 sm:my-4">
-                  <input value="Complete" type="submit" className="p-2 mt-6 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 weigth w-52 hover:cursor-pointer"/>
-                  <DeleteElementButton id={user.id} itemToDelete='user'/>
-                </div>
-              </form>
+                <p className="my-1"></p>
+                <Select
+                  // @ts-ignore
+                  onChange={e => document.getElementById('status').value = e.value}
+                  className="w-full p-2 rounded-lg"
+                  placeholder="user status"
+                  options={userStatus.map(status => ({label: status.label, value: status.value}))}
+                />
+                <input defaultValue="1" {...register('status')} id='status' className='hidden' type="text"/>
+                {errors.status && <p className="text-red-500 text-sm">{errors.status.message}</p>}
+                <input defaultValue={userData.id} {...register('id')} id='userId' className='hidden' type="text"/>
+              </div>
+              <div className="relative bottom-14 sm:bottom-0 sm:my-4">
+                <input value="Complete" type="submit" className="p-2 mt-6 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 weigth w-52 hover:cursor-pointer"/>
+                <DeleteElementButton id={userData.id} itemToDelete='user'/>
+              </div>
+            </form>
           )}
       </div>
-            </div>
+    </div>
     );
   }
 }

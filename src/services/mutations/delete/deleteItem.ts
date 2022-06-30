@@ -1,5 +1,5 @@
 
-export const DELETE_ITEM = ({itemToDelete, id}: {itemToDelete: string, id: number}) => {
+export const DELETE_ITEM = ({itemToDelete, id}: {itemToDelete: string|null, id: number}) => {
     let DELETE_ITEM_QUERY;
     switch (itemToDelete) {
         case 'movie':

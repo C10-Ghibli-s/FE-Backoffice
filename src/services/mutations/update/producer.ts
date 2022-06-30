@@ -1,7 +1,7 @@
-import { newProducerType } from '@customTypes/createItemTypes';
+import { updateProducerType } from '@customTypes/createItemTypes';
 
 
-export const UPDATE_PRODUCER = (data: newProducerType) => {
+export const UPDATE_PRODUCER = (data: updateProducerType) => {
 	let UPDATE_PRODUCER_QUERY;
 	switch (data.producerRole) {
 		case 'musician':
