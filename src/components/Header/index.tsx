@@ -4,8 +4,9 @@ import ghibli from "@assets/icons/ghibli-tracker.svg";
 import BackButton from "@components/BackButton";
 import { Menu } from "@components/Menu";
 import Link from "next/link";
-
+import { useUser } from "@auth0/nextjs-auth0";
 function Header() {
+  const { user, error, isLoading } = useUser();
   return (
     <>
       <header className=" flex items-center justify-between w-[calc(50% - 20px)] bg-blue-500 h-14 sm:h-13">
@@ -21,7 +22,7 @@ function Header() {
             />
           </figure>
         </Link>
-        <Menu username={"newuser21321"} />
+        <Menu username={user?.nickname} />
       </header>
     </>
   );

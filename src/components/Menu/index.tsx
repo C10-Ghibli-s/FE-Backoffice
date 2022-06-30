@@ -1,8 +1,9 @@
+import { UserContext } from "@auth0/nextjs-auth0";
 import { MenuExpanded } from "@components/MenuExpanded";
 import React, { useState } from "react";
 
 interface MenuProps {
-  username: string;
+  username: string | undefined | null;
 }
 
 function Menu({ username }: MenuProps) {

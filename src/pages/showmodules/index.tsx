@@ -1,16 +1,14 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Title from "@components/Title";
-import SearchFilter from "@components/SearchFilter";
-import SortFilter from "@components/SortFilter";
-import StatusFilter from "@components/StatusFilter";
-import ListItems from "@components/ListItems";
-
-import { Header } from "@components/Header";
-
-import {useGetModules} from '@hooks/useGetModules';
-import axios from "axios";
+import Title from "../../components/Title";
+import SearchFilter from "../../components/SearchFilter";
+import SortFilter from "../../components/SortFilter";
+import StatusFilter from "../../components/StatusFilter";
+import ListItems from "../../components/ListItems";
+import { Header } from "../../components/Header";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useGetModules } from "../../hooks/useGetModules";
 
 function ShowModules() {
   //Getting Module Title from Query Selector
@@ -18,14 +16,14 @@ function ShowModules() {
   const query = router.query;
   // @ts-ignore
   const titleModule = query.nameModule;
-  
+
   let orderBy = "";
   // Movies: -> Order by default: Ascendent by name. -> Filter: active and inactive
   // Users: -> Order by default: Descendent by name. -> Filter: active and inactive
   // @ts-ignore
   if (titleModule == "Users") {
     orderBy = "Descendent";
-  } else{
+  } else {
     orderBy = "Ascendent";
   }
 
@@ -33,8 +31,8 @@ function ShowModules() {
   const {items, searchValue, orderItems, filterStatus} = useGetModules(titleModule);
   console.log(items)
   return (
-  <>
-    <Head>
+    <>
+      <Head>
         <title>Studio Ghibli Backoffice - Administrator - Show Modules</title>
     </Head>
     <Header/>
@@ -52,4 +50,7 @@ function ShowModules() {
   );
 }
 
-export default ShowModules;
+export default withPageAuthRequired(ShowModules, {
+  onRedirecting: () => <p>loading...</p>,
+  onError: error => <p>{error.message}</p>,
+});
