@@ -30,6 +30,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./src/**/*.tsx", "src/hooks/useGetModules.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./src/**/*.tsx", "src/hooks/useGetModules.js", "src/pages/api/shows.js"],
   "exclude": ["node_modules"]
 }

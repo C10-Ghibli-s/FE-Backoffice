@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import type { NextPage } from "next";
 import React from "react";
 import LoginForm from "@components/LoginForm";
 import { useUser } from "@auth0/nextjs-auth0";
+import Router from "next/router";
 
 import LoginFacebookButton from "@components/LoginFacebookButton";
 import LoginTwitterButton from "@components/LoginTwitterButton";
@@ -10,6 +12,17 @@ import Portal from "src/HOC/modal";
 const Login: NextPage = () => {
   const { user, error, isLoading } = useUser();
   console.log(user);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  if (user) {
+    Router.push("/modules");
+  }
 
   return (
     <main className="flex items-center justify-center w-screen h-screen bg-gray-100">
@@ -25,28 +38,33 @@ const Login: NextPage = () => {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-start w-full sm:justify-center h-1/2">
-          {/*eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a
-            href="/api/auth/login"
-            className="p-2 mt-6 font-bold text-center align-middle text-white transition-colors bg-blue-500 rounded-sm active:bg-blue-600 hover:bg-blue-600 weigth w-[280px] h-[52px] py-3"
-          >
-            Join
-          </a>
-          {/*eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a
-            href="https://se-ghibli-tracker.netlify.app/"
-            className="w-[280px] mt-4 text-blue-500 hover:underline"
-          >
-            Go to Ghilbli Tracker
-          </a>
+          {user ? (
+            <p className="w-[280px] text-center ">
+              You are already logged as{" "}
+              <span className="font-bold">{user.nickname}</span> <br />
+              <a href="/api/auth/logout" className="text-blue-500 hover:underline">
+                Logout
+              </a>
+            </p>
+          ) : (
+            <a
+              href="/api/auth/login"
+              className="p-2 mt-6 font-bold text-center align-middle text-white transition-colors bg-blue-500 rounded-sm active:bg-blue-600 hover:bg-blue-600 weigth w-[280px] h-[52px] py-3"
+            >
+              Join
+            </a>
+          )}
+
+          {!user && (
+            <a
+              href="https://se-ghibli-tracker.netlify.app/"
+              className="w-[280px] mt-4 text-blue-500 hover:underline"
+            >
+              Go to Ghilbli Tracker
+            </a>
+          )}
         </div>
-        {/*eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        {/* <a
-          href="/api/auth/logout"
-          className="p-2 mt-6 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 weigth w-52"
-        >
-          Logout
-        </a> */}
+
         {/* <LoginForm /> */}
       </div>
     </main>
