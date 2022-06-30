@@ -4,18 +4,18 @@ import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
 import { useGetModules } from "@hooks/useGetModules";
 
-export default function SearchFilter({ dataItems, searchValue }) {
+export default function SearchFilter({ dataItems, searchValue, titleModule }) {
   const [selected, setSelected] = useState("");
   const [query, setQuery] = useState("");
   //const dataItems = dataItems;
 
   // we should get another prop with the name of the module
-  const { items } = useGetModules("public2");
-
+  const { items } = useGetModules(titleModule);
+  console.log(items)
   const filteredItems =
     query === ""
       ? items
-      : items.filter((item) =>
+      : items?.filter((item) =>
           item.title
             .toLowerCase()
             .replace(/\s+/g, "")

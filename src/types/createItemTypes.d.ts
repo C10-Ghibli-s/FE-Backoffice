@@ -5,8 +5,18 @@ export type newUserType = {
   nickname: string,
   role: string,
   facebook?: string,
-  twitter?: string
+  twitter?: string,
+  status?: string,
 }
+
+// for passing user to the query function
+export type updateUserForQuery = {
+  id: number,
+  nickname?: string,
+  role?: string,
+  status?: string,
+}
+
 // post title
 export type titlesType = {
   id?: number,
@@ -16,6 +26,9 @@ export type titlesType = {
 }
 // data movie
 export type newMovieType = {
+  id?: number,
+  status?: string,
+  youtube?: string,
   userName: string,
   title: string,
   originalTitle: string,

@@ -1,33 +1,40 @@
 import { useState, useEffect } from "react";
-import { getPublic1, getPublic2, getAllWriters } from "../services/queries/getData/modules";
+import { GET_ITEM } from '@services/queries/getData/getItem';
+import axios from 'axios';
 
 // useGetModules = (key, {setItems})
-const useGetModules = (key) => {
+const useGetModules = (titleModule) => {
   // When we have the api deployed this should be updated to use real data
   // or even use services/queries/getData/ and then each of the modules
   // users: getAllUsers, movies: getAllMovies, writers: getAllWriters, directors: getAllDirectors, musicians, getAllMusicians, roles: getAllRoles
-  const objectPromises = { public1: getPublic1, public2: getPublic2, writes: getAllWriters };
   const [items, setItems] = useState([]);
-
-  // useEffect(() => {
-  //   const promise = objectPromises[key];
-  //   promise.then((response) => {
-  //     console.log(response);
-  //     setItems(response.data);
-  //   });
-  // }, []);
-
   useEffect(() => {
-    const genericData = [
-      { id: '1', title: 'A First Title', description: 'This is the description of first title', status: 'Active' },
-      { id: '2', title: 'B Second Title', description: 'This is the description of second title', status: 'Inactive' },
-      { id: '3', title: 'C Third Title', description: 'This is the description of third title', status: 'Active' },
-      { id: '4', title: 'D Fourth Title', description: 'This is the description of fourth title', status: 'Inactive' },
-      { id: '5', title: 'E Fifth Title', description: 'This is the description of fifth title', status: 'Active' },
-      { id: '6', title: 'F Sixth Title', description: 'This is the description of sixth title', status: 'Active' },
-      { id: '7', title: 'B First Title', description: 'This is the description of b first title ', status: 'Active' },
-    ];
-    setItems(genericData);
+      setTimeout(() => {
+        axios.post(
+          process.env.API_URL !== undefined ? process.env.API_URL : '',
+          // @ts-ignore
+          GET_ITEM(titleModule),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            }
+          }
+        )
+        .then((response) => {
+          if(response.data.data?.showAllUsers) setItems(response.data.data.showAllUsers)
+          if(response.data.data?.showAllMovies) setItems(response.data.data.showAllMovies)
+          if(response.data.data?.showAllWriters) setItems(response.data.data.showAllWriters)
+          if(response.data.data?.showAllDirectors) setItems(response.data.data.showAllDirectors)
+          if(response.data.data?.showAllMusicians) setItems(response.data.data.showAllMusicians)
+          console.log('response: ', response.data.data.showAllUsers);
+        }
+        )
+        .catch((error) => {
+          console.log(error);
+        })
+        console.log('ModuleData: ', items, "QUERY : ", titleModule);
+      }, 1000);
+  
   }, []);
 
   const searchValue = (textTyped) =>{
@@ -36,7 +43,7 @@ const useGetModules = (key) => {
     textTyped === ""
       ? items
       : newArray.filter((item) =>
-      item.title
+      item?.title
         .toLowerCase()
         .replace(/\s+/g, "")
         .includes(textTyped.toLowerCase().replace(/\s+/g, "")));

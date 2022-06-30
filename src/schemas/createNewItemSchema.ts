@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 export const newUserSchema = yup.object().shape({
+  id: yup.number().positive(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(20).required().matches(/^[\w]+[0-9]{3}$/),
   nickname: yup.string().min(8).max(20).required().matches(/^[\w]+$/),

@@ -24,7 +24,13 @@ const Home: NextPage = () => {
   const handleProductionModal = (item:string) => {
     setOpenShowModal(`${item}`);
   };
-
+  // dummy data
+  const user = {
+    id: 1,
+    nickname: "John Doe",
+    role: "USER",
+    status: "ACTIVE"
+  }
   return (
     <div className="relative w-screen h-screen">
       <Head>
@@ -43,11 +49,13 @@ const Home: NextPage = () => {
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
         producer="director"
+        profile={{name: "John Doe", id: 1}}
       />
       <button onClick={() => setOpenShowModal('producer')}>Select Profile</button>
-      <ProfileModal 
+      <ProfileModal
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        user={user}
       />
       <button onClick={() => setOpenShowModal('user')}>Select user</button>
       <MovieModal 

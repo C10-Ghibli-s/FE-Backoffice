@@ -4,11 +4,6 @@ export const SHOW_ALL_DIRECTORS = {
     showAllDirectors {
       id
       name
-      movies {
-        title {
-          title
-        }
-      }
     }
   }`
 }
