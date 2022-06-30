@@ -5,16 +5,16 @@ import React, { useEffect, useRef } from "react";
 import { UserProvider } from "@auth0/nextjs-auth0";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  let sessionStatus = useRef<string | null>();
-  useEffect(() => {
-    sessionStatus.current = window.localStorage.getItem("localActiveSession");
-    if (sessionStatus.current == "no active session") {
-      //Push the user to login page if isn't logged yet
-      router.push("/login");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const router = useRouter();
+  // let sessionStatus = useRef<string | null>();
+  // useEffect(() => {
+  //   sessionStatus.current = window.localStorage.getItem("localActiveSession");
+  //   if (sessionStatus.current == "no active session") {
+  //     //Push the user to login page if isn't logged yet
+  //     router.push("/login");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // ERROR HANDLING
   // axios.post("http://localhost:3000/graphql", {query: `mutation UpdateDirector($updateDirectorId: ID!, $data: DirecotrEditInput!) {
