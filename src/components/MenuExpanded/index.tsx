@@ -1,19 +1,15 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from "react";
 
 interface MenuExpandedProps {
-  username: string;
+  username: string | undefined | null;
   menuActive: boolean;
 }
 
 function MenuExpanded({ username, menuActive }: MenuExpandedProps) {
-  const logoutHandler = () => {
-    alert("You are going to log out");
-  };
   const aboutHandler = () => {
     alert("This project was made for these rockstars...");
   };
-
-
 
   return (
     <div
@@ -25,12 +21,11 @@ function MenuExpanded({ username, menuActive }: MenuExpandedProps) {
       </h2>
       <div className="w-[85%] h-[2px] bg-slate-100 mx-auto rounded-sm m-3"></div>
       <ul className="text-gray-600 text-2xl leading-[2]">
-        <li
-          onClick={logoutHandler}
-          className="p-4 cursor-pointer hover:bg-slate-100 active:bg-slate-100"
-        >
-          log out
-        </li>
+        <a href="/api/auth/logout">
+          <li className="p-4 cursor-pointer hover:bg-slate-100 active:bg-slate-100">
+            log out
+          </li>
+        </a>
         <li
           onClick={aboutHandler}
           className="p-4 cursor-pointer hover:bg-slate-100 active:bg-slate-100"
