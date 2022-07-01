@@ -75,7 +75,7 @@ function MovieModal({ openShowModal, setOpenShowModal }: ModalProps) {
                   <div className="m-2">
                     <p>Audience Score: {movieData.audienceScore}</p>
                     <p>
-                      More info: " "
+                      More info: {" "}
                       <a
                         target="blank"
                         className="text-blue-500 hover:underline select:underline"
