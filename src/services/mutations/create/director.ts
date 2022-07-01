@@ -1,6 +1,6 @@
-import { newDirectorType } from "@customTypes/createItemTypes";
+import { newProducerType } from "@customTypes/createItemTypes";
 
-export const CREATE_DIRECTOR = (data: newDirectorType) => {
+export const CREATE_DIRECTOR = (data: newProducerType) => {
   let CREATE_DIRECTOR_QUERY = 
   {
     query: `mutation CreateDirector($data: DirectorInput!) {

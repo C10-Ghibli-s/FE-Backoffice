@@ -1,9 +1,9 @@
-import { newWriterType } from '@customTypes/createItemTypes';
+import { newProducerType } from '@customTypes/createItemTypes';
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { newWriterSchema } from '@schemas/createNewItemSchema';
+import { newProducerSchema } from '@schemas/createNewItemSchema';
 import axios from 'axios';
 import { CREATE_WRITER } from '@services/mutations/create/writer';
 import { setReqStatusType } from '@customTypes/ErrorHandling';
@@ -14,10 +14,10 @@ export const CreateWriterForm: FC<setReqStatusType> = ({setReqStatus}:setReqStat
     register,
     handleSubmit,
     formState: { errors }, 
-  } = useForm<newWriterType>({
-    resolver: yupResolver(newWriterSchema)
+  } = useForm<newProducerType>({
+    resolver: yupResolver(newProducerSchema)
   });
-  const CreateWriterSubmit: SubmitHandler<newWriterType> = (data: newWriterType) => {
+  const CreateWriterSubmit: SubmitHandler<newProducerType> = (data: newProducerType) => {
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
       CREATE_WRITER(data),

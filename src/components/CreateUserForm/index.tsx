@@ -20,7 +20,7 @@ export const CreateUserForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatus
   } = useForm<newUserType>({
     resolver: yupResolver(newUserSchema)
   });
-  const rolesOptions = [{label:"USER", value:2}, {label:"ADMIN", value:1}]
+  const rolesOptions = [{label:"USER", value:1}, {label:"ADMIN", value:2}]
   const CreateUserSubmit: SubmitHandler<newUserType> = (data: newUserType) => {
     formData = data;
     axios.post(
@@ -71,7 +71,7 @@ export const CreateUserForm: FC<setReqStatusType> = ({setReqStatus}:setReqStatus
           options={rolesOptions.map(role => ({label: role.label, value:role.value}))}
         />
         {errors.role && errors.role?.message && <span className='text-xs text-red-500'>{errors.role.message}</span>}
-        <input defaultValue="2" {...register('role')} id='role' className='hidden' type="text"/>
+        <input defaultValue="1" {...register('role')} id='role' className='hidden' type="text"/>
       </div>
       <input className="w-48 p-4 border border-sky-600 hover:cursor-pointer hover:bg-sky-600 hover:text-white rounded-2xl" type="submit" value="Create user"/>
     </form>
