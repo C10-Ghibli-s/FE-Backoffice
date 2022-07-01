@@ -1,6 +1,6 @@
-import { newMusicianType } from "@customTypes/createItemTypes";
+import { newProducerType } from "@customTypes/createItemTypes";
 
-export const CREATE_MUSICIAN = (data: newMusicianType) => {
+export const CREATE_MUSICIAN = (data: newProducerType) => {
   let CREATE_MUSICIAN_QUERY =
   {
     query: `mutation CreateMusician($data: MusicianInput!) {
