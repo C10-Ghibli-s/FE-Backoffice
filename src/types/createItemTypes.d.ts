@@ -5,8 +5,18 @@ export type newUserType = {
   nickname: string,
   role: string,
   facebook?: string,
-  twitter?: string
+  twitter?: string,
+  status?: string,
 }
+
+// for passing user to the query function
+export type updateUserForQuery = {
+  id: number,
+  nickname?: string,
+  role?: string,
+  status?: string,
+}
+
 // post title
 export type titlesType = {
   id?: number,
@@ -14,8 +24,11 @@ export type titlesType = {
   originalTitle: string,
   romajiTitle: string
 }
-// data movie
+// post data movie
 export type newMovieType = {
+  id?: number,
+  status?: string,
+  youtube?: string,
   userName: string,
   title: string,
   originalTitle: string,
@@ -27,6 +40,44 @@ export type newMovieType = {
   linkWiki: string,
   movieBanner: string,
 }
+// fetch movie data
+export type updateMovieTypeFromDB = {
+  id: number,
+  status?: string,
+  youtube?: string,
+  userName: string,
+  title: {
+    title: string,
+    originalTitle: string,
+    romajiTitle?: string,
+  }
+  releaseDate: string,
+  filmDescription: string,
+  duration: number,
+  audienceScore?: number,
+  linkWiki: string,
+  movieBanner: string,
+}
+// update movie data form types
+export type updateMovieType = {
+  id: number,
+  status?: string,
+  youtube?: string,
+  userName: string,
+  title: string,
+  originalTitle: string,
+  romajiTitle?: string,
+  releaseDate: string,
+  filmDescription: string,
+  duration: number,
+  audienceScore?: number,
+  linkWiki: string,
+  movieBanner: string,
+}
+
+
+
+
 // type for data from submit form
 export type newMovieFromSubmit  = {
   data: newMovieType,
@@ -47,26 +98,16 @@ export type newMovieForMutation = {
 }
 
 
-// post writer
-export type newWriterType = {
-  id?: string,
-  name: string
-}
-// post director
-export type newDirectorType = {
-  id?: string,
-  name: string
-}
-// post musician
-export type newMusicianType = {
+// post producer (director/writer/musician)
+export type newProducerType = {
   id?: string,
   name: string
 }
 
-// get modules
-export type getModules ={
+// update producer (director/writer/musician)
+export type updateProducerType = {
   id: number,
-  title: string,
-  description: string,
-  imagen: string
+  name: string,
+  producerRole: string
 }
+

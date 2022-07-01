@@ -1,6 +1,6 @@
-import { newWriterType } from '@customTypes/createItemTypes';
+import { newProducerType } from '@customTypes/createItemTypes';
 
-export const CREATE_WRITER = (data: newWriterType) => {
+export const CREATE_WRITER = (data: newProducerType) => {
   let CREATE_WRITER_QUERY =
   {
     query: `mutation CreateWriter($data: WriterInput!) {

@@ -15,7 +15,8 @@ export const CREATE_USER = (data: newUserType) => {
         "status": "ACTIVE",
         "nickname": data.nickname,
         "password": data.password,
-        "roleId": parseInt(data.role)
+        "roleId": parseInt(data.role),
+        "email": data.email
       }
     } 
   };

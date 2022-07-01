@@ -6,11 +6,11 @@ import { useGetModules } from "@hooks/useGetModules";
 
 const status = [{ name: "All" }, { name: "Active" }, { name: "Inactive" }];
 
-export default function StatusFilter({ filterStatus }: any) {
+export default function StatusFilter({ filterStatus, titleModule }: any) {
   const [selectedStatus, setSelectedStatus] = useState(status[0]);
 
   // we should get another prop with the name of the module
-  const { items } = useGetModules("public2");
+  const { items } = useGetModules(titleModule);
 
   return (
     <div className="z-10 w-56 top-16">
