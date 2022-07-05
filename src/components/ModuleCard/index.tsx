@@ -40,7 +40,7 @@ function ModuleCard({
         </p>
         <span
           className={`${
-            cardSelected ? "rotate-0" : "-rotate-90"
+            cardSelected ? "rotate-0" : "rotate-180"
           } transition bg-center bg-no-repeat bg-contain h-4 w-4 absolute right-2 bottom-14 sm:bottom-12 bg-[url('../assets/icons/arrow-icon.svg')]`}
         ></span>
       </section>
