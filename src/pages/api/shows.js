@@ -6,7 +6,7 @@ export default withApiAuthRequired(async function shows(req, res) {
       scopes: ["email"],
     });
     console.log(accessToken);
-    const response = await fetch(`${process.env.API_URL}auth/verify`, {
+    const response = await fetch(process.env.API_AUTH, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
