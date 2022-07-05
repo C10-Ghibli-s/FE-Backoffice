@@ -5,6 +5,7 @@ import { ModuleCard } from "../../components/ModuleCard";
 import { CreateItemModal } from "@components/CreateItemModal";
 import { Header } from "@components/Header";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import Title from "@components/Title";
 
 function Modules(): JSX.Element {
   // Validates the user has the correct privileges to access this page, and save the user data to the state
@@ -32,9 +33,8 @@ function Modules(): JSX.Element {
         <title>Studio Ghibli Backoffice - Administrator</title>
       </Head>
       <Header />
-      <h1 className="p-2 mt-5 text-3xl font-semibold text-gray-900 border-l-4 border-blue-500 sm:text-left sm:ml-32">
-        {TITLE}
-      </h1>
+      <Title title={TITLE} />
+
       <section className="flex flex-col items-center justify-center my-8">
         <ModuleCard
           title={"Users"}
