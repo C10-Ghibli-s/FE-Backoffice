@@ -12,7 +12,7 @@
 /.next/
 /out/
 # next.js // Env variables
-# next.config.js
+next.config.js
 
 
 # production
