@@ -13,7 +13,7 @@ function MenuExpanded({ username, menuActive }: MenuExpandedProps) {
 
   return (
     <div
-      className={`animate-SwipeLeft absolute z-10 w-48 bg-white rounded-lg shadow-custom h-fill right-2 top-16`}
+      className={`animate-SwipeLeft absolute z-30 w-48 bg-white rounded-lg shadow-custom h-fill right-2 top-16`}
     >
       <h2 className="m-4 text-2xl font-bold leading-6 text-slate-300">
         Hello <br />

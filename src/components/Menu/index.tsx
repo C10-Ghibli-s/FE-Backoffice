@@ -21,13 +21,13 @@ function Menu({ username }: MenuProps) {
       >
         <span
           className={`${
-            menuActive ? " top-6 rotate-45" : ""
-          } transform-gpu transition-transform top-5 absolute w-full h-[5px] bg-white border-b-2 rounded-sm `}
+            menuActive ? "rotate-45 top-[27.5px]" : ""
+          } transform-gpu transition-transform bottom-[30px] absolute w-full h-[5px] bg-white rounded-sm `}
         />
         <span
           className={`${
-            menuActive ? "top-6 -rotate-45" : ""
-          } transform-gpu transition-transform bottom-5 absolute w-full h-[5px] bg-white border-b-2 rounded-sm`}
+            menuActive ? "-rotate-45 top-7" : ""
+          } transform-gpu transition-transform bottom-5 absolute w-full h-[5px] bg-white  rounded-sm`}
         />
       </div>
       <div
