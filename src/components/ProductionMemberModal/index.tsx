@@ -16,18 +16,20 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { newProducerSchema } from "@schemas/createNewItemSchema";
 import { modalTypes } from "@customTypes/updateModalTypes";
 
+import { reqResponse } from "@customTypes/ErrorHandling";
+
 interface ModalProps {
   openShowModal: modalTypes,
   setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>,
+  setReqStatus: React.Dispatch<React.SetStateAction<reqResponse>>,
 }
 
 function ProductionMemberModal({
   openShowModal,
-  setOpenShowModal
+  setOpenShowModal,
+  setReqStatus,
 }: ModalProps) {
-  // handling differente producers
 
-  const [ReqStatus, setReqStatus] = React.useState<{}>();
   // Editing is the item we will focus on edit inside producers(director, writer, musician) or null to close the modal.
   const [editing, setEditing] = React.useState<string|null>(null);
   // form submit handler

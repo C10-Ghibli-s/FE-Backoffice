@@ -14,6 +14,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
 import { UPDATE_USER } from "@services/mutations/update/user";
 import { modalTypes } from "@customTypes/updateModalTypes";
+import { reqResponse } from "@customTypes/ErrorHandling";
 
 /**
  * This component still needs:
@@ -26,10 +27,11 @@ import { modalTypes } from "@customTypes/updateModalTypes";
 
 interface ModalProps {
   openShowModal: modalTypes,
-  setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>
+  setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>,
+  setReqStatus: React.Dispatch<React.SetStateAction<reqResponse>>,
 }
 
-function ProfileModal({ openShowModal, setOpenShowModal }: ModalProps) {
+function ProfileModal({ openShowModal, setOpenShowModal, setReqStatus}: ModalProps) {
   const userStatus = [{label:"ACTIVE", value: 1}, {label: "BANNED", value: 2}, {label: "SUSPENDED", value: 3}];
   const [editing, setEditing] = React.useState<string|null>(null);
   const { 

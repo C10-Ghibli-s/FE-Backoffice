@@ -4,11 +4,16 @@ import { ProductionMemberModal } from "@components/ProductionMemberModal";
 import { ProfileModal } from "@components/ProfileModal";
 import { MovieModal } from "@components/MovieModal";
 import { modalTypes } from '@customTypes/updateModalTypes';
+import { reqResponse } from "@customTypes/ErrorHandling";
+import { CloseModalButton } from "@components/CloseModalButton";
+import { ErrorIcon } from "@components/ErrorIcon";
+import { OkResponseIcon } from "@components/OkResponseIcon";
 
 function ListItems({dataItems, titleModule}:any) {
 
   // This function and state triggers the modal. triggers the edition modal
   const [openShowModal, setOpenShowModal] = useState<modalTypes>({item:null, data: {}});
+  const [reqStatus, setReqStatus] = useState<reqResponse>(null);
 
   return (
     <>
@@ -22,15 +27,48 @@ function ListItems({dataItems, titleModule}:any) {
       <ProductionMemberModal
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        setReqStatus={setReqStatus}
       />
       <ProfileModal
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        setReqStatus={setReqStatus}
       />
       <MovieModal 
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        setReqStatus={setReqStatus}
       />
+      {reqStatus !== null && (
+        <div className={`bg-gray-200/95 w-full sm:w-3/5 max-w-md p-8 rounded-2xl flex flex-col justify-center p-12 relative`}>
+          {reqStatus.error !== undefined && (
+              <React.Fragment>
+                <button className='absolute top-8 right-8' onClick={() => setReqStatus(null)}>
+                  <CloseModalButton/>
+                </button>
+                <ErrorIcon/>
+                <h3 className='text-center mt-8 mb-16 text-xl'> 
+                {reqStatus.error.serverError !== undefined && <p className='text-center text-red-700'>{reqStatus.error.serverError}</p>}
+                {reqStatus.error.errorMessage} 
+                </h3>
+              </React.Fragment>
+            )}
+            {reqStatus.success !== undefined && (
+              <React.Fragment>
+                <OkResponseIcon/>
+                <h3 className='text-center mt-8 mb-16 text-xl'> {reqStatus.success} </h3>
+                <button 
+                  className='bg-sky-500/75 hover:bg-sky-500 border border-sky-700 text-white mx-auto w-2/5 h-10 rounded-md'
+                  onClick={() => {
+                    setReqStatus(null);
+                    setOpenShowModal({item: null, data: {}});
+                  }}>
+                    Accept
+                </button>
+              </React.Fragment>
+            )}
+        </div>
+      )}
     </>
   );
 };

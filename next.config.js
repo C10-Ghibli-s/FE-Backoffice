@@ -7,6 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     API_URL_KEY: "https://studio-ghibli-c10-platzimaster.herokuapp.com/",
+    API_URL:  "http://134.122.30.90/graphql"
   },
   images: {
     domains: ["ih1.redbubble.net", "www.business2community.com"],

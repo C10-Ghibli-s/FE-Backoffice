@@ -4,12 +4,12 @@ import React from "react";
 import { EditButton } from "@components/EditButton";
 import { ClosingModal } from "@components/ClosingModal";
 import { DeleteElementButton } from "@components/DeleteElementButton";
-import { ModalTitle } from "@components/ModalTitle";
 import { updateMovieType, updateMovieTypeFromDB } from "@customTypes/createItemTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newMovieSchema } from "@schemas/createNewItemSchema";
 import { modalTypes } from "@customTypes/updateModalTypes";
+import { reqResponse } from "@customTypes/ErrorHandling";
 
 /**
  * This component still needs:
@@ -22,10 +22,11 @@ import { modalTypes } from "@customTypes/updateModalTypes";
 
 interface ModalProps {
   openShowModal: modalTypes,
-  setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>
+  setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>,
+  setReqStatus: React.Dispatch<React.SetStateAction<reqResponse>>,
 }
 
-function MovieModal({ openShowModal, setOpenShowModal }: ModalProps) {
+function MovieModal({ openShowModal, setOpenShowModal, setReqStatus}: ModalProps) {
   const [editing, setEditing] = React.useState<string|null>(null);
   const { 
     register,
