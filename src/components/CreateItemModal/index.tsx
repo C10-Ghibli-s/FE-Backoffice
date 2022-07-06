@@ -30,7 +30,7 @@ export const CreateItemModal: FC<createItem> = ({
               item == "movie" || item == "user"
                 ? "h-full sm:h-full sm:w-4/5 md:p-2"
                 : ""
-            } rounded-2xl h-[90%] sm:h-fit sm:w-fit sm:bottom-0 sm:top-32 items-center flex flex-col p-2 pt-6 pb-16 w-full absolute -bottom-3`}
+            } rounded-2xl h-[90%] sm:h-fit sm:w-fit sm:bottom-0 sm:top-32 flex flex-col p-2 pt-6 pb-16 w-full absolute -bottom-3`}
           >
             <button
               className="absolute right-[20px] top-4"
@@ -38,7 +38,7 @@ export const CreateItemModal: FC<createItem> = ({
             >
               <CloseModalButton />
             </button>
-            <div className="pl w-[208px] sm:w-[355px]">
+            <div className="w-[208px] sm:w-[355px] m-4">
               <ModalTitle>Create {item}</ModalTitle>
             </div>
             {item == "user" && <CreateUserForm setReqStatus={setReqStatus} />}
@@ -61,7 +61,7 @@ export const CreateItemModal: FC<createItem> = ({
         )}
         {reqStatus !== null && (
           <div
-            className={`bg-gray-200/95 ${
+            className={`bg-slate-50 ${
               item == "movie" || item == "user"
                 ? "w-full sm:w-3/5 max-w-md p-8"
                 : ""
@@ -93,7 +93,7 @@ export const CreateItemModal: FC<createItem> = ({
                   {reqStatus.success}
                 </h3>
                 <button
-                  className="w-2/5 h-10 mx-auto text-white border rounded-md bg-sky-500/75 hover:bg-sky-500 border-sky-700"
+                  className="p-2 mx-auto font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-52"
                   onClick={() => {
                     setReqStatus(null);
                     setShowCreateItem(null);
