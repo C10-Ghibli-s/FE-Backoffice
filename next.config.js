@@ -6,8 +6,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    API_URL: "http://134.122.30.90/graphql",
-    API_AUTH: "http://134.122.30.90/auth/verify",
+    API_URL: "https://www.areyouivan.com/graphql",
+    API_AUTH: "https://www.areyouivan.com/auth/verify",
   },
   images: {
     domains: ["ih1.redbubble.net", "www.business2community.com"],
