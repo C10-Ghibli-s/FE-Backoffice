@@ -58,13 +58,26 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
     )
   }
 
-  return(
+  return (
     <React.Fragment>
       <FormProvider {...methods}>
-        <form className="overflow-y-scroll" onSubmit={handleSubmit(CreateMovieSubmit)}>
-          {formStep == "Title" && <MovieTitleForm setShowCreateItem={setShowCreateItem} formStep={formStep} setFormStep={setFormStep}/>}
-          {formStep == "Data" && <MovieDataForm formStep={formStep} setFormStep={setFormStep}/>}
-          {formStep == "Producers" && <MovieProducersForm setFormStep={setFormStep}/>}
+        <form
+          className="w-full overflow-y-scroll h-fit sm:overflow-auto"
+          onSubmit={handleSubmit(CreateMovieSubmit)}
+        >
+          {formStep == "Title" && (
+            <MovieTitleForm
+              setShowCreateItem={setShowCreateItem}
+              formStep={formStep}
+              setFormStep={setFormStep}
+            />
+          )}
+          {formStep == "Data" && (
+            <MovieDataForm formStep={formStep} setFormStep={setFormStep} />
+          )}
+          {formStep == "Producers" && (
+            <MovieProducersForm setFormStep={setFormStep} />
+          )}
         </form>
       </FormProvider>
     </React.Fragment>
