@@ -2,7 +2,7 @@
 export const DELETE_ITEM = ({itemToDelete, id}: {itemToDelete: string|null, id: number}) => {
     let DELETE_ITEM_QUERY;
     switch (itemToDelete) {
-        case 'movie':
+        case 'Movie':
             DELETE_ITEM_QUERY = {
                 query: `mutation DeleteAMovie($deleteAMovieId: ID!) {
                     deleteAMovie(id: $deleteAMovieId) {
@@ -13,7 +13,7 @@ export const DELETE_ITEM = ({itemToDelete, id}: {itemToDelete: string|null, id: 
                 }
             };
             break;
-        case 'user':
+        case 'User':
             DELETE_ITEM_QUERY = {
                 query: `mutation DeleteAnUser($deleteAnUserId: ID!) {
                     deleteAnUser(id: $deleteAnUserId)
@@ -24,40 +24,31 @@ export const DELETE_ITEM = ({itemToDelete, id}: {itemToDelete: string|null, id: 
                     
             }
             break;
-        case 'musician':
+        case 'Musician':
             DELETE_ITEM_QUERY = {
                 query: `mutation DeleteMusician($deleteMusicianId: ID!) {
-                    deleteMusician(id: $deleteMusicianId) {
-                        id
-                        name
-                    }
-                }`,
+                    deleteMusician(id: $deleteMusicianId)
+                  }`,
                 variables: {
                     "deleteMusicianId": `${id}`,
                 }
             };
             break;
-        case 'director':
+        case 'Director':
             DELETE_ITEM_QUERY = {
                 query: `mutation DeleteDierctor($deleteDierctorId: ID!) {
-                    deleteDierctor(id: $deleteDierctorId) {
-                        id
-                        name
-                    }
-                }`,
+                    deleteDierctor(id: $deleteDierctorId)
+                  }`,
                 variables: {
                     "deleteDierctorId": `${id}`,
                 }
             };
             break;
-        case 'writer':
+        case 'Writer':
             DELETE_ITEM_QUERY = {
                 query: `mutation DeleteWriter($deleteWriterId: ID!) {
-                    deleteWriter(id: $deleteWriterId) {
-                        id
-                        name
-                    }
-                }`,
+                    deleteWriter(id: $deleteWriterId)
+                  }`,
                 variables: {
                     "deleteWriterId": `${id}`,
                 }

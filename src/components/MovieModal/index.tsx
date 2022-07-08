@@ -10,6 +10,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { newMovieSchema } from "@schemas/createNewItemSchema";
 import { modalTypes } from "@customTypes/updateModalTypes";
 import { reqResponse } from "@customTypes/ErrorHandling";
+import { CloseModalButton } from "@components/CloseModalButton";
+import { ErrorIcon } from "@components/ErrorIcon";
+import { OkResponseIcon } from "@components/OkResponseIcon";
 
 /**
  * This component still needs:
@@ -24,9 +27,10 @@ interface ModalProps {
   openShowModal: modalTypes,
   setOpenShowModal: React.Dispatch<React.SetStateAction<modalTypes>>,
   setReqStatus: React.Dispatch<React.SetStateAction<reqResponse>>,
+  reqStatus: reqResponse,
 }
 
-function MovieModal({ openShowModal, setOpenShowModal, setReqStatus}: ModalProps) {
+function MovieModal({ openShowModal, setOpenShowModal, setReqStatus, reqStatus}: ModalProps) {
   const [editing, setEditing] = React.useState<string|null>(null);
   const { 
     register,
@@ -144,11 +148,41 @@ function MovieModal({ openShowModal, setOpenShowModal, setReqStatus}: ModalProps
               </div>
               <div className="relative sm:bottom-0 sm:my-4">
                 <input value="Complete" type="submit" className="p-2 mt-6 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 weigth w-52 hover:cursor-pointer"/>
-                <DeleteElementButton itemToDelete="movie" id={movieData.id}/>
+                <DeleteElementButton itemToDelete="movie" id={movieData.id} setReqStatus={setReqStatus}/>
               </div>
             </React.Fragment>
           )}
         </div>
+        {reqStatus !== null && (
+        <div className={`bg-gray-200/95 w-full sm:w-3/5 max-w-md p-8 rounded-2xl flex flex-col justify-center p-12 absolute mt-60`}>
+          {reqStatus.error !== undefined && (
+              <React.Fragment>
+                <button className='absolute top-8 right-8' onClick={() => setReqStatus(null)}>
+                  <CloseModalButton/>
+                </button>
+                <ErrorIcon/>
+                <h3 className='text-center mt-8 mb-16 text-xl'> 
+                {reqStatus.error.serverError !== undefined && <p className='text-center text-red-700'>{reqStatus.error.serverError}</p>}
+                {reqStatus.error.errorMessage} 
+                </h3>
+              </React.Fragment>
+            )}
+            {reqStatus.success !== undefined && (
+              <React.Fragment>
+                <OkResponseIcon/>
+                <h3 className='text-center mt-8 mb-16 text-xl'> {reqStatus.success} </h3>
+                <button 
+                  className='bg-sky-500/75 hover:bg-sky-500 border border-sky-700 text-white mx-auto w-2/5 h-10 rounded-md'
+                  onClick={() => {
+                    setReqStatus(null);
+                    setOpenShowModal({item: null, data: {}});
+                  }}>
+                    Accept
+                </button>
+              </React.Fragment>
+            )}
+        </div>
+      )}
       </div>
     );
   }

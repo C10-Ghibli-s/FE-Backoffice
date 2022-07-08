@@ -50,7 +50,9 @@ function ShowModules() {
   );
 }
 
-export default withPageAuthRequired(ShowModules, {
-  onRedirecting: () => <p>loading...</p>,
-  onError: error => <p>{error.message}</p>,
-});
+// export default withPageAuthRequired(ShowModules, {
+//   onRedirecting: () => <p>loading...</p>,
+//   onError: error => <p>{error.message}</p>,
+// });
+
+export default ShowModules;

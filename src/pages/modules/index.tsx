@@ -8,20 +8,20 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 function Modules(): JSX.Element {
   // Validates the user has the correct privileges to access this page, and save the user data to the state
-  const [token, setToken] = useState<string | null | JSON>(null);
-  useEffect(() => {
-    const callApi = async () => {
-      try {
-        const response = await fetch("/api/shows");
-        const data = await response.json();
-        console.log(data);
-        setToken(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    callApi();
-  }, [setToken]);
+  // const [token, setToken] = useState<string | null | JSON>(null);
+  // useEffect(() => {
+  //   const callApi = async () => {
+  //     try {
+  //       const response = await fetch("/api/shows");
+  //       const data = await response.json();
+  //       console.log(data);
+  //       setToken(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   callApi();
+  // }, [setToken]);
 
   const TITLE = "Modules";
   const [showCreateItem, setShowCreateItem] = useState<string | null>(null);
@@ -95,8 +95,10 @@ function Modules(): JSX.Element {
     </>
   );
 }
-// Validates the user has logged in
-export default withPageAuthRequired(Modules, {
-  onRedirecting: () => <p>loading...</p>,
-  onError: error => <p>{error.message}</p>,
-});
+// // Validates the user has logged in
+// export default withPageAuthRequired(Modules, {
+//   onRedirecting: () => <p>loading...</p>,
+//   onError: error => <p>{error.message}</p>,
+// });
+
+export default Modules;

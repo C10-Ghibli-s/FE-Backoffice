@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 
 export const newUserSchema = yup.object().shape({
-  id: yup.number().positive(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(20).required().matches(/^[\w]+[0-9]{3}$/),
   nickname: yup.string().min(8).max(20).required().matches(/^[\w]+$/),
@@ -9,6 +8,13 @@ export const newUserSchema = yup.object().shape({
   facebook: yup.string(),
   twitter: yup.string()
 })
+export const updateUserSchema = yup.object().shape({
+  id: yup.number().positive(),
+  nickname: yup.string().max(20),
+  status: yup.string(),
+  role: yup.string(),
+})
+
 
 export const newMovieSchema = yup.object().shape({
   userName: yup.string().required(),

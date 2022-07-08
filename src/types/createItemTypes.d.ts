@@ -13,7 +13,9 @@ export type newUserType = {
 export type updateUserForQuery = {
   id: number,
   nickname?: string,
-  role?: string,
+  role?: {
+    name: 'USER' | 'ADMIN'
+  },
   status?: string,
 }
 
