@@ -9,6 +9,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
   const [query, setQuery] = useState("");
 
   const { items } = useGetModules(titleModule);
+  console.log('items',items);
   const filteredItems =
     query === ""
       ? items
