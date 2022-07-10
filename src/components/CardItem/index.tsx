@@ -58,10 +58,7 @@ const CardItem = (prop: any) => {
           {item?.title?.title}
         </h2>
         <dd className="mt-2 text-base text-gray-500 line-clamp-3 ">
-          {item?.filmDescription} Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Aliquid ducimus mollitia explicabo porro possimus
-          harum voluptatibus cum quisquam voluptas maiores ut esse ipsam magni
-          repudiandae, voluptatem quibusdam. Labore, fugit laborum.
+          {item?.filmDescription}
         </dd>
       </div>
     </div>
