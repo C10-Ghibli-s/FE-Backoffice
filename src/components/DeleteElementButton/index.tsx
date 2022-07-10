@@ -1,10 +1,11 @@
+import { reqResponse } from "@customTypes/ErrorHandling";
 import { DELETE_ITEM } from "@services/mutations/delete/deleteItem";
 import axios from "axios";
 import React from "react";
 
 
 
-function DeleteElementButton({itemToDelete, id}:{itemToDelete: string | null, id: number}) {
+function DeleteElementButton({itemToDelete, id, setReqStatus}:{itemToDelete: string | null, id: number, setReqStatus: React.Dispatch<React.SetStateAction<reqResponse>>}) {
   const [onDelete, setOnDelete] = React.useState<boolean>(false);
   const handleDeleteElement = ({itemToDelete, id}: {itemToDelete: string | null, id: number}) => {
       axios.post(
@@ -18,9 +19,9 @@ function DeleteElementButton({itemToDelete, id}:{itemToDelete: string | null, id
       )
       .then(res => {
         console.log(res);
-        // res.data?.errors
-        // ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
-        // : setReqStatus({success: "Movie created successfully :D"})
+        res.data?.errors
+        ? setReqStatus({error: { errorMessage: res.data.errors[0].message}})
+        : setReqStatus({success:`${itemToDelete} deleted successfully`});
       })
       .catch(err => 
         console.log(err)
