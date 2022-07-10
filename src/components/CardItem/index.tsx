@@ -37,9 +37,9 @@ const CardItem = (prop: any) => {
       onClick={() => {
         setOpenShowModal(itemData);
       }}
-      className="relative flex items-center p-5 transition-opacity border-b-2 hover:bg-gray-200/50 hover:cursor-pointer min-w-[300px] max-w-[500px] sm:h-fit"
+      className="relative flex items-center transition-opacity border-b-2 hover:bg-gray-200/50 p-4 hover:cursor-pointer min-w-[300px] sm:max-w-[500px] lg:w-[500px] sm:h-fit"
     >
-      <div className="w-[80px] sm:w-[70px] h-[70px] mr-4 text-white bg-gray-200 rounded-full"></div>
+      <div className="min-w-[75px] min-h-[75px] text-white bg-gray-200 rounded-full"></div>
       <svg
         className="absolute w-5 h-5 text-gray-500 rotate-45 right-4 top-5 dark:text-gray-400 hover:text-gray-700"
         viewBox="0 0 20 20"
@@ -51,13 +51,13 @@ const CardItem = (prop: any) => {
           clipRule="evenodd"
         />
       </svg>
-      <div className="w-[80%]">
+      <div className="w-auto">
         <h2 className="ml-4 text-lg font-medium leading-6 text-gray-900">
           {item?.nickname}
           {item?.name}
           {item?.title?.title}
         </h2>
-        <dd className="mt-2 text-base text-gray-500 line-clamp-3 ">
+        <dd className="mt-2 ml-4 text-base text-gray-500 line-clamp-3 ">
           {item?.filmDescription}
         </dd>
       </div>
