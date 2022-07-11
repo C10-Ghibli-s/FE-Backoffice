@@ -3,14 +3,22 @@ import CardItem from "@components/CardItem";
 import { ProductionMemberModal } from "@components/ProductionMemberModal";
 import { ProfileModal } from "@components/ProfileModal";
 import { MovieModal } from "@components/MovieModal";
-import { modalTypes } from "@customTypes/updateModalTypes";
+
+import { modalTypes } from '@customTypes/updateModalTypes';
+import { reqResponse } from "@customTypes/ErrorHandling";
+import { CloseModalButton } from "@components/CloseModalButton";
+import { ErrorIcon } from "@components/ErrorIcon";
+import { OkResponseIcon } from "@components/OkResponseIcon";
+
 
 function ListItems({ dataItems, titleModule }: any) {
   // This function and state triggers the modal. triggers the edition modal
+
   const [openShowModal, setOpenShowModal] = useState<modalTypes>({
-    item: null,
-    data: {},
+    item:null, 
+    data: {}
   });
+  const [reqStatus, setReqStatus] = useState<reqResponse>(null);
 
   return (
     <>
@@ -29,14 +37,20 @@ function ListItems({ dataItems, titleModule }: any) {
       <ProductionMemberModal
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        setReqStatus={setReqStatus}
+        reqStatus={reqStatus}
       />
       <ProfileModal
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        setReqStatus={setReqStatus}
+        reqStatus={reqStatus}
       />
       <MovieModal
         openShowModal={openShowModal}
         setOpenShowModal={setOpenShowModal}
+        setReqStatus={setReqStatus}
+        reqStatus={reqStatus}
       />
     </>
   );
