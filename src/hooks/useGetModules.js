@@ -43,16 +43,24 @@ const useGetModules = (titleModule) => {
     textTyped === ""
       ? items
       : newArray.filter((item) =>
-      item?.title
+      item?.title 
         .toLowerCase()
         .replace(/\s+/g, "")
         .includes(textTyped.toLowerCase().replace(/\s+/g, "")));
     setItems(resultArray);
   };
 
-  const orderItems = (order)=>{
+  const orderItems = (order, titleModule)=>{
     const sortPropertyNumber = "id";
-    const sortPropertyString = "title";
+    let sortPropertyString = "name";
+    console.log({titleModule});
+    if(titleModule === "Movies"){
+      sortPropertyString = "title";
+    } else if(titleModule === "Users"){
+      sortPropertyString = "nickname";
+    } else{
+      console.log("No sort property");
+    }
     const newArray = [...items];
     const sortedNumber =
     order === "Ascendent"

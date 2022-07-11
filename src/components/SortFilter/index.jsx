@@ -5,12 +5,12 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
 const sort = [{ name: "Ascendent" }, { name: "Descendent" }];
 
-export default function SortFilter({ orderItems, orderBy }) {
+export default function SortFilter({ orderItems, orderBy, titleModule }) {
   const index = sort.findIndex((option) => option.name == orderBy);
   const [selected, setSelected] = useState(sort[index]);
 
   useEffect(() => {
-    orderItems(selected);
+    orderItems(selected, titleModule);
   }, []);
 
   return (
@@ -19,7 +19,7 @@ export default function SortFilter({ orderItems, orderBy }) {
         value={selected}
         onChange={(optionSelected) => {
           setSelected(optionSelected);
-          orderItems(optionSelected);
+          orderItems(optionSelected, titleModule);
         }}
       >
         <Listbox.Label className="block text-sm font-medium text-gray-700">

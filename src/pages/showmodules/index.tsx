@@ -39,7 +39,7 @@ function ShowModules() {
     <Title title={titleModule ? titleModule : "Show Module"}/>
     <section className="flex items-end justify-center min-h-full gap-6 px-4 py-16 sm:px-6 lg:px-8">
       <SearchFilter dataItems={items} searchValue={searchValue} titleModule={titleModule}/>
-      <SortFilter orderItems={orderItems} orderBy={orderBy}/>
+      <SortFilter orderItems={orderItems} orderBy={orderBy} titleModule={titleModule}/>
       <StatusFilter filterStatus={filterStatus} titleModule={titleModule}/>
     </section>
     <section className="flex flex-col items-center justify-center my-8">
