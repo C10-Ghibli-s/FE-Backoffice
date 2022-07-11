@@ -76,14 +76,6 @@ function Modules(): JSX.Element {
           itemToCreate={"musician"}
           setShowCreateItem={setShowCreateItem}
         />
-        <ModuleCard
-          title={"Roles"}
-          description={"Assign new roles"}
-          icons="bg-rolesIcon"
-          goToSearchPage={"/showmodules"}
-          itemToCreate={"role"}
-          setShowCreateItem={setShowCreateItem}
-        />
       </section>
       {showCreateItem !== null && (
         <CreateItemModal
@@ -96,7 +88,9 @@ function Modules(): JSX.Element {
   );
 }
 // Validates the user has logged in
-export default withPageAuthRequired(Modules, {
-  onRedirecting: () => <p>loading...</p>,
-  onError: error => <p>{error.message}</p>,
-});
+// export default withPageAuthRequired(Modules, {
+//   onRedirecting: () => <p>loading...</p>,
+//   onError: error => <p>{error.message}</p>,
+// });
+
+export default Modules;
