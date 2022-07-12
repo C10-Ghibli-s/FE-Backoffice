@@ -22,7 +22,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
 
   return (
     <>
-      <div className="z-10 top-16 w-96 min-w-[300px]">
+      <div className="z-30 top-16 w-96 min-w-[300px]">
         <Combobox
           className="h-12"
           value={selected}
@@ -72,7 +72,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg w-96 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm w-80 sm:w-96">
                 {filteredItems.length === 0 && query !== "" ? (
                   <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
                     Nothing found.
