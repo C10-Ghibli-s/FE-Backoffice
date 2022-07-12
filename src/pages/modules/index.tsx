@@ -88,9 +88,7 @@ function Modules(): JSX.Element {
   );
 }
 // Validates the user has logged in
-// export default withPageAuthRequired(Modules, {
-//   onRedirecting: () => <p>loading...</p>,
-//   onError: error => <p>{error.message}</p>,
-// });
-
-export default Modules;
+export default withPageAuthRequired(Modules, {
+  onRedirecting: () => <p>loading...</p>,
+  onError: error => <p>{error.message}</p>,
+});
