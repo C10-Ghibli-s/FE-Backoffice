@@ -9,16 +9,13 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
   const [query, setQuery] = useState("");
 
   const { items } = useGetModules(titleModule);
-  console.log('items',items);
   const filteredItems =
     query === ""
       ? items
       : items.filter((item) =>
-          // it still needs to differentiate between users/producers/movie (nickname, name, title respectively)
-          item.title
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
+          item.nickname?.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
+          item.name?.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
+          item.title?.title.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
   return (
@@ -87,7 +84,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
                           active ? "bg-blue-100 text-blue-900" : "text-gray-900"
                         }`
                       }
-                      value={item.title}
+                      value={item.title?.title || item.name || item.nickname}
                     >
                       {({ selected, active }) => (
                         <>
@@ -96,7 +93,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
                               selected ? "font-medium" : "font-normal"
                             }`}
                           >
-                            {item.title}
+                            {item.title?.title || item.name || item.nickname}
                           </span>
                           {selected ? (
                             <span

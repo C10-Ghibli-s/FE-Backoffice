@@ -47,10 +47,9 @@ const useGetModules = (titleModule) => {
       textTyped === ""
         ? items
         : newArray.filter((item) =>
-            item?.title
-              .toLowerCase()
-              .replace(/\s+/g, "")
-              .includes(textTyped.toLowerCase().replace(/\s+/g, ""))
+            item?.nickname?.toLowerCase().replace(/\s+/g, "").includes(textTyped.toLowerCase().replace(/\s+/g, "")) ||
+            item?.name?.toLowerCase().replace(/\s+/g, "").includes(textTyped.toLowerCase().replace(/\s+/g, "")) ||
+            item?.title?.title.toLowerCase().replace(/\s+/g, "").includes(textTyped.toLowerCase().replace(/\s+/g, ""))
           );
     setItems(resultArray);
   };
