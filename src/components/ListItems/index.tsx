@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardItem from "@components/CardItem";
 import { ProductionMemberModal } from "@components/ProductionMemberModal";
 import { ProfileModal } from "@components/ProfileModal";
@@ -10,8 +10,7 @@ import { CloseModalButton } from "@components/CloseModalButton";
 import { ErrorIcon } from "@components/ErrorIcon";
 import { OkResponseIcon } from "@components/OkResponseIcon";
 
-
-function ListItems({ dataItems, titleModule }: any) {
+function ListItems({dataItems, orderItems, orderBy, titleModule}:any) {
   // This function and state triggers the modal. triggers the edition modal
 
   const [openShowModal, setOpenShowModal] = useState<modalTypes>({
@@ -19,6 +18,10 @@ function ListItems({ dataItems, titleModule }: any) {
     data: {}
   });
   const [reqStatus, setReqStatus] = useState<reqResponse>(null);
+
+  useEffect(() => {
+    orderItems(orderBy, titleModule);
+  }, []);
 
   return (
     <>

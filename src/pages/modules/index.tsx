@@ -15,7 +15,7 @@ function Modules(): JSX.Element {
       try {
         const response = await fetch("/api/shows");
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setToken(data);
       } catch (error) {
         console.log(error);
@@ -74,14 +74,6 @@ function Modules(): JSX.Element {
           icons="bg-musiciansIcon"
           goToSearchPage={"/showmodules"}
           itemToCreate={"musician"}
-          setShowCreateItem={setShowCreateItem}
-        />
-        <ModuleCard
-          title={"Roles"}
-          description={"Assign new roles"}
-          icons="bg-rolesIcon"
-          goToSearchPage={"/showmodules"}
-          itemToCreate={"role"}
           setShowCreateItem={setShowCreateItem}
         />
       </section>
