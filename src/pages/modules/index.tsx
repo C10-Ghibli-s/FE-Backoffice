@@ -15,7 +15,7 @@ function Modules(): JSX.Element {
       try {
         const response = await fetch("/api/shows");
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setToken(data);
       } catch (error) {
         console.log(error);

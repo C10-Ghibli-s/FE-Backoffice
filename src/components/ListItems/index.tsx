@@ -10,16 +10,12 @@ import { ErrorIcon } from "@components/ErrorIcon";
 import { OkResponseIcon } from "@components/OkResponseIcon";
 
 function ListItems({dataItems, orderItems, orderBy, titleModule}:any) {
-  console.log("This is ListItems");
-
   // This function and state triggers the modal. triggers the edition modal
   const [openShowModal, setOpenShowModal] = useState<modalTypes>({item:null, data: {}});
   const [reqStatus, setReqStatus] = useState<reqResponse>(null);
 
   useEffect(() => {
     orderItems(orderBy, titleModule);
-    console.log("This is useEffect from ListItems");
-    console.log("orderBy from ListItems ", orderBy);
   }, []);
 
   return (

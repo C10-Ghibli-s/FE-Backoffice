@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { GET_ITEM } from "@services/queries/getData/getItem";
 import axios from "axios";
 
-// useGetModules = (key, {setItems})
 const useGetModules = (titleModule) => {
-  // When we have the api deployed this should be updated to use real data
-  // or even use services/queries/getData/ and then each of the modules
-  // users: getAllUsers, movies: getAllMovies, writers: getAllWriters, directors: getAllDirectors, musicians, getAllMusicians, roles: getAllRoles
   const [items, setItems] = useState([]);
   useEffect(() => {
     setTimeout(() => {
@@ -32,12 +28,12 @@ const useGetModules = (titleModule) => {
             setItems(response.data.data.showAllDirectors);
           if (response.data.data?.showAllMusicians)
             setItems(response.data.data.showAllMusicians);
-          console.log("response: ", response.data.data.showAllUsers);
+          //console.log("response: ", response.data.data.showAllUsers);
         })
         .catch((error) => {
           console.log(error);
         });
-      console.log("ModuleData: ", items, "QUERY : ", titleModule);
+      //console.log("ModuleData: ", items, "QUERY : ", titleModule);
     }, 1000);
   }, []);
 
@@ -56,7 +52,6 @@ const useGetModules = (titleModule) => {
 
   const orderItems = (order, titleModule) => {
     let sortPropertyString = "name";
-    console.log({ titleModule });
     if (titleModule === "Movies") {
       sortPropertyString = "title";
     } else if (titleModule === "Users") {
