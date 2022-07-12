@@ -41,11 +41,11 @@ const useGetModules = (titleModule) => {
     }, 1000);
   }, []);
 
-  const searchValue = (textTyped) => {
-    const newArray = [...items];
+  const searchValue = (textTyped, allItems) => {
+    const newArray = [...allItems];
     const resultArray =
       textTyped === ""
-        ? items
+        ? newArray
         : newArray.filter((item) =>
             item?.nickname?.toLowerCase().replace(/\s+/g, "").includes(textTyped.toLowerCase().replace(/\s+/g, "")) ||
             item?.name?.toLowerCase().replace(/\s+/g, "").includes(textTyped.toLowerCase().replace(/\s+/g, "")) ||
@@ -59,7 +59,7 @@ const useGetModules = (titleModule) => {
     let sortPropertyString = "name";
     console.log({ titleModule });
     if (titleModule === "Movies") {
-      sortPropertyString = "title";
+      sortPropertyString = "title.title";
     } else if (titleModule === "Users") {
       sortPropertyString = "nickname";
     } else {

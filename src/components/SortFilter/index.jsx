@@ -6,6 +6,7 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 const sort = [{ name: "Ascendent" }, { name: "Descendent" }];
 
 export default function SortFilter({ orderItems, orderBy, titleModule }) {
+  console.log("This is SortFilter");
   const index = sort.findIndex((option) => option.name == orderBy);
   const [selected, setSelected] = useState(sort[index]);
 

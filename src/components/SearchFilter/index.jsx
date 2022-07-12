@@ -9,10 +9,12 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
   const [query, setQuery] = useState("");
 
   const { items } = useGetModules(titleModule);
+  const allItems = items;
+
   const filteredItems =
     query === ""
-      ? items
-      : items.filter((item) =>
+      ? allItems
+      : allItems.filter((item) =>
           item.nickname?.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
           item.name?.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
           item.title?.title.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, ""))
@@ -26,7 +28,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
           value={selected}
           onChange={(optionSelected) => {
             setSelected(optionSelected);
-            searchValue(optionSelected);
+            searchValue(optionSelected, allItems);
           }}
         >
           <div className="relative mt-1 rounded-md shadow-sm">
@@ -50,14 +52,14 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
                 placeholder="Search with name"
                 onChange={(event) => {
                   setQuery(event.target.value);
-                  setSelected("");
+                  searchValue(query, allItems);
                 }}
               />
               <div className="absolute inset-y-0 right-0 flex">
                 <Combobox.Button
                   className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500"
                   onClick={() => {
-                    searchValue(query);
+                    searchValue(query, allItems);
                   }}
                 >
                   <span>Search</span>

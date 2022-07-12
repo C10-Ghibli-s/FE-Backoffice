@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Title from "../../components/Title";
@@ -29,7 +29,8 @@ function ShowModules() {
 
   // Calling the hook which contains the state and return the data of items
   const {items, searchValue, orderItems, filterStatus} = useGetModules(titleModule);
-  console.log(items)
+  console.log(items);
+
   return (
     <>
       <Head>
@@ -43,7 +44,7 @@ function ShowModules() {
       <StatusFilter filterStatus={filterStatus} titleModule={titleModule}/>
     </section>
     <section className="flex flex-col items-center justify-center my-8">
-      {(typeof items !== "undefined" && items !== null) ? <ListItems dataItems={items} titleModule={titleModule}/> : <div className="text-center">Loading...</div>}
+      {(typeof items !== "undefined" && items !== null) ? <ListItems dataItems={items} orderItems={orderItems} orderBy={orderBy} titleModule={titleModule}/> : <div className="text-center">Loading...</div>}
       {items == null && <div className="text-center">Something went wrong, try later...</div>}
     </section>
   </>
