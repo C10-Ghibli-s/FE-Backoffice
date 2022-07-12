@@ -55,29 +55,33 @@ const useGetModules = (titleModule) => {
   };
 
   const orderItems = (order, titleModule) => {
-    const sortPropertyNumber = "id";
     let sortPropertyString = "name";
     console.log({ titleModule });
     if (titleModule === "Movies") {
-      sortPropertyString = "title.title";
+      sortPropertyString = "title";
     } else if (titleModule === "Users") {
       sortPropertyString = "nickname";
     } else {
       console.log("No sort property");
     }
     const newArray = [...items];
-    const sortedNumber =
-      order === "Ascendent"
-        ? newArray.sort(
-            (firstItem, secondItem) =>
-              firstItem[sortPropertyNumber] - secondItem[sortPropertyNumber]
+    
+    let sortedString="";
+    if(titleModule === "Movies"){
+      sortedString =
+      order.name === "Ascendent"
+        ? newArray.sort((firstItem, secondItem) =>
+            firstItem[sortPropertyString]["title"].localeCompare(
+              secondItem[sortPropertyString]["title"]
+            )
           )
-        : newArray.sort(
-            (firstItem, secondItem) =>
-              secondItem[sortPropertyNumber] - firstItem[sortPropertyNumber]
-          );
-
-    const sortedString =
+        : newArray.sort((firstItem, secondItem) =>
+            secondItem[sortPropertyString]["title"].localeCompare(
+              firstItem[sortPropertyString]["title"]
+            )
+        );
+    } else{
+      sortedString =
       order.name === "Ascendent"
         ? newArray.sort((firstItem, secondItem) =>
             firstItem[sortPropertyString].localeCompare(
@@ -88,7 +92,8 @@ const useGetModules = (titleModule) => {
             secondItem[sortPropertyString].localeCompare(
               firstItem[sortPropertyString]
             )
-          );
+        );
+    }
 
     setItems(sortedString);
   };
