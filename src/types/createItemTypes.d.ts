@@ -28,7 +28,6 @@ export type titlesType = {
 }
 // post data movie
 export type newMovieType = {
-  id?: number,
   status?: string,
   youtube?: string,
   userName: string,
@@ -94,14 +93,16 @@ export type newMovieForMutation = {
   data: newMovieType,
 }
 // adding producers to movies
-export type addPeopleMutation = {
-  producers: {
-    directorsIds: number[],
-    writersIds: number[],
-    musiciansIds: number[]
-  }
+export type addPeopleForMutation = {
+  directorsIds: number[],
+  writersIds: number[],
+  musiciansIds: number[]
 }
-
+export type addPeopleFromSubmit = {
+  directorsIds: string,
+  writersIds: string,
+  musiciansIds: string
+}
 
 
 // post producer (director/writer/musician)

@@ -23,13 +23,16 @@ export const newMovieSchema = yup.object().shape({
   romajiTitle: yup.string(),
   releaseDate: yup.string().required(),
   filmDescription: yup.string().required().min(40).matches(/^[\w]+$/),
-  directorsIds: yup.string().required(),
-  writersIds: yup.string().required(),
-  musiciansIds: yup.string().required(),
   duration: yup.number().positive().required(),
   audienceScore: yup.number().positive(),
   linkWiki: yup.string().required().url(),
   movieBanner: yup.string().required()
+})
+
+export const AddPeopleSchema = yup.object().shape({
+  directorsIds: yup.string().required(),
+  writersIds: yup.string().required(),
+  musiciansIds: yup.string().required(),
 })
 
 export const newProducerSchema = yup.object().shape({

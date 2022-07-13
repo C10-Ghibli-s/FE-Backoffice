@@ -63,13 +63,9 @@ export const CREATE_MOVIE = (movie: newMovieType) => {
     }`,
     variables: {
       "data": {
-        "title": `${movie.title}`,
-        "originalTitle": `${data.data.originalTitle}`,
-        "releaseDate": `${data.data.releaseDate}`,
-        "filmDescription": `${data.data.filmDescription}`,
-        "duration": `${data.data.duration}`,
-        "userName": `${data.data.userName}`,
-        "romajiTitle": `${data.data.romajiTitle}`
+        ...data,
+        "status": "ACTIVE",
+        "youtube": "https://www.youtube.com/",
       }
     }
   };

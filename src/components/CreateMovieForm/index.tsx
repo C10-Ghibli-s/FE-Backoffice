@@ -25,21 +25,9 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
   } = methods;
 
   const CreateMovieSubmit: SubmitHandler<newMovieType> = (data: newMovieType) => {
-    const directorsIds = (data.producers.directorsIds).split(',');
-    const writersIds = (data.producers.writersIds).split(',');
-    const musiciansIds = (data.producers.musiciansIds).split(',');
-    const dataMovie = {
-      ...data,
-      producers: {
-        directorsIds: directorsIds.map(d => parseInt(d)),
-        writersIds: writersIds.map(w => parseInt(w)),
-        musiciansIds: musiciansIds.map(m => parseInt(m))
-      }
-    }
-    console.log(dataMovie)
     axios.post(
       process.env.API_URL !== undefined ? process.env.API_URL : '',
-      CREATE_MOVIE(dataMovie),
+      CREATE_MOVIE(data),
       {
         headers: {
           'Content-Type': 'application/json'
@@ -47,16 +35,20 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
       }
     )
     .then(res => {
+      console.log(res)
       res.data?.errors
       ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
       : setReqStatus({success: "Movie created successfully :D"})
+
+      setFormStep("Producers")
     })
-    .catch(err => 
+    .catch(err => {
+      console.error(err)
       setReqStatus({error:{ 
         serverError: `${err}`,
         errorMessage: "Ups!, something went wrong, try later."
       }})
-    )
+    })
   }
 
   return (
@@ -77,11 +69,11 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
           {formStep == "Data" && (
             <MovieDataForm formStep={formStep} setFormStep={setFormStep} />
           )}
-          {formStep == "Producers" && (
-            <MovieProducersForm setFormStep={setFormStep} />
-          )}
         </form>
       </FormProvider>
+      {formStep == "Producers" && (
+        <MovieProducersForm setFormStep={setFormStep} />
+      )}
     </React.Fragment>
   );
 };

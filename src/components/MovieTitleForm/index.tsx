@@ -63,14 +63,10 @@ export const MovieTitleForm: FC<formSteping> = ({
         )}
       </div>
       <div className="flex justify-center mt-4">
-        {(formStep == "Title" || formStep == "Data") && (
+        {(formStep == "Title") && (
           <button
             className=" order-2 p-2 mb-2 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-[200px] ml-7"
-            onClick={() =>
-              formStep == "Title"
-                ? setFormStep("Data")
-                : setFormStep("Producers")
-            }
+            onClick={() => setFormStep("Data")}
           >
             Next
           </button>
