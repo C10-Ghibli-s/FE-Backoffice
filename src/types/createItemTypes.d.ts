@@ -40,7 +40,7 @@ export type newMovieType = {
   duration: number,
   audienceScore?: number,
   linkWiki: string,
-  movieBanner: string,
+  movieBanner?: string,
 }
 // fetch movie data
 export type updateMovieTypeFromDB = {
@@ -108,6 +108,7 @@ export type addPeopleMutation = {
 export type newProducerType = {
   id?: string,
   name: string
+  status: string,
 }
 
 // update producer (director/writer/musician)
@@ -115,5 +116,6 @@ export type updateProducerType = {
   id: number,
   name: string,
   producerRole: string
+  status: string,
 }
 

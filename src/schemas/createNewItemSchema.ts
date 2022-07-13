@@ -35,4 +35,5 @@ export const newMovieSchema = yup.object().shape({
 export const newProducerSchema = yup.object().shape({
   name: yup.string().required().min(4).matches(/^[\w]+$/),
   producerRole: yup.string(),
+  status: yup.string(),
 })

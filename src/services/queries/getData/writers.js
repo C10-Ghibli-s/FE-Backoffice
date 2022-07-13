@@ -4,6 +4,7 @@ export const SHOW_ALL_WRITERS = {
     showAllWriters {
       id
       name
+      status
     }
   }`
 }

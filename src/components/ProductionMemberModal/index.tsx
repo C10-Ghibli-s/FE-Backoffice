@@ -5,7 +5,7 @@ import React from "react";
 import { EditButton } from "@components/EditButton";
 import { ClosingModal } from "@components/ClosingModal";
 import { DeleteElementButton } from "@components/DeleteElementButton";
-import { ModalTitle } from "@components/ModalTitle";
+import Select from "react-select";
 
 // Dependencies services
 import axios from "axios";
@@ -20,6 +20,7 @@ import { reqResponse } from "@customTypes/ErrorHandling";
 import { CloseModalButton } from "@components/CloseModalButton";
 import { ErrorIcon } from "@components/ErrorIcon";
 import { OkResponseIcon } from "@components/OkResponseIcon";
+
 
 interface ModalProps {
   openShowModal: modalTypes,
@@ -78,14 +79,15 @@ function ProductionMemberModal({
   : { 
       id: 0,
       name: "PRODUCER TEST",
-      producerRole: "Director"
+      producerRole: "Director",
+      status: "ACTIVE"
     };
 
   if (openShowModal.item !== 'producer') {
     return null;
   } else {
     return (
-      <div className="z-20 fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
+      <div className="z-30 fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
         <div className="relative flex flex-col items-center justify-around w-full p-2 rounded-lg sm:items-center h-[70%] sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
           <ClosingModal setEditing={setEditing} state={setOpenShowModal} value={false} />
           <h2 className="w-11/12 my-3 text-2xl font-semibold text-left text-gray-900 border-l-4 border-blue-500 sm:ml-6 sm:text-3xl indent-2">
@@ -103,7 +105,7 @@ function ProductionMemberModal({
             </figure>
             <div className="w-full">
               {editing !== null  &&
-                <form onSubmit={handleSubmit(UpdateProducer)} className="my-2 text-xl font-semibold text-center flex flex-col">
+                <form onSubmit={handleSubmit(UpdateProducer)} className="my-2 text-xl font-semibold text-center flex flex-col items-center">
                   <label htmlFor="name">Insert new name</label>
                   <input 
                     autoFocus
@@ -112,6 +114,27 @@ function ProductionMemberModal({
                     {...register('name')}
                     />
                   {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+                  <label htmlFor="producerStatusSelect">Status</label>
+                  <Select
+                    id="producerStatusSelect"
+                    className="mt-2 mb-4 w-72"
+                    placeholder="Select status"
+                    onChange={e => {
+                      // @ts-ignore
+                      document.getElementById('producerStatus')?.setAttribute('value', e.value);
+                    }}
+                    options={[
+                      { value: "ACTIVE", label: "ACTIVE" },
+                      { value: "INACTIVE", label: "INACTIVE" },
+                    ]}
+                  />
+                  {errors.producerRole && <p className="text-red-500 text-sm">{errors.producerRole.message}</p>}
+                  <input
+                    className="hidden" 
+                    id="producerStatus"
+                    defaultValue={'ACTIVE'}
+                    {...register('status')}
+                  />
                   <input
                     className="hidden"
                     id="producerId" type="text" defaultValue={producerData.id}
@@ -133,14 +156,19 @@ function ProductionMemberModal({
                   </div>
                 </form>
               }
-              {editing == null && 
+              {editing == null &&
+               <>
                 <p id='currProducerName' className="my-2 text-xl font-semibold text-center">
-                {producerData.name}
+                  {producerData.name}
                 </p>
+                <p className="mx-auto text-center p-0.5 rounded-lg px-2 bg-violet-500/[0.2] w-[60%] sm:w-[20%]">
+                  {producerData.producerRole}
+                </p>
+                <p className={`my-1 mx-auto p-0.5 rounded-lg px-2 ${producerData.status == 'ACTIVE' ? 'bg-green-500/[0.2]' : 'bg-red-500/[0.2]'} w-fit`}>
+                  {producerData.status}
+                </p>
+               </>
               }
-              <p className="mx-auto text-center p-0.5 rounded-lg px-2 bg-violet-500/[0.2] w-[60%] sm:w-[20%] ">
-                {producerData.producerRole}
-              </p>
             </div>
           </div>
           <div className="relative bottom-14 sm:bottom-0 sm:my-4">

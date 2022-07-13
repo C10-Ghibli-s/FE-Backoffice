@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from "axios";
-import { onPreviewImage } from "@utils/onPreviewImage";
 import { useState } from "react";
 import Image from "next/image";
 import { useFormContext } from 'react-hook-form';
@@ -15,6 +14,8 @@ export const UploadImages = () => {
     const [image, setImage] = useState<any>(
         "https://ih1.redbubble.net/image.3083717230.4980/poster,504x498,f8f8f8-pad,600x600,f8f8f8.jpg"
       );
+    const [imageUrl, setImageUrl] = useState<any>('');
+
     const fileUploadHandler = (e:any) => {
         e.preventDefault();
         const fd = new FormData();
@@ -24,10 +25,25 @@ export const UploadImages = () => {
         .post("https://api.cloudinary.com/v1_1/dnwvfuj9x/image/upload", fd)
         .then(res => {
             console.log(res);
+            setImageUrl(res.data.secure_url);
         })
         .catch(err => {
             console.log(err);
         });
+
+        // preview image
+        let file = e.target.files[0]
+        const reader = new FileReader();
+    
+        reader.onload = () => {
+            if(reader.readyState === 2) {
+            setImage(reader.result)
+            }
+        }
+    
+        if(file) {
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
@@ -54,13 +70,17 @@ export const UploadImages = () => {
                 type="file"
                 id="movieBanner"
                 onChange={e => {
-                    onPreviewImage(e, setImage);
                     fileUploadHandler(e);
                 }}
             />
+            <input 
+                className="hidden" 
+                type="string" 
+                id="movieBannerUrl"
+                value={imageUrl}
+                {...register('movieBanner')}
+            />
         </div>
-      {/* <input type="file" onChange={fileSelectorHandler} />
-      <button onClick={fileUploadHandler}>Upload</button> */}
     </>
   );
 }

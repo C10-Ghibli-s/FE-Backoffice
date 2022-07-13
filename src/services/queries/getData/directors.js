@@ -4,6 +4,7 @@ export const SHOW_ALL_DIRECTORS = {
     showAllDirectors {
       id
       name
+      status
     }
   }`
 }

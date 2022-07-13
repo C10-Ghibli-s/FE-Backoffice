@@ -58,7 +58,7 @@ function MovieModal({ openShowModal, setOpenShowModal, setReqStatus, reqStatus}:
     return null;
   } else {
     return (
-      <div className="z-20 fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
+      <div className="z-30 fixed top-0 bottom-0 left-0 right-0 bg-black/[0.6] flex justify-center sm:items-start items-end">
         <div className="sm:relative flex flex-col items-center justify-around w-full p-3 rounded-lg sm:items-center h-[100%] sm:border-2 sm:w-fit bg-slate-50 sm:h-fit top-20">
           <ClosingModal setEditing={setEditing} state={setOpenShowModal} value={false} />
           <h2 className="w-11/12 my-3 text-2xl font-semibold text-left text-gray-900 border-l-4 border-blue-500 sm:ml-6 sm:text-3xl indent-2">

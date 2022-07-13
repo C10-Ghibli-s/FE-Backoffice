@@ -20,6 +20,7 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
     resolver: yupResolver(newMovieSchema)
   });;
   const {
+    register,
     handleSubmit,
   } = methods;
 
@@ -65,6 +66,7 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
           className="w-full overflow-y-scroll h-fit sm:overflow-auto"
           onSubmit={handleSubmit(CreateMovieSubmit)}
         >
+          <input className="hidden" {...register('userName')} value='GUILLERMO'/>
           {formStep == "Title" && (
             <MovieTitleForm
               setShowCreateItem={setShowCreateItem}
