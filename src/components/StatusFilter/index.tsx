@@ -4,12 +4,11 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { useGetModules } from "@hooks/useGetModules";
 
-const status = [{ name: "All" }, { name: "Active" }, { name: "Inactive" }];
+const status = [{ name: "ALL" }, { name: "ACTIVE" }, { name: "INACTIVE" }];
 
 export default function StatusFilter({ filterStatus, titleModule }: any) {
   const [selectedStatus, setSelectedStatus] = useState(status[0]);
-
-  // we should get another prop with the name of the module
+  // Setting up the hook which contains the state and return the data of items
   const { items } = useGetModules(titleModule);
 
   return (

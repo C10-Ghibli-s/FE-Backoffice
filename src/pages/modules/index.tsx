@@ -76,14 +76,6 @@ function Modules(): JSX.Element {
           itemToCreate={"musician"}
           setShowCreateItem={setShowCreateItem}
         />
-        <ModuleCard
-          title={"Roles"}
-          description={"Assign new roles"}
-          icons="bg-rolesIcon"
-          goToSearchPage={"/showmodules"}
-          itemToCreate={"role"}
-          setShowCreateItem={setShowCreateItem}
-        />
       </section>
       {showCreateItem !== null && (
         <CreateItemModal

@@ -9,27 +9,26 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
   const [query, setQuery] = useState("");
 
   const { items } = useGetModules(titleModule);
-  console.log('items',items);
+  const allItems = items;
+
   const filteredItems =
     query === ""
-      ? items
-      : items.filter((item) =>
-          // it still needs to differentiate between users/producers/movie (nickname, name, title respectively)
-          item.title
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
+      ? allItems
+      : allItems.filter((item) =>
+          item.nickname?.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
+          item.name?.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")) ||
+          item.title?.title.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
   return (
     <>
-      <div className="z-10 top-16 w-96">
+      <div className="z-30 top-16 w-96 min-w-[300px]">
         <Combobox
           className="h-12"
           value={selected}
           onChange={(optionSelected) => {
             setSelected(optionSelected);
-            searchValue(optionSelected);
+            searchValue(optionSelected, allItems);
           }}
         >
           <div className="relative mt-1 rounded-md shadow-sm">
@@ -53,14 +52,14 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
                 placeholder="Search with name"
                 onChange={(event) => {
                   setQuery(event.target.value);
-                  setSelected("");
+                  searchValue(query, allItems);
                 }}
               />
               <div className="absolute inset-y-0 right-0 flex">
                 <Combobox.Button
                   className="w-20 text-white bg-blue-400 cursor-pointer rounded-r-md hover:bg-blue-500"
                   onClick={() => {
-                    searchValue(query);
+                    searchValue(query, allItems);
                   }}
                 >
                   <span>Search</span>
@@ -73,7 +72,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg w-96 max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Combobox.Options className="absolute py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm w-80 sm:w-96">
                 {filteredItems.length === 0 && query !== "" ? (
                   <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
                     Nothing found.
@@ -87,7 +86,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
                           active ? "bg-blue-100 text-blue-900" : "text-gray-900"
                         }`
                       }
-                      value={item.title}
+                      value={item.title?.title || item.name || item.nickname}
                     >
                       {({ selected, active }) => (
                         <>
@@ -96,7 +95,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
                               selected ? "font-medium" : "font-normal"
                             }`}
                           >
-                            {item.title}
+                            {item.title?.title || item.name || item.nickname}
                           </span>
                           {selected ? (
                             <span

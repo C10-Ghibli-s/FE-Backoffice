@@ -5,21 +5,21 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
 const sort = [{ name: "Ascendent" }, { name: "Descendent" }];
 
-export default function SortFilter({ orderItems, orderBy }) {
+export default function SortFilter({ orderItems, orderBy, titleModule }: any) {
   const index = sort.findIndex((option) => option.name == orderBy);
   const [selected, setSelected] = useState(sort[index]);
 
   useEffect(() => {
-    orderItems(selected);
+    orderItems(selected, titleModule);
   }, []);
 
   return (
-    <div className="z-10 w-56 top-16">
+    <div className="z-20 w-56 sm:z-10 top-16">
       <Listbox
         value={selected}
         onChange={(optionSelected) => {
           setSelected(optionSelected);
-          orderItems(optionSelected);
+          orderItems(optionSelected, titleModule);
         }}
       >
         <Listbox.Label className="block text-sm font-medium text-gray-700">
