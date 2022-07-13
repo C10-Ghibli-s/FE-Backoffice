@@ -22,7 +22,7 @@ export default function SearchFilter({ dataItems, searchValue, titleModule }) {
 
   return (
     <>
-      <div className="z-30 top-16 w-96 min-w-[300px]">
+      <div className="z-10 top-16 w-96 min-w-[300px]">
         <Combobox
           className="h-12"
           value={selected}
