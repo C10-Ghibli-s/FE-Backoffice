@@ -1,7 +1,6 @@
-import { onPreviewImage } from "@utils/onPreviewImage";
-import Image from "next/image";
-import React, { FC, SetStateAction, useState } from "react";
+import React, { FC, SetStateAction } from "react";
 import { useFormContext } from "react-hook-form";
+import { UploadImages } from "@services/UploadImages";
 
 type formSteping = {
   formStep: string;
@@ -9,9 +8,7 @@ type formSteping = {
 };
 
 export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
-  const [image, setImage] = useState<any>(
-    "https://ih1.redbubble.net/image.3083717230.4980/poster,504x498,f8f8f8-pad,600x600,f8f8f8.jpg"
-  );
+
   const methods = useFormContext();
   const {
     register,
@@ -81,34 +78,7 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
           </div>
         </div>
         <div className="flex flex-col items-center w-5/6 p-4">
-          <div className="max-w-sm p-2 border-2 lg:w-4/5 lg:max-w-md lg:h-4/5 border-slate-400/40 rounded-xl">
-            <Image
-              onClick={() => document?.getElementById("movieBanner")?.click()}
-              width="300"
-              height="300"
-              className="object-scale-down w-full hover:cursor-pointer"
-              src={image}
-              alt="Movie banner preview"
-            />
-          </div>
-          <div>
-            <label
-              className="cursor-pointer relative mb-2 transition-colors text-black w-[60px] after:bg-black after:content-[''] hover:after:h-[1px] after:w-full after:absolute after:-left-[0] after:top-6 "
-              htmlFor="movieBanner"
-            >
-              Movie banner*
-            </label>
-            <input
-              className="hidden"
-              type="file"
-              id="movieBanner"
-              {...register("movieBanner")}
-              onChange={e => {
-                onPreviewImage(e, setImage);
-              }}
-            />
-          </div>
-
+          <UploadImages/>
           <div className="flex flex-col mt-4">
             <label htmlFor="linkWiki">link to Wiki*</label>
             <input

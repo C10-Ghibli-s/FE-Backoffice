@@ -1,6 +1,6 @@
-import React, { FC, SetStateAction, useState } from "react";
+import React, { FC, useState } from "react";
 
-import { newMovieFromSubmit } from "@customTypes/createItemTypes";
+import { newMovieType } from "@customTypes/createItemTypes";
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newMovieSchema } from "@schemas/createNewItemSchema";
@@ -16,14 +16,14 @@ import { setReqStatusMovieType } from "@customTypes/ErrorHandling";
 export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setShowCreateItem}:setReqStatusMovieType) => {
   const [formStep, setFormStep] = useState<string>("Title");
 
-  const methods = useForm<newMovieFromSubmit>({
+  const methods = useForm<newMovieType>({
     resolver: yupResolver(newMovieSchema)
   });;
   const {
     handleSubmit,
   } = methods;
 
-  const CreateMovieSubmit: SubmitHandler<newMovieFromSubmit> = (data: newMovieFromSubmit) => {
+  const CreateMovieSubmit: SubmitHandler<newMovieType> = (data: newMovieType) => {
     const directorsIds = (data.producers.directorsIds).split(',');
     const writersIds = (data.producers.writersIds).split(',');
     const musiciansIds = (data.producers.musiciansIds).split(',');

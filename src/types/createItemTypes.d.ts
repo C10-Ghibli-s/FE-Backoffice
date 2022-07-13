@@ -92,12 +92,16 @@ export type newMovieFromSubmit  = {
 // type data for mutation request
 export type newMovieForMutation = {
   data: newMovieType,
+}
+// adding producers to movies
+export type addPeopleMutation = {
   producers: {
     directorsIds: number[],
     writersIds: number[],
     musiciansIds: number[]
   }
 }
+
 
 
 // post producer (director/writer/musician)
