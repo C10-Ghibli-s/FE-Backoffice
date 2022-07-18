@@ -15,6 +15,7 @@ import { setReqStatusMovieType } from "@customTypes/ErrorHandling";
 
 export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setShowCreateItem}:setReqStatusMovieType) => {
   const [formStep, setFormStep] = useState<string>("Title");
+  const [movieId, setMovieId] = useState<number>(0);
 
   const methods = useForm<newMovieType>({
     resolver: yupResolver(newMovieSchema)
@@ -36,11 +37,10 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
     )
     .then(res => {
       console.log(res)
+      setMovieId(parseInt(res.data.data.createAMovie.id));
       res.data?.errors
       ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
-      : setReqStatus({success: "Movie created successfully :D"})
-
-      setFormStep("Producers")
+      : setFormStep("Producers");
     })
     .catch(err => {
       console.error(err)
@@ -72,7 +72,7 @@ export const CreateMovieForm: FC<setReqStatusMovieType> = ({setReqStatus, setSho
         </form>
       </FormProvider>
       {formStep == "Producers" && (
-        <MovieProducersForm setFormStep={setFormStep} />
+        <MovieProducersForm movieId={movieId}/>
       )}
     </React.Fragment>
   );

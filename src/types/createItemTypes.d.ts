@@ -41,6 +41,7 @@ export type newMovieType = {
   linkWiki: string,
   movieBanner?: string,
 }
+
 // fetch movie data
 export type updateMovieTypeFromDB = {
   id: number,
@@ -79,29 +80,23 @@ export type updateMovieType = {
 
 
 
-// type for data from submit form
-export type newMovieFromSubmit  = {
-  data: newMovieType,
-  producers: {
-    directorsIds: string,
-    writersIds: string,
-    musiciansIds: string
-  }
-}
-// type data for mutation request
-export type newMovieForMutation = {
-  data: newMovieType,
+export type addPeopleFromSubmit = {
+  movieId: number,
+  directorsIds: string,
+  writersIds: string,
+  musiciansIds: string
 }
 // adding producers to movies
 export type addPeopleForMutation = {
+  movieId: number,
   directorsIds: number[],
   writersIds: number[],
   musiciansIds: number[]
 }
-export type addPeopleFromSubmit = {
-  directorsIds: string,
-  writersIds: string,
-  musiciansIds: string
+
+// type data for mutation request
+export type newMovieForMutation = {
+  data: newMovieType,
 }
 
 

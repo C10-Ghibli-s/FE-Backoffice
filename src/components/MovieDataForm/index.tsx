@@ -98,13 +98,6 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
         </div>
       </div>
       <div className="flex justify-center mt-4">
-        {(formStep == "Data") && (
-          <input
-            className="p-2 mb-2 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-[200px] ml-7 hover:cursor-pointer"
-            type="submit"
-            value="Create Movie"
-          />
-        )}
         <button
           className="relative mb-2 font-bold transition-colors text-gray-500 w-[60px] after:bg-slate-500 after:content-[''] hover:after:h-[2px] after:w-full after:absolute after:-left-[0] after:top-7 hover:cursor-pointer"
           onClick={() => {
@@ -112,6 +105,13 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
           }}
           children="Back"
         />
+        {(formStep == "Data") && (
+          <input
+            className="p-2 mb-2 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-[200px] ml-7 hover:cursor-pointer"
+            type="submit"
+            value="Create Movie"
+          />
+        )}
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { addPeopleFromSubmit, newProducerType } from "@customTypes/createItemTypes";
-import React, { FC, SetStateAction, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddPeopleSchema } from "@schemas/createNewItemSchema";
@@ -7,12 +7,14 @@ import { AddPeopleSchema } from "@schemas/createNewItemSchema";
 
 import Select from "react-select";
 import { getProducers } from "@services/queries/getData/getProducers";
+import axios from "axios";
+import { ADD_PEOPLE } from "@services/mutations/AddPeople";
 
-type stepForm = {
-  setFormStep: React.Dispatch<SetStateAction<string>>;
-};
+type movieIdType = {
+  movieId: number,
+}
 
-export const MovieProducersForm: FC<stepForm> = ({ setFormStep }: stepForm) => {
+export const MovieProducersForm: FC<movieIdType> = ({movieId}:movieIdType) => {
   const methods = useForm<addPeopleFromSubmit>({
     resolver: yupResolver(AddPeopleSchema)
   });;
@@ -34,15 +36,50 @@ export const MovieProducersForm: FC<stepForm> = ({ setFormStep }: stepForm) => {
   }, []);
 
   const CreateMovieSubmit: SubmitHandler<addPeopleFromSubmit> = (data: addPeopleFromSubmit) => {
-    const directorsIds = (data.directorsIds).split(',');
-    const writersIds = (data.writersIds).split(',');
-    const musiciansIds = (data.musiciansIds).split(',');
+    const directors = (data.directorsIds).split(',');
+    const writers = (data.writersIds).split(',');
+    const musicians = (data.musiciansIds).split(',');
 
+    const directorsIds = directors.map(d => parseInt(d));
+    const writersIds = writers.map(w => parseInt(w));
+    const musiciansIds = musicians.map(m => parseInt(m));
+
+    const addPeopleData = {
+      movieId: data.movieId,
+      directorsIds: directorsIds,
+      writersIds: writersIds,
+      musiciansIds: musiciansIds
+    }
+    axios.post(
+      process.env.API_URL !== undefined ? process.env.API_URL : '',
+      ADD_PEOPLE(addPeopleData),
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    .then(res => {
+      console.log(res);
+    }
+    )
+    .catch(err => {
+      console.log(err);
+    }
+    )
   }
 
   return (
     <form onSubmit={handleSubmit(CreateMovieSubmit)}>
       <div className="flex flex-col items-center justify-center m-auto sm:p-8">
+        <div className="hidden">
+          <input type="number" defaultValue={movieId} {...register('movieId')}/>
+          {errors.movieId && errors.movieId?.message && (
+            <span className="text-xs text-red-500">
+              {errors.movieId.message}
+            </span>
+          )}
+        </div>
         <div>
           <label htmlFor="directorsIds">Directors*</label>
           <Select
@@ -67,6 +104,11 @@ export const MovieProducersForm: FC<stepForm> = ({ setFormStep }: stepForm) => {
                 : [{ label: "choose a director", value: null }]
             }
           />
+          {errors.directorsIds && errors.directorsIds?.message && (
+            <span className="text-xs text-red-500">
+              {errors.directorsIds.message}
+            </span>
+          )}
           <input
             type="text"
             className="hidden"
@@ -99,6 +141,11 @@ export const MovieProducersForm: FC<stepForm> = ({ setFormStep }: stepForm) => {
                 : [{ label: "choose a writer", value: null }]
             }
           />
+          {errors.writersIds && errors.writersIds?.message && (
+            <span className="text-xs text-red-500">
+              {errors.writersIds.message}
+            </span>
+          )}
           <input
             type="text"
             className="hidden"
@@ -115,10 +162,9 @@ export const MovieProducersForm: FC<stepForm> = ({ setFormStep }: stepForm) => {
             placeholder="choose one or more musicians"
             onChange={e => {
               //@ts-ignore  // that field is always going to be there
-              let ola = document.getElementById("musiciansIds").value = e
+              document.getElementById("musiciansIds").value = e
                 .map(musician => musician.value)
                 .toString();
-                console.log(ola)
               //@ts-ignore  // mobile users can cancel scroll animation with touch
               e.cancelable = true;
             }}
@@ -132,6 +178,11 @@ export const MovieProducersForm: FC<stepForm> = ({ setFormStep }: stepForm) => {
                 : [{ label: "choose a writer", value: null }]
             }
           />
+          {errors.musiciansIds && errors.musiciansIds?.message && (
+            <span className="text-xs text-red-500">
+              {errors.musiciansIds.message}
+            </span>
+          )}
           <input
             type="text"
             className="hidden"

@@ -3,7 +3,7 @@ import * as yup from 'yup';
 export const newUserSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().min(8).max(20).required().matches(/^[\w]+[0-9]{3}$/),
-  nickname: yup.string().min(8).max(20).required().matches(/^[\w]+$/),
+  nickname: yup.string().min(8).max(20).required(),
   role: yup.string().required(),
   facebook: yup.string(),
   twitter: yup.string()
@@ -18,11 +18,11 @@ export const updateUserSchema = yup.object().shape({
 
 export const newMovieSchema = yup.object().shape({
   userName: yup.string().required(),
-  title: yup.string().required().min(4).matches(/^[\w]+$/),
+  title: yup.string().required().min(4),
   originalTitle: yup.string().required(),
   romajiTitle: yup.string(),
   releaseDate: yup.string().required(),
-  filmDescription: yup.string().required().min(40).matches(/^[\w]+$/),
+  filmDescription: yup.string().required().min(40),
   duration: yup.number().positive().required(),
   audienceScore: yup.number().positive(),
   linkWiki: yup.string().required().url(),
@@ -30,13 +30,14 @@ export const newMovieSchema = yup.object().shape({
 })
 
 export const AddPeopleSchema = yup.object().shape({
-  directorsIds: yup.string().required(),
-  writersIds: yup.string().required(),
-  musiciansIds: yup.string().required(),
+  movieId: yup.number().positive().required(),
+  directorsIds: yup.string(),
+  writersIds: yup.string(),
+  musiciansIds: yup.string(),
 })
 
 export const newProducerSchema = yup.object().shape({
-  name: yup.string().required().min(4).matches(/^[\w]+$/),
+  name: yup.string().required().min(4),
   producerRole: yup.string(),
   status: yup.string(),
 })

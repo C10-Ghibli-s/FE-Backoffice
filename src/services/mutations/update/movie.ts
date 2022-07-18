@@ -1,28 +1,17 @@
-import { newMovieType } from '@customTypes/createItemTypes';
+import { updateMovieType } from '@customTypes/createItemTypes';
 
-export const UPDATE_MOVIE = (data: newMovieType) => {
+export const UPDATE_MOVIE = (data: updateMovieType) => {
     let UPDATE_MOVIE_QUERY = {
-      query: `mutation UpdateAMovie($updateAMovieId: ID!, $data: MovieEditInput!) {
-        updateAMovie(id: $updateAMovieId, data: $data) {
+      query: `mutation AddPeople($movieId: ID!, $data: ArrayIdsInput!) {
+        addPeople(movieId: $movieId, data: $data) {
           title {
             title
           }
-          status
+          id
         }
       }`,
       variables: {
         "updateAMovieId": `${data.id}`,
-        "data": {
-          "filmDescription": data.filmDescription,
-          "movieBanner": data.movieBanner,
-          "audienceScore": data.audienceScore,
-          "releaseDate": data.releaseDate,
-          "userName": data.userName,
-          "linkWiki": data.linkWiki,
-          "youtube": data.youtube,
-          "duration": data.duration,
-          "status": data.status,
-        }
       }}
     return UPDATE_MOVIE_QUERY;
 }
