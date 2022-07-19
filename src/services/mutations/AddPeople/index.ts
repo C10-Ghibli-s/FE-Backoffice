@@ -37,9 +37,7 @@ export const ADD_PEOPLE = (people: addPeopleForMutation) => {
         }`,
         variables: {
             "movieId": people.movieId,
-            "data": {
-                ...data
-            },
+            "data": {...data}
         }
     }
     return ADD_PEOPLE_QUERY;

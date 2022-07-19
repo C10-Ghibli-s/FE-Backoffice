@@ -29,6 +29,20 @@ export const newMovieSchema = yup.object().shape({
   movieBanner: yup.string().required()
 })
 
+export const updateMovieSchema = yup.object().shape({
+  id: yup.number().positive(),
+  userName: yup.string(),
+  title: yup.string().min(4),
+  originalTitle: yup.string(),
+  romajiTitle: yup.string(),
+  releaseDate: yup.string(),
+  filmDescription: yup.string().min(40),
+  duration: yup.number().positive(),
+  audienceScore: yup.number().positive(),
+  linkWiki: yup.string().url(),
+  movieBanner: yup.string()
+})
+
 export const AddPeopleSchema = yup.object().shape({
   movieId: yup.number().positive().required(),
   directorsIds: yup.string(),

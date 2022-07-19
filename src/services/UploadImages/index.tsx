@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import axios from "axios";
 import { useState } from "react";
 import Image from "next/image";
 import { useFormContext } from 'react-hook-form';
 
-export const UploadImages = () => {
+type uploadImagesDefaultType = {
+    imageUrlDefault?: string,
+}
+
+export const UploadImages: FC<uploadImagesDefaultType> = ({imageUrlDefault}:uploadImagesDefaultType) => {
     const methods = useFormContext();
     const {
         register,
         formState: { errors },
       } = methods;
 
-    const [image, setImage] = useState<any>(
+    const [image, setImage] = useState<any>(imageUrlDefault ||
         "https://ih1.redbubble.net/image.3083717230.4980/poster,504x498,f8f8f8-pad,600x600,f8f8f8.jpg"
       );
     const [imageUrl, setImageUrl] = useState<any>('');
@@ -73,11 +77,16 @@ export const UploadImages = () => {
                     fileUploadHandler(e);
                 }}
             />
+            {errors.movieBanner && errors.movieBanner?.message && (
+              <span className="max-w-xs text-xs text-red-500">
+                {errors.movieBanner.message}
+              </span>
+            )}
             <input 
                 className="hidden" 
                 type="string" 
                 id="movieBannerUrl"
-                value={imageUrl || "https://ih1.redbubble.net/image.3083717230.4980/poster,504x498,f8f8f8-pad,600x600,f8f8f8.jpg"}
+                value={imageUrl}
                 {...register('movieBanner')}
             />
         </div>
