@@ -28,7 +28,6 @@ export const CreateMusicianForm: FC<setReqStatusType> = ({setReqStatus}:setReqSt
       }
     )
     .then(res => {
-      console.log(res);
       res.data?.errors
       ? setReqStatus({error:{ errorMessage: res.data.errors[0].message}})
       : setReqStatus({success: "Musician created successfully :D"})

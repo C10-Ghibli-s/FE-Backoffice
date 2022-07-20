@@ -3,9 +3,9 @@ import { updateUserForQuery } from "@customTypes/createItemTypes";
 export const UPDATE_USER = (user: updateUserForQuery) => {
 
   let variablesData: any[] = [];
-  // we count the number of properties in the user object
   let userObject = Object.entries(user);
-  // and then we check if the user object has any properties to add it to the variables query
+
+  // mapping every property 
   for (let i = 0; i < userObject.length; i++) {
     // verify if the property is not empty 
     if(userObject[i][1] !== '') {

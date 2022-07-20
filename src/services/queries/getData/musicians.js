@@ -4,6 +4,7 @@ export const SHOW_ALL_MUSICIANS = {
     showAllMusicians {
       id
       name
+      status
     }
   }`
 }

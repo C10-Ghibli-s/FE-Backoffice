@@ -28,7 +28,7 @@ export const CreateItemModal: FC<createItem> = ({
           <div
             className={`bg-slate-50 ${
               item == "movie" || item == "user"
-                ? "h-full sm:h-full sm:w-4/5 md:p-2"
+                ? "sm:w-4/5 md:p-2"
                 : ""
             } rounded-2xl h-[90%] sm:h-fit sm:w-fit sm:bottom-0 sm:top-32 flex flex-col p-2 pt-6 pb-16 w-full absolute -bottom-3`}
           >

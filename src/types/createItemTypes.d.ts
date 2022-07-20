@@ -28,7 +28,6 @@ export type titlesType = {
 }
 // post data movie
 export type newMovieType = {
-  id?: number,
   status?: string,
   youtube?: string,
   userName: string,
@@ -40,8 +39,9 @@ export type newMovieType = {
   duration: number,
   audienceScore?: number,
   linkWiki: string,
-  movieBanner: string,
+  movieBanner?: string,
 }
+
 // fetch movie data
 export type updateMovieTypeFromDB = {
   id: number,
@@ -65,38 +65,38 @@ export type updateMovieType = {
   id: number,
   status?: string,
   youtube?: string,
-  userName: string,
-  title: string,
-  originalTitle: string,
+  userName?: string,
+  title?: string,
+  originalTitle?: string,
   romajiTitle?: string,
-  releaseDate: string,
-  filmDescription: string,
-  duration: number,
+  releaseDate?: string,
+  filmDescription?: string,
+  duration?: number,
   audienceScore?: number,
-  linkWiki: string,
-  movieBanner: string,
+  linkWiki?: string,
+  movieBanner?: string,
 }
 
 
 
 
-// type for data from submit form
-export type newMovieFromSubmit  = {
-  data: newMovieType,
-  producers: {
-    directorsIds: string,
-    writersIds: string,
-    musiciansIds: string
-  }
+export type addPeopleFromSubmit = {
+  movieId: number,
+  directorsIds: string,
+  writersIds: string,
+  musiciansIds: string
 }
+// adding producers to movies
+export type addPeopleForMutation = {
+  movieId: number,
+  directorsIds: number[],
+  writersIds: number[],
+  musiciansIds: number[]
+}
+
 // type data for mutation request
 export type newMovieForMutation = {
   data: newMovieType,
-  producers: {
-    directorsIds: number[],
-    writersIds: number[],
-    musiciansIds: number[]
-  }
 }
 
 
@@ -104,6 +104,7 @@ export type newMovieForMutation = {
 export type newProducerType = {
   id?: string,
   name: string
+  status: string,
 }
 
 // update producer (director/writer/musician)
@@ -111,5 +112,6 @@ export type updateProducerType = {
   id: number,
   name: string,
   producerRole: string
+  status: string,
 }
 

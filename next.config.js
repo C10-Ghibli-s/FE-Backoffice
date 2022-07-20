@@ -10,7 +10,7 @@ const nextConfig = {
     API_AUTH: "https://www.areyouivan.com/auth/verify",
   },
   images: {
-    domains: ["ih1.redbubble.net", "www.business2community.com"],
+    domains: ["ih1.redbubble.net", "www.business2community.com", "res.cloudinary.com"],
   },
   async redirects() {
     return [
