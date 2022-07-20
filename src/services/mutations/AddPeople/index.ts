@@ -13,13 +13,13 @@ export const ADD_PEOPLE = (people: addPeopleForMutation) => {
             // if it is not empty, we add it to the variables query depending on what type of property it is
             switch (peopleObject[i][0]) {
             case 'directorsIds':
-                variablesData.push(['"directorsId"', people.directorsIds]);
+                variablesData.push(['directorsId', people.directorsIds]);
                 break;
             case 'writersIds':
-                variablesData.push(['"writersId"', people.writersIds]);
+                variablesData.push(['writersId', people.writersIds]);
                 break;
             case 'musiciansIds':
-                variablesData.push(['"musiciansId"', people.musiciansIds]);
+                variablesData.push(['musiciansId', people.musiciansIds]);
                 break;
             default:
                 break;
@@ -36,7 +36,7 @@ export const ADD_PEOPLE = (people: addPeopleForMutation) => {
             }
         }`,
         variables: {
-            "movieId": people.movieId,
+            "movieId": `${people.movieId}`,
             "data": {...data}
         }
     }
