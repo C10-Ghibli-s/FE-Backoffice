@@ -81,7 +81,8 @@ npm run lint
 
 ## Studio Ghibli Tracker Flowchart <a name="flowchart"></a>
 [**Open in Figma**](https://www.figma.com/file/3fvdt3syMiNAu36Tsqs7rv/FlowChart-Ghibli-Backoffice?node-id=0%3A1)
-![image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5951c8b7-f375-4410-8ccc-520a86023d69/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220510%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220510T232407Z&X-Amz-Expires=86400&X-Amz-Signature=23a2e5003f5b092051c684e980cc590b4ec350688c36a0d831b8081a38d336d2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+
+![Screen Shot 2022-07-28 at 1 03 30 AM](https://user-images.githubusercontent.com/17114826/181432086-cd618272-0905-4204-ab99-dce9aa695711.png)
 
 
 
