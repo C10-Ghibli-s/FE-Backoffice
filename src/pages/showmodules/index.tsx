@@ -31,6 +31,8 @@ function ShowModules() {
   const { items, searchValue, orderItems, filterStatus } =
     useGetModules(titleModule);
 
+    console.log(items)
+
   return (
     <>
       <Head>

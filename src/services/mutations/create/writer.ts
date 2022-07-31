@@ -11,7 +11,8 @@ export const CREATE_WRITER = (data: newProducerType) => {
     }`,
     variables: {
       "data": {
-        "name": `${data.name}`
+        "name": `${data.name}`,
+        "status": "ACTIVE"
       }
     }
   };

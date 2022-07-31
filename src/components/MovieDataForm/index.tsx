@@ -1,7 +1,6 @@
-import { onPreviewImage } from "@utils/onPreviewImage";
-import Image from "next/image";
-import React, { FC, SetStateAction, useState } from "react";
+import React, { FC, SetStateAction } from "react";
 import { useFormContext } from "react-hook-form";
+import { UploadImages } from "@services/UploadImages";
 
 type formSteping = {
   formStep: string;
@@ -9,9 +8,7 @@ type formSteping = {
 };
 
 export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
-  const [image, setImage] = useState<any>(
-    "https://ih1.redbubble.net/image.3083717230.4980/poster,504x498,f8f8f8-pad,600x600,f8f8f8.jpg"
-  );
+
   const methods = useFormContext();
   const {
     register,
@@ -45,7 +42,7 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
               defaultValue="0"
               className="w-56 h-12 p-4 mt-2 mb-4 border-2 rounded-md shadow-sm sm:w-80 lg:w-56 border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               id="duration"
-              type="text"
+              type="number"
               placeholder="movie duration"
               {...register("duration")}
             />
@@ -74,41 +71,14 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
             <input
               className="h-12 p-4 mt-2 mb-4 border-2 rounded-md shadow-sm w-52 sm:w-80 lg:w-56 border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               id="audienceScore"
-              type="text"
+              type="number"
               placeholder="audience score e.g 5.0"
               {...register("audienceScore")}
             />
           </div>
         </div>
         <div className="flex flex-col items-center w-5/6 p-4">
-          <div className="max-w-sm p-2 border-2 lg:w-4/5 lg:max-w-md lg:h-4/5 border-slate-400/40 rounded-xl">
-            <Image
-              onClick={() => document?.getElementById("movieBanner")?.click()}
-              width="300"
-              height="300"
-              className="object-scale-down w-full hover:cursor-pointer"
-              src={image}
-              alt="Movie banner preview"
-            />
-          </div>
-          <div>
-            <label
-              className="cursor-pointer relative mb-2 transition-colors text-black w-[60px] after:bg-black after:content-[''] hover:after:h-[1px] after:w-full after:absolute after:-left-[0] after:top-6 "
-              htmlFor="movieBanner"
-            >
-              Movie banner*
-            </label>
-            <input
-              className="hidden"
-              type="file"
-              id="movieBanner"
-              {...register("movieBanner")}
-              onChange={e => {
-                onPreviewImage(e, setImage);
-              }}
-            />
-          </div>
-
+          <UploadImages/>
           <div className="flex flex-col mt-4">
             <label htmlFor="linkWiki">link to Wiki*</label>
             <input
@@ -128,26 +98,20 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
         </div>
       </div>
       <div className="flex justify-center mt-4">
-        {(formStep == "Title" || formStep == "Data") && (
-          <button
-            className=" order-2 p-2 mb-2 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-[200px] ml-7"
-            onClick={() =>
-              formStep == "Title"
-                ? setFormStep("Data")
-                : setFormStep("Producers")
-            }
-          >
-            Next
-          </button>
-        )}
         <button
-          className="order-1 relative mb-2 font-bold transition-colors text-gray-500 w-[60px] after:bg-slate-500 after:content-[''] hover:after:h-[2px] after:w-full after:absolute after:-left-[0] after:top-7 "
+          className="relative mb-2 font-bold transition-colors text-gray-500 w-[60px] after:bg-slate-500 after:content-[''] hover:after:h-[2px] after:w-full after:absolute after:-left-[0] after:top-7 hover:cursor-pointer"
           onClick={() => {
             setFormStep("Title");
           }}
-        >
-          Previous
-        </button>
+          children="Back"
+        />
+        {(formStep == "Data") && (
+          <input
+            className="p-2 mb-2 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-[200px] ml-7 hover:cursor-pointer"
+            type="submit"
+            value="Create Movie"
+          />
+        )}
       </div>
     </>
   );
