@@ -103,8 +103,7 @@ export const MovieDataForm: FC<formSteping> = ({ formStep, setFormStep }) => {
           onClick={() => {
             setFormStep("Title");
           }}
-          children="Back"
-        />
+        >Back</button>
         {(formStep == "Data") && (
           <input
             className="p-2 mb-2 font-bold text-white transition-colors bg-blue-500 rounded-md active:bg-blue-600 hover:bg-blue-600 w-[200px] ml-7 hover:cursor-pointer"
